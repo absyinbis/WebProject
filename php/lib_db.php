@@ -106,6 +106,17 @@ function editPoliceStation($account)
 
 }
 
+function deletePoliceStation($id)
+{
+	$conn = createConnection();
+
+	$sql = "DELETE FROM police_stations WHERE id = '".$id."' ";
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
+
+}
+
 function getUsersByPoliceStation($id)
 {
 	$conn = createConnection();

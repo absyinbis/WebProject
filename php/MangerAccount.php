@@ -44,6 +44,12 @@ class cAccountManager
 			throw new Exception("not edit");
 	}
 
+	public function deletepolicestation($id)
+	{
+		if(!deletePoliceStation($id))
+			throw new Exception("not delete");
+	}
+
 }
 
  ?>

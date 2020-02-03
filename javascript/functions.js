@@ -42,8 +42,8 @@
 
         case "Delete" :
         if(confirm("هل تريد الحذف")) {
-          //document.getElementById(form).action = "../php/EditAccount.php";
-          //document.getElementById(form).submit();
+          document.getElementById(form).action = "../php/DeleteAccount.php";
+          document.getElementById(form).submit();
         }  
         break;
       }
