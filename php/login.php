@@ -13,7 +13,7 @@ try
         $state = unserialize($_SESSION["ACCOUNT"]);
 
         if($state->getState() == 0)
-        	header("Location:../html/AdminView.php");
+        	header("Location:../html/AdminViewPoliceStation.php");
         else
         	header("Location:../html/PoliceStationView.php");
 
