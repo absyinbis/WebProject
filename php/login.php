@@ -15,7 +15,7 @@ try
         if($state->getState() == 0)
         	header("Location:../html/AdminViewPoliceStation.php");
         else
-        	header("Location:../html/PoliceStationView.php");
+        	header("Location:../html/PS_ViewUser.php");
 
 		
 	}
