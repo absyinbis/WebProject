@@ -24,8 +24,7 @@ session_start();
 <div class="topnav">
   <a href="AdminViewPoliceStation.php">ادارة مراكز الشرطة</a>
   <a href="AdminViewUser.php">ادارة المستخدمين</a>
-  <a href="#">ادارة القضاية</a>
-  <a href="#">ادارة المحاضر</a>
+  <a href="AdminViewStolenCar.php">ادارة السيارات المسروقة</a>
   <a href="#" style="float:left;">تسجيل الخروج</a>
 </div>
 
@@ -41,6 +40,7 @@ session_start();
             <th onclick="sortTable(2,'user_table')">username</th>
             <th onclick="sortTable(3,'user_table')">password</th>
             <th onclick="sortTable(4,'user_table')">phonenumber</th>
+            <th onclick="sortTable(5,'user_table')">who</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -53,6 +53,7 @@ session_start();
             <td><?=$u->getUserName()?></td>
             <td><?=$u->getPassword()?></td>
             <td><?=$u->getPhoneNumber()?></td>
+            <td><?=$u->getWho()?></td>
           </tr>
           <?php }  ?>
         </table>
@@ -62,7 +63,8 @@ session_start();
 
   <div class="rightcolumn">
     <div class="card">
-      <form id="user" method="get">
+      <form name="users" method="post">
+        <input id="id_u" type="hidden" name="id">
         <div>name</div>
         <input id="name_u" class="input-field" type="text" name="name" required>
         <div>username</div>
@@ -72,18 +74,17 @@ session_start();
         <div>phone number</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
 
-        <input class="btn" type="submit" value="Add" onclick="changeAction(this.value,'user')">
-        <input class="btn" type="submit" value="Edit" onclick="changeAction(this.value,'user')">
+        <input class="btn" type="submit" value="Add" onclick="user('Add')">
+        <input class="btn" type="submit" value="Edit" onclick="user('Edit')">
+        <input class="btn" type="submit" value="Delete" onclick="user('Delete')">
       </form>
     </div>
   </div>
 </div>
 
 
+<script src="../javascript/tableuserscript.js"></script>
 
-
-
-<script src="../javascript/tabelscript.js"></script>
 
 </body>
 </html>

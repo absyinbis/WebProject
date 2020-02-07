@@ -19,8 +19,7 @@
 <div class="topnav">
   <a href="AdminViewPoliceStation.php">ادارة مراكز الشرطة</a>
   <a href="AdminViewUser.php">ادارة المستخدمين</a>
-  <a href="#">ادارة القضاية</a>
-  <a href="#">ادارة المحاضر</a>
+  <a href="AdminViewStolenCar.php">ادارة السيارات المسروقة</a>
   <a href="#" style="float:left;">تسجيل الخروج</a>
 </div>
 
@@ -56,28 +55,28 @@
 
   <div class="rightcolumn">
     <div class="card">
-      <form id="police_station" method="post">
+      <form name="police_station" method="post">
         <div style="color: red;"><?php if(isset($_SESSION["ERROR"])){ echo $_SESSION["ERROR"];
         $_SESSION["ERROR"]='';}?>
         </div>
         <input id="id_ps" type="hidden" name="id">
         <div>name</div>
-        <input id="name_ps" class="input-field" type="text" name="name" required>
+        <input id="name_ps" class="input-field" type="text" name="name">
         <div>username</div>
-        <input id="username_ps" class="input-field" type="text" name="username" required>
+        <input id="username_ps" class="input-field" type="text" name="username">
         <div>password</div>
-        <input id="password_ps" class="input-field" type="text" name="password" required>
+        <input id="password_ps" class="input-field" type="text" name="password">
 
-        <input class="btn" type="submit" value="Add" onclick="changeAction('Add','police_station')">
-        <input class="btn" type="submit" value="Edit" onclick="changeAction('Edit','police_station')">
-        <input class="btn" type="submit" value="Delete" onclick="changeAction('Delete','police_station')">
+        <input class="btn" type="submit" value="Add" onclick="policestation('Add')">
+        <input class="btn" type="submit" value="Edit" onclick="policestation('Edit')">
+        <input class="btn" type="submit" value="Delete" onclick="policestation('Delete')">
       </form>
     </div>
   </div>
 </div>
 
 
-<script src="../javascript/tabelscript.js"></script>
+<script src="../javascript/tablepolicestationscript.js"></script>
 
 </body>
 </html>

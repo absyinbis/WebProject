@@ -9,14 +9,14 @@ try{
 
 
 $am->deletepolicestation($_POST["id"]);
-header("Location:../html/AdminView.php");
+header("Location:../html/AdminViewPoliceStation.php");
 
 }
 
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/AdminView.php");
+		header("Location:../html/AdminViewPoliceStation.php");
 
 }
 

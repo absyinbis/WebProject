@@ -13,14 +13,14 @@ $account->setPassword($_POST["password"]);
 $account->setState("1");
 
 $am->addpolicestation($account);
-header("Location:../html/AdminView.php");
+header("Location:../html/AdminViewPoliceStation.php");
 
 }
 
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/AdminView.php");
+		header("Location:../html/AdminViewPoliceStation.php");
 
 }
 

@@ -1,54 +1,55 @@
-	function opentab(tab_num) {
-  			var i;
-  			var x = document.getElementsByClassName("row");
-        var input = document.getElementsByTagName("input");
-        for(i= 0 ; i< input.length; i++)
-          if (input[i].className != "btn")
-            input[i].value = "";
 
-  			for (i = 0; i < x.length; i++) {
-    			x[i].style.display = "none";
-  			}
-  			document.getElementById(tab_num).style.display = "block";
-	}
 
-    function check(form){
-    var frm = document.getElementById(form);
-    var txtfiled = frm.getElementsByClassName("input-field");
-    for (var i = 0; i < txtfiled.length; i++)
-      if (txtfiled[i].value == "")
-        return false;
-      return true;
-      
-  }
-
-	function changeAction(n,form){
-    if(check(form)) {
+	function policestation(n){
       switch(n)
       {
         case "Add" :
         if(confirm("هل تريد الاضافة ؟")) {
-          document.getElementById(form).action = "../php/AddAccount.php";
-          document.getElementById(form).submit();
-        } 
+          document.police_station.action = "../php/AddAccount.php";
+          document.police_station.submit();
+        }
         break;
 
         case "Edit" :
         if(confirm("هل تريد التعديل ؟")) {
-          document.getElementById(form).action = "../php/EditAccount.php";
-          document.getElementById(form).submit();
+          document.police_station.action = "../php/EditAccount.php";
+          document.police_station.submit();
         } 
         break;
 
         case "Delete" :
         if(confirm("هل تريد الحذف")) {
-          document.getElementById(form).action = "../php/DeleteAccount.php";
-          document.getElementById(form).submit();
+          document.police_station.action = "../php/DeleteAccount.php";
+          document.police_station.submit();
         }  
         break;
       }
+  }
 
-    }
+  function user(n){
+      switch(n)
+      {
+        case "Add" :
+        if(confirm("هل تريد الاضافة ؟")) {
+          document.users.action = "../php/AddUser.php";
+          document.users.submit();
+        } 
+        break;
+
+        case "Edit" :
+        if(confirm("هل تريد التعديل ؟")) {
+          document.users.action = "../php/EditUser.php";
+          document.users.submit();
+        } 
+        break;
+
+        case "Delete" :
+        if(confirm("هل تريد الحذف")) {
+          document.users.action = "../php/DeleteUser.php";
+          document.users.submit();
+        }  
+        break;
+      }
   }
 
 	function sortTable(n,table)

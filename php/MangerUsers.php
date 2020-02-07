@@ -26,17 +26,20 @@ class cUserManager
 
 	public function adduser($user)
 	{
-
+		if(!addUser($user))
+			throw new Exception("user no add");
 	}
 
 	public function edituser($user)
 	{
-
+		if(!editUser($user))
+			throw new Exception("not edit");
 	}
 
-	public function deleteuser($user)
+	public function deleteuser($id)
 	{
-
+		if(!deleteUser($id))
+			throw new Exception("not deleted");
 	}
 	
 }
