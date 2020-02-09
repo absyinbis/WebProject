@@ -1,34 +1,9 @@
 <?php 
 session_start();
+include("PS_Header.html");
+?>
 
- ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-
-  <title>Police Station</title>
-
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <script src="../javascript/functions.js"></script>
-
-</head>
-<body>
-
-<div class="header">
-  <h1>My Website</h1>
-  <p>Resize the browser window to see the effect.</p>
-</div>
-
-<div class="topnav">
-  <a href="PS_ViewUser.php">ادارة المستخدمين</a>
-  <a href="PS_ViewStolenCar.php">ادارة السيارات المسروقة</a>
-  <a href="#" style="float:left;">تسجيل الخروج</a>
-</div>
-
-
-<div class="row" id="2">
+<div class="row">
   <div class="leftcolumn">
     <div class="card">
       <div class="table-content">
@@ -84,5 +59,6 @@ session_start();
 <script src="../javascript/tableuserscript.js"></script>
 
 
-</body>
-</html>
+<?php 
+include("Footer.html");
+?>

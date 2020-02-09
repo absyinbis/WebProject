@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-
-  <title>Admin</title>
-
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
-  <script src="../javascript/functions.js"></script>
-
-</head>
-<body>
-
-<div class="header">
-  <h1>My Website</h1>
-  <p>Resize the browser window to see the effect.</p>
-</div>
-
-<div class="topnav">
-  <a href="AdminViewPoliceStation.php">ادارة مراكز الشرطة</a>
-  <a href="AdminViewUser.php">ادارة المستخدمين</a>
-  <a href="AdminViewStolenCar.php">ادارة السيارات المسروقة</a>
-  <a href="#" style="float:left;">تسجيل الخروج</a>
-</div>
-
-
+<?php 
+include("Admin_Header.html");
+?>
 
 <div class="row" id="1">
   <div class="leftcolumn">
@@ -78,5 +55,6 @@
 
 <script src="../javascript/tablepolicestationscript.js"></script>
 
-</body>
-</html>
+<?php 
+include("Footer.html");
+?>
