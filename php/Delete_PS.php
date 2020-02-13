@@ -2,13 +2,15 @@
 
 session_start();
 
-require_once 'MangerAccount.php';
+require_once 'MangerUsers.php';
 
-$am = cAccountManager::getInstance();
+$um = cUserManager::getInstance();
 try{
 
 
-$am->deletepolicestation($_POST["id"]);
+$um->deleteuser($_POST["id"]);
+$um->logg("Delete","PS",date("yy-m-d"),$account->getId());
+
 header("Location:../html/AdminViewPoliceStation.php");
 
 }

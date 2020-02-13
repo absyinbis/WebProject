@@ -22,7 +22,15 @@ class cUserManager
 		return cUserManager::$_instance;
 	}
 
-
+	public function login($username,$password)
+	{
+		$account = getPoliceStation($username);
+		if($account == NULL)
+			throw new Exception("Account Not Found");
+		if($account->getPassword() == $password)
+			return $account;
+			throw new Exception("Wrong Username/Password");
+	}
 
 	public function adduser($user)
 	{
@@ -40,6 +48,11 @@ class cUserManager
 	{
 		if(!deleteUser($id))
 			throw new Exception("not deleted");
+	}
+
+	public function logg($process,$name,$date,$who)
+	{
+		Logg($process,$name,$date,$who);
 	}
 	
 }

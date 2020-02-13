@@ -5,21 +5,21 @@
       {
         case "Add" :
         if(confirm("هل تريد الاضافة ؟")) {
-          document.police_station.action = "../php/AddAccount.php";
+          document.police_station.action = "../php/Add_PS.php";
           document.police_station.submit();
         }
         break;
 
         case "Edit" :
         if(confirm("هل تريد التعديل ؟")) {
-          document.police_station.action = "../php/EditAccount.php";
+          document.police_station.action = "../php/Edit_PS.php";
           document.police_station.submit();
         } 
         break;
 
         case "Delete" :
         if(confirm("هل تريد الحذف")) {
-          document.police_station.action = "../php/DeleteAccount.php";
+          document.police_station.action = "../php/Delete_PS.php";
           document.police_station.submit();
         }  
         break;
@@ -31,21 +31,21 @@
       {
         case "Add" :
         if(confirm("هل تريد الاضافة ؟")) {
-          document.users.action = "../php/AddUser.php";
+          document.users.action = "../php/Add_User.php";
           document.users.submit();
         } 
         break;
 
         case "Edit" :
         if(confirm("هل تريد التعديل ؟")) {
-          document.users.action = "../php/EditUser.php";
+          document.users.action = "../php/Edit_User.php";
           document.users.submit();
         } 
         break;
 
         case "Delete" :
         if(confirm("هل تريد الحذف")) {
-          document.users.action = "../php/DeleteUser.php";
+          document.users.action = "../php/Delete_User.php";
           document.users.submit();
         }  
         break;

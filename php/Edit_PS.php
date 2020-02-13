@@ -11,17 +11,21 @@ $user->setId($_POST["id"]);
 $user->setName($_POST["name"]);
 $user->setUserName($_POST["username"]);
 $user->setPassword($_POST["password"]);
-$user->setPhoneNumber($_POST["phonenumber"]);
+$user->setPhoneNumber("");
 
 $um->edituser($user);
-header("Location:../html/AdminViewUser.php");
+$um->logg("Edit","PS",date("yy-m-d"),$account->getId());
+
+header("Location:../html/AdminViewPoliceStation.php");
+
 
 }
 
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/AdminViewUser.php");
+		header("Location:../html/AdminViewPoliceStation.php");
+
 }
 
  ?>
