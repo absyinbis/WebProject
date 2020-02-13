@@ -187,6 +187,29 @@ function Logg($process,$name,$date,$who)
 	$conn->query($sql);
 }
 
+function getAllLogg()
+{
+	//work
+	$conn = createConnection();
+
+	$sql = "select * from users where access = 1 and State = 1";
+	$result = $conn->query($sql);
+	$users = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$user = new cUser();
+		$user->setId($row["id"]);
+		$user->setName($row["name"]);
+		$user->setUserName($row["username"]);
+		$user->setPassword($row["password"]);
+		$user->setWho($row["who"]);
+		$users[] = $user;
+		}
+	}
+	$conn->close();
+	return $users;
+}
 
 
 
