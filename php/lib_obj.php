@@ -69,4 +69,74 @@ class cUser
 
 }
 
+class cLogg
+{
+	private $id = -1;
+	private $process = "";
+	private $name = "";
+	private $add_date = "";
+	private $who = -1;
+
+
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+
+	public function setProcess($process)
+	{
+		$this->process = $process;
+	}
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+	public function setAddDate($add_date)
+	{
+		$this->add_date = $add_date;
+	}
+
+	public function setWho($who)
+	{
+		$this->who = $who;
+	}
+
+
+	public function getId(){ return $this->id; }
+
+	public function getProcess(){ return $this->process; }
+
+	public function getName(){ return $this->name; }
+
+	public function getAddDate(){ return $this->add_date; }
+	
+	public function getWho(){ return $this->who; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
  ?>
