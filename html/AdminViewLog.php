@@ -10,11 +10,11 @@ include("Admin_Header.html");
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>
-            <th onclick="sortTable(0,'user_table')">id</th>
-            <th onclick="sortTable(1,'user_table')">process</th>
-            <th onclick="sortTable(2,'user_table')">name</th>
-            <th onclick="sortTable(3,'user_table')">add date</th>
-            <th onclick="sortTable(4,'user_table')">who</th>
+            <th onclick="sortTable(0,'user_table')">رقم</th>
+            <th onclick="sortTable(1,'user_table')">العملية</th>
+            <th onclick="sortTable(2,'user_table')">الاسم</th>
+            <th onclick="sortTable(3,'user_table')">تاريخ العملية</th>
+            <th onclick="sortTable(4,'user_table')">من</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -33,6 +33,7 @@ include("Admin_Header.html");
       </div>
     </div>
   </div>
+</div>
   <?php 
   include("Footer.html");
    ?>

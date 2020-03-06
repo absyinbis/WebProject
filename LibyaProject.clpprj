@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project name="C:\xampp\htdocs\LibyaProject\LibyaProject.clpprj">
+ <settings>
+  <PM_URL><![CDATA[http://localhost/C:/xampp/htdocs/LibyaProject]]></PM_URL>
+  <PM_HOME_URL><![CDATA[http://localhost/C:/xampp/htdocs/LibyaProject]]></PM_HOME_URL>
+  <PM_LIBS><![CDATA[]]></PM_LIBS>
+  <PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION>
+  <PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR>
+  <PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE>
+ </settings>
+ <removed value=";"/>
+ <added value=""/>
+ <lastopfiles>
+  <file name="C:\xampp\htdocs\LibyaProject\html\AdminViewPoliceStation.php"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\Admin_Header.html"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\PS_Header.html"/>
+  <lastactivefile name=""/>
+ </lastopfiles>
+ <errors version="1.3"/>
+ <cakedata/>
+ <dplmenupath/>
+ <laravael/>
+ <smartyassings/>
+ <twigtemplate/>
+ <yiidata/>
+ <todoblock/>
+ <dbgurls/>
+ <filescache>
+  <file name="C:\xampp\htdocs\LibyaProject\php\MangerUser.php" crc="1583419334392"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\MangerPoliceStation.php" crc="1583419150819"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\login.php" crc="1583418547009"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\lib_obj.php" crc="1583420651957"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\lib_db.php" crc="1583421800684"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Edit_User.php" crc="1583421815252"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Edit_PS.php" crc="1583443391976"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Delete_User.php" crc="1583419915062"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Delete_PS.php" crc="1583419927249"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Add_User.php" crc="1583419754558"/>
+  <file name="C:\xampp\htdocs\LibyaProject\php\Add_PS.php" crc="1583443389815"/>
+  <file name="C:\xampp\htdocs\LibyaProject\javascript\tableuserscript.js" crc="1581070125643"/>
+  <file name="C:\xampp\htdocs\LibyaProject\javascript\tablepolicestationscript.js" crc="1581069876591"/>
+  <file name="C:\xampp\htdocs\LibyaProject\javascript\functions.js" crc="1581591659495"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\PS_ViewUser.php" crc="1581260521726"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\PS_ViewStolenCar.php" crc="1581260554259"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\PS_Header.html" crc="1583444641227"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\LoginView.php" crc="1580170699717"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\Footer.html" crc="1581260375831"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\AdminViewUser.php" crc="1582120066241"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\AdminViewPoliceStation.php" crc="1583443805647"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\AdminViewLog.php" crc="1582119815289"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\AdminViewDashbored.php" crc="1582119531177"/>
+  <file name="C:\xampp\htdocs\LibyaProject\html\Admin_Header.html" crc="1583443908690"/>
+  <file name="C:\xampp\htdocs\LibyaProject\css\style.css" crc="1581610185830"/>
+  <file name="C:\xampp\htdocs\LibyaProject\css\loginstyle.css" crc="1579268706836"/>
+  <file name="C:\xampp\htdocs\LibyaProject\index.php" crc="1580500250630"/>
+ </filescache>
+</project>

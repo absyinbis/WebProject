@@ -2,24 +2,23 @@
 session_start();
 
 require_once 'lib_obj.php';
-require_once 'MangerUsers.php';
+require_once 'MangerPoliceStation.php';
 
-$um = cUserManager::getInstance();
+$psm = cPoliceStationManger::getInstance();
 try{
 
-$account = unserialize($_SESSION["ACCOUNT"]);
+//$account = unserialize($_SESSION["ACCOUNT"]);
 
-$user = new cUser();
-$user->setName($_POST["name"]);
-$user->setUserName($_POST["username"]);
-$user->setPassword($_POST["password"]);
-$user->setPhoneNumber("");
-$user->setAccess("1");
-$user->setState("1");
-$user->setWho($account->getId());
+$ps = new cPoliceStation();
 
-$um->adduser($user);
-$um->logg("Add","PS",date("yy-m-d"),$account->getId());
+$ps->setName($_POST["name"]);
+$ps->setUserName($_POST["username"]);
+$ps->setPassword($_POST["password"]);
+$ps->setAccess($_POST["access"]);
+$ps->setState("1");
+
+$psm->addpolicestation($ps);
+//$um->logg("Add","PS",date("yy-m-d"),$account->getId());
 
 header("Location:../html/AdminViewPoliceStation.php");
 

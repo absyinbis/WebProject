@@ -4,7 +4,7 @@ require_once 'lib_db.php';
 
 
 
-class cUserManager
+class cPoliceStationManger
 {
 	private static $_instance = NULL;
 
@@ -15,11 +15,11 @@ class cUserManager
 	
 	public static function getInstance()
 	{
-		if(cUserManager::$_instance == NULL)
+		if(cPoliceStationManger::$_instance == NULL)
 		{
-			cUserManager::$_instance = new cUserManager();
+			cPoliceStationManger::$_instance = new cPoliceStationManger();
 		}
-		return cUserManager::$_instance;
+		return cPoliceStationManger::$_instance;
 	}
 
 	public function login($username,$password)
@@ -32,30 +32,24 @@ class cUserManager
 			throw new Exception("Wrong Username/Password");
 	}
 
-	public function adduser($user)
+	public function addpolicestation($ps)
 	{
-		if(!addUser($user))
+		if(!addPoliceStation($ps))
 			throw new Exception("user no add");
 	}
 
-	public function edituser($user)
+	public function editpolicestation($ps)
 	{
-		if(!editUser($user))
+		if(!editPoliceStation($ps))
 			throw new Exception("not edit");
 	}
 
-	public function deleteuser($id)
+	public function deletepolicestation($id)
 	{
-		if(!deleteUser($id))
+		if(!deletePoliceStation($id))
 			throw new Exception("not deleted");
 	}
 
-	public function logg($process,$name,$date,$who)
-	{
-		Logg($process,$name,$date,$who);
-	}
 	
 }
-
-
- ?>
+?>

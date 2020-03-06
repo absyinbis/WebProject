@@ -1,18 +1,18 @@
 <?php 
 session_start();
 
-require_once 'MangerUsers.php';
+require_once 'MangerPoliceStation.php';
 
 
 
-$um = cUserManager::getInstance();
+$psm = cPoliceStationManger::getInstance();
 try
 	{   
 
-        $_SESSION["ACCOUNT"] = serialize($um->login($_POST["username"],$_POST["password"]));
-        $state = unserialize($_SESSION["ACCOUNT"]);
+        $_SESSION["ACCOUNT"] = serialize($psm->login($_POST["username"],$_POST["password"]));
+        $ps = unserialize($_SESSION["ACCOUNT"]);
 
-        if($state->getAccess() == 0)
+        if($ps->getAccess() == 0)
         	header("Location:../html/AdminViewPoliceStation.php");
         else
         	header("Location:../html/PS_ViewUser.php");

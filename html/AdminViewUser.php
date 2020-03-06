@@ -10,12 +10,12 @@ include("Admin_Header.html");
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>
-            <th onclick="sortTable(0,'user_table')">id</th>
-            <th onclick="sortTable(1,'user_table')">name</th>
-            <th onclick="sortTable(2,'user_table')">username</th>
-            <th onclick="sortTable(3,'user_table')">password</th>
-            <th onclick="sortTable(4,'user_table')">phonenumber</th>
-            <th onclick="sortTable(5,'user_table')">who</th>
+            <th onclick="sortTable(0,'user_table')">رقم</th>
+            <th onclick="sortTable(1,'user_table')">الاسم</th>
+            <th onclick="sortTable(2,'user_table')">اسم المستخدم</th>
+            <th onclick="sortTable(3,'user_table')">كلمة المرور</th>
+            <th onclick="sortTable(4,'user_table')">رقم الهاتف</th>
+            <th onclick="sortTable(5,'user_table')">يتبع من</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -40,18 +40,18 @@ include("Admin_Header.html");
     <div class="card">
       <form name="users" method="post">
         <input id="id_u" type="hidden" name="id">
-        <div>name</div>
+        <div>الاسم</div>
         <input id="name_u" class="input-field" type="text" name="name" required>
-        <div>username</div>
+        <div>اسم المستخدم</div>
         <input id="username_u" class="input-field" type="text" name="username" required>
-        <div>password</div>
+        <div>كلمة المرور</div>
         <input id="password_u" class="input-field" type="text" name="password" required>
-        <div>phone number</div>
+        <div>رقم الهاتف</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
 
-        <input class="btn" type="submit" value="Add" onclick="user('Add')">
-        <input class="btn" type="submit" value="Edit" onclick="user('Edit')">
-        <input class="btn" type="submit" value="Delete" onclick="user('Delete')">
+        <input class="btn" type="submit" value="اضافة" onclick="user('Add')">
+        <input class="btn" type="submit" value="تعديل" onclick="user('Edit')">
+        <input class="btn" type="submit" value="حذف" onclick="user('Delete')">
       </form>
     </div>
   </div>
