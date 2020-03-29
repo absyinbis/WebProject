@@ -16,6 +16,7 @@ include("Admin_Header.html");
             <th onclick="sortTable(3,'user_table')">كلمة المرور</th>
             <th onclick="sortTable(4,'user_table')">رقم الهاتف</th>
             <th onclick="sortTable(5,'user_table')">يتبع من</th>
+            <th onclick="sortTable(6,'user_table')">صلاحية الوصول</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -29,6 +30,21 @@ include("Admin_Header.html");
             <td><?=$u->getPassword()?></td>
             <td><?=$u->getPhoneNumber()?></td>
             <td><?=$u->getWho()?></td>
+            <?php
+            switch ($u->getAccess()) {
+              case 2:
+                echo "<td>وكيل النيابة</td>";
+                break;
+              
+              case 3:
+                echo "<td>موظف</td>";
+                break;
+
+              case 4:
+                echo "<td> مستخدم جوال</td>";
+
+            }
+            ?>
           </tr>
           <?php }  ?>
         </table>
@@ -40,14 +56,25 @@ include("Admin_Header.html");
     <div class="card">
       <form name="users" method="post">
         <input id="id_u" type="hidden" name="id">
+
         <div>الاسم</div>
         <input id="name_u" class="input-field" type="text" name="name" required>
+
         <div>اسم المستخدم</div>
         <input id="username_u" class="input-field" type="text" name="username" required>
+
         <div>كلمة المرور</div>
         <input id="password_u" class="input-field" type="text" name="password" required>
+
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
+
+        <div>صلاحية الوصول</div>
+        <select class="input-field" name="access">
+        <option value="2">وكيل النيابة</option>
+        <option value="3">موظف</option>
+        <option value="4">مستخدم جوال</option>
+        </select>
 
         <input class="btn" type="submit" value="اضافة" onclick="user('Add')">
         <input class="btn" type="submit" value="تعديل" onclick="user('Edit')">

@@ -6,8 +6,8 @@ class cPoliceStation
 	private $name = "";
 	private $username = "";
 	private $password = "";
+	private $phonenumber = -1;
 	private $access = -1;
-	private $location = -1;
 	private $state = -1;
 
 	public function setId($id)
@@ -35,9 +35,9 @@ class cPoliceStation
 		$this->access = $access;
 	}
 
-	public function setLocation($location)
+	public function setPhoneNumber($phonenumber)
 	{
-		$this->location = $location;
+		$this->phonenumber = $phonenumber;
 	}
 
 	public function setState($state)
@@ -55,7 +55,7 @@ class cPoliceStation
 
 	public function getAccess(){ return $this->access; }
 
-	public function getLocation(){ return $this->location; }
+	public function getPhoneNumber(){ return $this->phonenumber; }
 
 	public function getState(){ return $this->state; }
 }
@@ -67,6 +67,7 @@ class cUser
 	private $username = "";
 	private $password = "";
 	private $phonenumber = -1;
+	private $access = -1;
 	private $state = -1;
 	private $who = -1;
 
@@ -95,6 +96,11 @@ class cUser
 		$this->phonenumber = $phonenumber;
 	}
 
+	public function setAccess($access)
+	{
+		$this->access = $access;
+	}
+
 	public function setState($state)
 	{
 		$this->state = $state;
@@ -105,6 +111,7 @@ class cUser
 		$this->who = $who;
 	}
 
+
 	public function getId(){ return $this->id; }
 
 	public function getName(){ return $this->name; }
@@ -114,6 +121,8 @@ class cUser
 	public function getPassword(){ return $this->password; }
 
 	public function getPhoneNumber(){ return $this->phonenumber; }
+
+	public function getAccess(){ return $this->access; }
 
 	public function getState(){ return $this->state; }
 
@@ -129,6 +138,7 @@ class cWanted
 	private $report_id = -1;
 	private $date = -1;
 	private $ps_id = -1;
+	private $user = -1;
 	private $state = -1;
 
 	public function setId($id)
@@ -166,6 +176,11 @@ class cWanted
 		$this->ps_id = $ps_id;
 	}
 
+	public function setUser($user)
+	{
+		$this->user = $user;
+	}
+
 	public function setState($state)
 	{
 		$this->state = $state;
@@ -185,18 +200,22 @@ class cWanted
 
 	public function getWho(){ return $this->ps_id; }
 
+	public function getUser(){ return $this->user; }
+
 	public function getState(){ return $this->state; }
 }
 
 class cReport
 {
 	private $id = -1;
+	private $report_type = "";
 	private $name_you = "";
 	private $name_him = "";
 	private $phonenumber = -1;
 	private $image = "";
 	private $date = -1;
 	private $ps_id = -1;
+	private $user = -1;
 	private $state = -1;
 
 	public function setId($id)
@@ -234,6 +253,11 @@ class cReport
 		$this->ps_id = $ps_id;
 	}
 
+	public function setUser($user)
+	{
+		$this->user = $user;
+	}
+
 	public function setState($state)
 	{
 		$this->state = $state;
@@ -252,6 +276,8 @@ class cReport
 	public function getDate(){ return $this->date; }
 
 	public function getWho(){ return $this->ps_id; }
+
+	public function getUser(){ return $this->user; }
 
 	public function getState(){ return $this->state; }
 }
@@ -307,11 +333,13 @@ class cCarStolen
 	private $plate_number = -1;
 	private $vehicle_type = "";
 	private $model = -1;
+	private $year = -1;
 	private $color = "";
 	private $description = "";
 	private $phonenumber = -1;
 	private $date = -1;
 	private $ps_id = -1;
+	private $user = -1;
 	private $state = -1;
 
 	public function setId($id)
@@ -339,9 +367,14 @@ class cCarStolen
 		$this->model = $model;
 	}
 
+	public function setYearCar($year)
+	{
+		$this->year = $year;
+	}
+
 	public function setColor($color)
 	{
-		$this->colr = $color;
+		$this->color = $color;
 	}
 
 	public function setDescription($description)
@@ -364,6 +397,11 @@ class cCarStolen
 		$this->ps_id = $ps_id;
 	}
 
+	public function setUser($user)
+	{
+		$this->user = $user;
+	}
+
 	public function setState($state)
 	{
 		$this->state = $state;
@@ -379,6 +417,8 @@ class cCarStolen
 
 	public function getModel(){ return $this->model; }
 
+	public function getYearCar(){ return $this->year; }
+
 	public function getColor(){ return $this->color; }
 
 	public function getDescription(){ return $this->description; }
@@ -388,6 +428,8 @@ class cCarStolen
 	public function getDate(){ return $this->date; }
 
 	public function getWho(){ return $this->ps_id; }
+
+	public function getUser(){ return $this->user; }
 
 	public function getState(){ return $this->state; }
 

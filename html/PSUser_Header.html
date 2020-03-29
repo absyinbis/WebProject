@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>ps</title>
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script src="../javascript/functions.js"></script>
+
+  <style type="text/css">
+
+#one {
+  float:left; 
+  text-align: center;
+  margin-right:20px;
+  width:50%;
+  min-height:170px;
+}
+#two { 
+  background-color: white;
+  overflow:hidden;
+  margin:10px;
+  min-height:170px;
+}
+
+  </style>
+
+</head>
+<body>
+
+<div class="header">
+  <h1>My Website</h1>
+  <p>Resize the browser window to see the effect.</p>
+</div>
+
+<ul>
+	<li class="dropdown">
+		<a href="javascript:void(0)" class="dropbtn">ادارةالمحاضر  &nabla;</a>
+		<div class="dropdown-content">
+			<a href="#">عرض المحاضر</a>
+			<a href="#">اضافة محضر</a>
+		</div>
+	</li>
+	
+	<li class="dropdown">
+		<a href="javascript:void(0)" class="dropbtn">ادارة  المطلوبين&nabla;</a>
+		<div class="dropdown-content">
+			<a href="PSUser_ViewWanted.php">عرض المطلوبين</a>
+			<a href="PSUser_ViewAddWanted.php">اضافة مطلوب</a>
+		</div>
+	</li>
+	
+	<li class="dropdown">
+		<a href="javascript:void(0)" class="dropbtn">ادارة السيارات المسروقة  &nabla;</a>
+		<div class="dropdown-content">
+			<a href="#">عرض السيارات المسروقة</a>
+			<a href="PSUser_ViewAddStolenCar.php">اضافة سيارة</a>
+		</div>
+	</li>
+
+	<li><a href="#">استخراج شهادة براءة</a></li>
+	
+	<li style="float:left;"><a href="#">تسجيل الخروج</a></li>
+</ul>

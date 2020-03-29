@@ -14,6 +14,7 @@ $ps = new cPoliceStation();
 $ps->setName($_POST["name"]);
 $ps->setUserName($_POST["username"]);
 $ps->setPassword($_POST["password"]);
+$ps->setPhoneNumber($_POST["phonenumber"]);
 $ps->setAccess($_POST["access"]);
 $ps->setState("1");
 

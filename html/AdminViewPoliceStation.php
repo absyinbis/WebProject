@@ -12,6 +12,7 @@ include("Admin_Header.html");
             <th onclick="sortTable(1,'police_station_table')">الاسم</th>
             <th onclick="sortTable(2,'police_station_table')">اسم المستخدم</th>
             <th onclick="sortTable(3,'police_station_table')">كلمى المرور</th>
+            <th onclick="sortTable(4,'police_station_table')">رقم الهاتف</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -23,6 +24,7 @@ include("Admin_Header.html");
             <td><?=$pss->getName()?></td>
             <td><?=$pss->getUserName()?></td>
             <td><?=$pss->getPassword()?></td>
+            <td><?=$pss->getPhoneNumber()?></td>
           </tr>
           <?php }  ?>
         </table>
@@ -39,15 +41,20 @@ include("Admin_Header.html");
         <input id="id_ps" type="hidden" name="id">
         <div>الاسم</div>
         <input id="name_ps" class="input-field" type="text" name="name">
+
         <div>اسم المستخدم</div>
         <input id="username_ps" class="input-field" type="text" name="username">
+
         <div>كلمة المرور</div>
         <input id="password_ps" class="input-field" type="text" name="password">
+
+        <div>رقم الهاتف</div>
+        <input id="phonenumber_ps" class="input-field" type="text" name="phonenumber">
+
         <div>صلاحية الوصول</div>
         <select class="input-field" name="access">
         <option value="0">مسؤول</option>
         <option value="1">مركز شرطة</option>
-        <option value="2">النيابة</option>
         </select>
 
         <input class="btn" type="submit" value="اضافة" onclick="policestation('Add')">
