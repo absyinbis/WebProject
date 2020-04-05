@@ -233,6 +233,11 @@ class cReport
 		$this->name_him = $name_him;
 	}
 
+	public function setReportType($report_type)
+	{
+		$this->report_type = $report_type;
+	}
+
 	public function setPhoneNumber($phonenumber)
 	{
 		$this->phonenumber = $phonenumber;
@@ -268,6 +273,8 @@ class cReport
 	public function getNameYou(){ return $this->name_you; }
 
 	public function getNameHim(){ return $this->name_him; }
+
+	public function getReportType(){ return $this->report_type; }
 
 	public function getPhoneNumber(){ return $this->phonenumber; }
 

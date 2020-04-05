@@ -333,6 +333,25 @@ function addCar($car)
 	return $result;
 }
 
+function addReport($report)
+{
+	$conn = createConnection();
+	$sql = "INSERT INTO report 
+	(name_you,name_him,report_type,phonenumber,image,date,ps_id,user_id,state) VALUES ('" 
+				. $report->getNameYou() . "','"
+				. $report->getNameHim() . "','" 
+				. $report->getReportType(). "' , '"
+				. $report->getPhoneNumber() ."' , '"
+				. $report->getImg() . "' , '"
+				. $report->getDate() . "' , '"
+				. $report->getWho() . "' , '"
+				. $report->getUser() . "' , '"
+				. $report->getState() . "')";
+
+	$result = executeQuery($conn,$sql);
+	return $result;
+}
+
 
 
 
