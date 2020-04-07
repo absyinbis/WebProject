@@ -259,7 +259,7 @@ function getWanted($start,$lenght)
 	return $wanteds;
 }
 
-function getLenght()
+function getLenghtWanted()
 {
 	$conn = createConnection();
 	$sql = "select * from wanted";
@@ -331,6 +331,73 @@ function addCar($car)
 
 	$result = executeQuery($conn,$sql);
 	return $result;
+}
+
+function getCarStolen($start,$lenght)
+{
+	$conn = createConnection();
+
+	$sql = "select * from car_stolen limit $start,$lenght ";
+	$result = $conn->query($sql);
+	$cars = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$car = new cCarStolen();
+			$car->setId($row["id"]);
+			$car->setStructureNumber($row["structure_number"]);
+			$car->setPlateNumber($row["plate_number"]);
+			$car->setVehicleType($row["vehicle_type"]);
+			$car->setModel($row["model"]);
+			$car->setYearCar($row["year_car"]);
+			$car->setImg($row["img"]);
+		$cars[] = $car;
+		}
+	}
+	$conn->close();
+	return $cars;
+}
+
+function getLenghtCar()
+{
+	$conn = createConnection();
+	$sql = "select * from car_stolen";
+	$result = mysqli_query($conn,$sql);
+	
+	return $result;
+}
+
+function getDetailsCar($id)
+{
+	$conn = createConnection();
+	$sql = "SELECT `car_stolen`.*, `user`.`name` user, `police_station`.`name` who
+			FROM `car_stolen` 
+			INNER JOIN `user` ON `car_stolen`.`user_id` = `user`.`id`
+			INNER JOIN `police_station` ON `car_stolen`.`ps_id` = `police_station`.`id` WHERE car_stolen.id = $id;";
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$car = new cCarStolen();
+			$car->setId($row["id"]);
+			$car->setStructureNumber($row["structure_number"]);
+			$car->setPlateNumber($row["plate_number"]);
+			$car->setVehicleType($row["vehicle_type"]);
+			$car->setModel($row["model"]);
+			$car->setYearCar($row["year_car"]);
+			$car->setColor($row["color"]);
+			$car->setImg($row["img"]);
+			$car->setDescription($row["description"]);
+			$car->setPhoneNumber($row["phonenumber"]);
+			$car->setDate($row["date_add"]);
+			$car->setWho($row["who"]);
+			$car->setUser($row["user"]);
+			$car->setState($row["state"]);
+		}
+	}
+	$conn->close();
+	return $car;
 }
 
 function addReport($report)

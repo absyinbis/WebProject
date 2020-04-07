@@ -28,7 +28,7 @@ include("PSUser_Header.html");
             <td>
             <form action="PSUser_ViewDetailsReport.php" method="post">
               <input type="hidden" name="id" value="<?=$r->getId()?>">
-              <input type="submit">
+              <input class="btn" type="submit" value="عرض المحظر">
             </form>
           </td>
           </tr>

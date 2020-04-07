@@ -342,6 +342,7 @@ class cCarStolen
 	private $model = -1;
 	private $year = -1;
 	private $color = "";
+	private $img = "";
 	private $description = "";
 	private $phonenumber = -1;
 	private $date = -1;
@@ -382,6 +383,11 @@ class cCarStolen
 	public function setColor($color)
 	{
 		$this->color = $color;
+	}
+
+	public function setImg($img)
+	{
+		$this->img = $img;
 	}
 
 	public function setDescription($description)
@@ -427,6 +433,8 @@ class cCarStolen
 	public function getYearCar(){ return $this->year; }
 
 	public function getColor(){ return $this->color; }
+
+	public function getImg(){ return $this->img; }
 
 	public function getDescription(){ return $this->description; }
 
