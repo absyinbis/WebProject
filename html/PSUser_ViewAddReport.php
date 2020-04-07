@@ -15,7 +15,7 @@ include("PSUser_Header.html");
     			<div>صورة السيارة</div>
 			  	<img class="img" id="blah" src="http://placehold.it/180" alt="your image" />
 			  	<br>
-              	<input onchange="readURL(this)" type="file" accept="image/*" name="img">
+              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]">
     		</div>
       
 		    <div id="two">

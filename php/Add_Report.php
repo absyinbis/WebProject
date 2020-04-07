@@ -7,7 +7,6 @@ require_once 'MangerReport.php';
 $rm = cReportManger::getInstance();
 try{
 
-//$img = addslashes(file_get_contents($_FILES["img"]["tmp_name"]));
 
 $account = unserialize($_SESSION["ACCOUNT"]);
 
@@ -23,8 +22,13 @@ $report->setWho($account->getWho());
 $report->setUser($account->getId());
 $report->setState(1);
 
-$rm->addreport($report);
+$last_id = $rm->addreport($report);
 
+foreach ($_FILES["img"]["tmp_name"] as $value) 
+{
+	$img = addslashes(file_get_contents($value));
+	$rm->addimg($last_id,$img);
+}
 
 //header("Location:../html/PSUser_ViewWanted.php");
 

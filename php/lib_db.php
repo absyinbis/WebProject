@@ -348,8 +348,46 @@ function addReport($report)
 				. $report->getUser() . "' , '"
 				. $report->getState() . "')";
 
-	$result = executeQuery($conn,$sql);
+	executeQuery($conn,$sql);
+	$last_id = mysqli_insert_id($conn);
+	return $last_id;
+}
+
+function addImg($id,$img)
+{
+	$conn = createConnection();
+	$sql = "INSERT INTO img (id,img) VALUES ('".$id."','".$img."')";
+	executeQuery($conn,$sql);
+}
+
+function getImg($id)
+{
+	$conn = createConnection();
+	$sql = "SELECT * FROM img WHERE id = '". $id ."'";
+	$result = $conn->query($sql);
 	return $result;
+}
+
+function getReports($id)
+{
+	$conn = createConnection();
+
+	$sql = "select * from report where ps_id = '". $id ."'";
+	$result = $conn->query($sql);
+	$reports = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$report = new cReport();
+			$report->setId($row["id"]);
+			$report->setNameYou($row["name_you"]);
+			$report->setReportType($row["report_type"]);
+			$report->setDate($row["date"]);
+		$reports[] = $report;
+		}
+	}
+	$conn->close();
+	return $reports;
 }
 
 

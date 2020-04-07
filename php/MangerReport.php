@@ -24,8 +24,14 @@ class cReportManger
 
 	public function addreport($report)
 	{
-		if(!addReport($report))
-			throw new Exception("wanted no add");
+		return addReport($report);
+
+	}
+
+	public function addimg($id,$img)
+	{
+		return addImg($id,$img);
+
 	}
 
 	
