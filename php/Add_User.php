@@ -24,7 +24,7 @@ $um->adduser($user);
 if ($account->getAccess() == 0)
 	header("Location:../html/AdminViewUser.php");
 	else
-	header("Location:../html/PSUser_ViewUser.php");
+	header("Location:../html/PS_ViewUser.php");
 
 }
 

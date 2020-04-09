@@ -24,6 +24,11 @@ include("PSUser_Header.html");
 ?> 
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="row">
+      
+      <div class="wrapper" style="margin-top: 25px;">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
 
 
 <?php 

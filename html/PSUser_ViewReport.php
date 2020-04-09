@@ -6,6 +6,12 @@ include("PSUser_Header.html");
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
+
+      <div class="wrapper">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
+
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>
@@ -28,7 +34,7 @@ include("PSUser_Header.html");
             <td>
             <form action="PSUser_ViewDetailsReport.php" method="post">
               <input type="hidden" name="id" value="<?=$r->getId()?>">
-              <input class="btn" type="submit" value="عرض المحظر">
+              <input type="submit" value="عرض المحظر">
             </form>
           </td>
           </tr>

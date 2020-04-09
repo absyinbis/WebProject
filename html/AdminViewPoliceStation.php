@@ -5,6 +5,12 @@ include("Admin_Header.html");
 <div class="row" id="1">
   <div class="leftcolumn">
     <div class="card">
+      
+      <div class="wrapper">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
+
       <div class="table-content">
         <table id="police_station_table" class="table">
           <tr>

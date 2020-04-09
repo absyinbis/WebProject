@@ -120,11 +120,6 @@
             }
         }
 
-function details()
-{
-  alert("hi");
-  document.wanted.submit();
-}
 
 function CarChange(selectObj) { 
  var countryLists = new Array(4) 

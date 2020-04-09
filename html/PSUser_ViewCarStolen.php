@@ -25,12 +25,16 @@ include("PSUser_Header.html");
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="row">
 
+      <div class="wrapper" style="margin-top: 25px;">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
 
 <?php 
 foreach ($car as $c) {
 ?>
 <form action="PSUser_ViewDetailsCarStolen.php" method="get">
-<button class="card1 column" style="width: 278px;">
+<button class="card1" style="width: 278px;">
         <div>
           <div>
             <input type="hidden" name="id" value="<?=$c->getId()?>">

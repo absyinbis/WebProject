@@ -7,6 +7,12 @@ include("Admin_Header.html");
 <div class="row" id="2">
   <div class="leftcolumn">
     <div class="card">
+      
+      <div class="wrapper">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
+
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>

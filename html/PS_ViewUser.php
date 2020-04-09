@@ -7,6 +7,12 @@ include("PS_Header.html");
 <div class="row" id="2">
   <div class="leftcolumn">
     <div class="card">
+      
+      <div class="wrapper">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
+
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>
@@ -15,6 +21,7 @@ include("PS_Header.html");
             <th onclick="sortTable(2,'user_table')">اسم المستخدم</th>
             <th onclick="sortTable(3,'user_table')">كلمة المرور</th>
             <th onclick="sortTable(4,'user_table')">رقم الهاتف</th>
+            <th onclick="sortTable(5,'user_table')">صلاحية الوصول</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -28,6 +35,21 @@ include("PS_Header.html");
             <td><?=$u->getUserName()?></td>
             <td><?=$u->getPassword()?></td>
             <td><?=$u->getPhoneNumber()?></td>
+            <?php
+            switch ($u->getAccess()) {
+              case 2:
+                echo "<td>وكيل النيابة</td>";
+                break;
+              
+              case 3:
+                echo "<td>موظف</td>";
+                break;
+
+              case 4:
+                echo "<td> مستخدم جوال</td>";
+
+            }
+            ?>
           </tr>
           <?php }  ?>
         </table>
@@ -47,6 +69,12 @@ include("PS_Header.html");
         <input id="password_u" class="input-field" type="text" name="password" required>
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
+        <div>صلاحية الوصول</div>
+        <select class="input-field" name="access">
+        <option value="2">وكيل النيابة</option>
+        <option value="3">موظف</option>
+        <option value="4">مستخدم جوال</option>
+        </select>
 
         <input class="btn" type="submit" value="اضافة" onclick="user('Add')">
         <input class="btn" type="submit" value="تعديل" onclick="user('Edit')">

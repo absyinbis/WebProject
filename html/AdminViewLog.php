@@ -7,6 +7,12 @@ include("Admin_Header.html");
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
+
+      <div class="wrapper">
+        <input type="text" class="input" placeholder="What are you looking for?">
+        <div class="searchbtn"><i class="fas">بحث</i></div>
+      </div>
+
       <div class="table-content">
         <table id="user_table" class="table">
           <tr>
@@ -24,9 +30,9 @@ include("Admin_Header.html");
           <tr>
             <td><?=$l->getId()?></td>
             <td><?=$l->getProcess()?></td>
-            <td><?=$l->getName()?></td>
+            <td><?=$l->getUser_Id()?></td>
             <td><?=$l->getAddDate()?></td>
-            <td><?=$l->getWho()?></td>
+            <td><?=$l->getPS_Id()?></td>
           </tr>
           <?php }  ?>
         </table>

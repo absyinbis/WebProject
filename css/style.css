@@ -86,7 +86,6 @@ li.dropdown {
 
 
 .table-content {
-  border: 2px solid red;
   background-color: #aaa;
   padding: 2px;
   width: 100%;
@@ -99,15 +98,16 @@ li.dropdown {
   background-color: white;
   padding: 20px;
   margin-top: 10px;
-  height: 460px;
+  height: 475px;
 }
 
 .card1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
+  padding: 20px;
   text-align: center;
   margin: 25px;
   background-color: #FDFEFE;
+  float: right;
 }
 
 .column {
@@ -167,10 +167,7 @@ li.dropdown {
 }
 
 .center{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 
@@ -183,17 +180,63 @@ li.dropdown {
 }
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 800px) {
   .topnav a {
     float: none;
     width: 100%;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;
   }
+}
+
+@media screen and (max-width: 800px) {
+  li , .dropdown-content ,a{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .dropdown-content a{
+    text-align: center;
+  }
+}
+
+
+
+
+
+.wrapper{
+    width: 100%;
+    display: flex;
+}
+
+.wrapper .input {
+    width: 85%;
+    border-radius: 5px;
+    margin-left: 25px;
+    font-weight: bold;
+    border: 1px solid;
+}
+
+.searchbtn {
+    position: relative;
+    background: white;
+    width: 10%;
+    border-radius: 5px;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.searchbtn .fas{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
 }

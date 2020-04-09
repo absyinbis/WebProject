@@ -469,7 +469,7 @@ class cLogg
 		$this->process = $process;
 	}
 
-	public function setName($name)
+	public function setUser_Id($name)
 	{
 		$this->name = $name;
 	}
@@ -479,7 +479,7 @@ class cLogg
 		$this->add_date = $add_date;
 	}
 
-	public function setWho($who)
+	public function setPS_Id($who)
 	{
 		$this->who = $who;
 	}
@@ -489,11 +489,11 @@ class cLogg
 
 	public function getProcess(){ return $this->process; }
 
-	public function getName(){ return $this->name; }
+	public function getUser_Id(){ return $this->name; }
 
 	public function getAddDate(){ return $this->add_date; }
 	
-	public function getWho(){ return $this->who; }
+	public function getPS_Id(){ return $this->who; }
 
 }
 

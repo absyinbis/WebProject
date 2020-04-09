@@ -457,6 +457,42 @@ function getReports($id)
 	return $reports;
 }
 
+function addLogg($logg)
+{
+	$conn = createConnection();
+	$sql = "INSERT INTO logg (process,user_id,date,ps_id) VALUES ('" 
+				. $logg->getProcess() . "','" 
+				. $logg->getUser_Id(). "' , '"
+				. $logg->getAddDate() ."' , '"
+				. $logg->getPS_Id() . "')";
+
+	$result = executeQuery($conn,$sql);
+	return $result;
+}
+
+function getAllLogg()
+{
+	$conn = createConnection();
+
+	$sql = "select * from logg";
+	$result = $conn->query($sql);
+	$loggs = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$logg = new cLogg();
+		$logg->setId($row["id"]);
+		$logg->setProcess($row["process"]);
+		$logg->setUser_Id($row["user_id"]);
+		$logg->setAddDate($row["date"]);
+		$logg->setPS_Id($row["ps_id"]);
+		$loggs[] = $logg;
+		}
+	}
+	$conn->close();
+	return $loggs;
+}
+
 
 
 

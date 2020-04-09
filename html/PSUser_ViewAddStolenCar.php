@@ -2,7 +2,8 @@
 include("PSUser_Header.html");
 ?>
 
-    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
+<script type="text/javascript" src="https://www.carqueryapi.com/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
 
 
 
