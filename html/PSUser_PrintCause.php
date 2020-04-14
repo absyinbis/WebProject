@@ -1,3 +1,25 @@
+<?php 
+require_once '../php/MangerPoliceStation.php';
+
+$psm = cPoliceStationManger::getInstance();
+try{
+
+$result = $psm->checkcause($_POST["nationalnumber"]);
+//$um->logg("Add","PS",date("yy-m-d"),$account->getId());
+
+
+}
+
+catch(Exception $e){
+
+		echo $e->getMessage();
+		exit;
+
+}
+
+ ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,16 +66,12 @@
 
 	<h2 style="text-align: center;">بالبحث في القيودات اتضح الاتي :</h2>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+<?php 
+if ($result)
+	echo "<h1>يوجد لديه سوابق</h1>";
+else
+	echo "<h1>لا يوجد لديه سوايق</h1>";
+ ?>
 
 
 	<span>اسم الباحث : </span> <span>.....................................................</span>
@@ -82,9 +100,9 @@
 
 
 
-	<script>
-		print();
-		//window.location.replace("http://www.w3schools.com");
-	</script>
+
 </body>
 </html>
+	<script>
+		print();
+	</script>

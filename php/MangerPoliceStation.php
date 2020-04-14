@@ -32,6 +32,15 @@ class cPoliceStationManger
 			throw new Exception("Wrong Username/Password");
 	}
 
+	public function forgetpassword($username)
+	{
+		$account = getPhoneNumberByUserName($username);
+		if($account == NULL)
+			throw new Exception("Account Not Found");
+		else
+			return $account;
+	}
+
 	public function addpolicestation($ps)
 	{
 		if(!addPoliceStation($ps))
@@ -48,6 +57,16 @@ class cPoliceStationManger
 	{
 		if(!deletePoliceStation($id))
 			throw new Exception("not deleted");
+	}
+
+	public function checkcause($nationalnumber)
+	{
+		$wanted = getWantedByNationalNumber($nationalnumber);
+		if($wanted != NULL)
+			throw new Exception("wanted to ".$wanted->getWho());
+		else
+			return getCauseByNationalNumber($nationalnumber);
+
 	}
 
 	

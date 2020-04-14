@@ -32,8 +32,8 @@ header("Location:../html/PSUser_ViewWanted.php");
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/PSUser_ViewWanted.php");
-
+		//header("Location:../html/PSUser_ViewAddWanted.php");
+echo $_SESSION["ERROR"];
 
 }
 

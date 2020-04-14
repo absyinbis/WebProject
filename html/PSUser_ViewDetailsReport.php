@@ -5,9 +5,14 @@ include("PSUser_Header.html");
 <?php 
 require_once  '../php/lib_db.php';
  ?>
+    <script src="../javascript/zoompic.js"></script>
 
 <div class="leftcolumn" style="width: 100%; float: right;">
+	    	<div id="lb-back">
+      			<div id="lb-img"></div>
+    		</div>
     <div class="card">
+
 	 	<div id="one">
 			<div>صور المحظر</div>
       <div class="w3-content w3-display-container" style="width:400px;height: 400px; ">

@@ -292,7 +292,6 @@ function getDetailsWanted($id)
 			FROM `wanted` 
 			INNER JOIN `police_station` ON `wanted`.`ps_id` = `police_station`.`id` WHERE wanted.id = $id;";
 	$result = $conn->query($sql);
-
 	if ($result->num_rows > 0) { 
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
@@ -306,6 +305,11 @@ function getDetailsWanted($id)
 			$wanted->setWho($row["who"]);
 			$wanted->setUser($row["user_id"]);
 		}
+	}
+	else
+	{
+		$conn->close();
+		return NULL;
 	}
 	$conn->close();
 	return $wanted;
@@ -493,10 +497,100 @@ function getAllLogg()
 	return $loggs;
 }
 
+function getPhoneNumberByUserName($username)
+{
+	$conn = createConnection();
+	$sql = "select * from police_station where username='".$username."'";
+	$result = $conn->query($sql);
+	$ps = new cPoliceStation();
+	if ($result->num_rows > 0) {
+		if($row = $result->fetch_assoc()) {
+			$ps->setId($row["id"]);
+			$ps->setAccess($row["access"]);
+			$ps->setPhoneNumber($row["phonenumber"]);
+		}
+	}
+	else
+	{
+		$sql = "select * from user where username='".$username."'";
+		$result = $conn->query($sql);
+		$ps = new cUser();
+			if ($result->num_rows > 0) {
+				if($row = $result->fetch_assoc()) {
+					$ps->setId($row["id"]);
+					$ps->setAccess($row["access"]);
+					$ps->setPhoneNumber($row["phonenumber"]);
+				}
+			}
+			else
+			{
+			$conn->close();
+			return NULL;
+			}
+	}
+	$conn->close();
+	return $ps;	
+}
+
+function changePassword($id,$access,$p)
+{
+	$conn = createConnection();
+	if ($access == 0 || $access == 1) 
+	{
+		$sql = "UPDATE police_station SET password='".$p."' WHERE id = '".$id."' ";
+	}
+	else
+	{
+		$sql = "UPDATE user SET password='".$p."' WHERE id = '".$id."' ";
+	}
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
+}
 
 
 
+function getWantedByNationalNumber($nationalnumber)
+{
+	$conn = createConnection();
+	$sql = "SELECT `police_station`.`name` who
+			FROM `wanted` 
+			INNER JOIN `police_station` ON `wanted`.`ps_id` = `police_station`.`id` WHERE wanted.national_number = $nationalnumber;";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		$wanted = new cWanted();
+		while($row = $result->fetch_assoc()) {
+			$wanted->setWho($row["who"]);
+		}
+	}
+	else
+	{
+		$conn->close();
+		return NULL;
+	}
+	$conn->close();
+	return $wanted;
+}
 
+function getCauseByNationalNumber($nationalnumber)
+{
+	$conn = createConnection();
+	$sql = "SELECT *
+			FROM cause 
+			WHERE national_number = $nationalnumber;";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		$conn->close();
+		return true;
+	}
+	else
+	{
+		$conn->close();
+		return false;
+	}
+
+}
 
 
 ?>

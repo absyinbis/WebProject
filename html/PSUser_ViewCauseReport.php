@@ -9,7 +9,7 @@ include("PSUser_Header.html");
             <h1>استخراج شهادة براءة</h1>
             <br>
             <br>
-    		<input placeholder="الرجاء ادخال الرقم الوطني هنا" class="input-field"  style="width: 50%;text-align: center;" type="text" name="">
+    		<input placeholder="الرجاء ادخال الرقم الوطني هنا" class="input-field"  style="width: 50%;text-align: center;" type="text" name="nationalnumber">
     		<div style="text-align: center;">
     			<input class="btn" type="submit" value="اضافة">
     		</div>
