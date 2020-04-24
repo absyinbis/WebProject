@@ -22,6 +22,16 @@ class cUserManger
 		return cUserManger::$_instance;
 	}
 
+	public function login($username,$password)
+	{
+		$user = getUserByUserName($username);
+		if($user == NULL)
+			throw new Exception("Account Not Found");
+		if($user->getPassword() == $password)
+			return $user;
+			throw new Exception("Wrong Username/Password");
+	}
+
 	public function adduser($user)
 	{
 		if(!addUser($user))

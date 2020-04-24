@@ -63,7 +63,7 @@ class cPoliceStationManger
 	{
 		$wanted = getWantedByNationalNumber($nationalnumber);
 		if($wanted != NULL)
-			throw new Exception("wanted to ".$wanted->getWho());
+			throw new Exception("مطلوب لدي ".$wanted->getWho());
 		else
 			return getCauseByNationalNumber($nationalnumber);
 

@@ -70,6 +70,7 @@ class cUser
 	private $access = -1;
 	private $state = -1;
 	private $who = -1;
+	private $PSName = "";
 
 	public function setId($id)
 	{
@@ -111,6 +112,11 @@ class cUser
 		$this->who = $who;
 	}
 
+	public function setPSName($PSName)
+	{
+		$this->PSName = $PSName;
+	}
+
 
 	public function getId(){ return $this->id; }
 
@@ -127,6 +133,8 @@ class cUser
 	public function getState(){ return $this->state; }
 
 	public function getWho(){ return $this->who; }
+
+	public function getPSName(){ return $this->PSName; }
 }
 
 class cWanted

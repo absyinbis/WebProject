@@ -28,6 +28,13 @@ class cReportManger
 
 	}
 
+	public function deletereport($id)
+	{
+		if(!deleteReport($id))
+			throw new Exception("not deleted");
+
+	}
+
 	public function addimg($id,$img)
 	{
 		return addImg($id,$img);

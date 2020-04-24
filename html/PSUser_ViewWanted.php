@@ -1,71 +1,67 @@
 <?php 
+session_start();
 include("PSUser_Header.html");
- ?>
+?>
 
-<?php 
-  require_once  '../php/lib_db.php';
-
-  $result_per_page = 8;
-  $total_rows = mysqli_num_rows(getLenghtWanted());
-  $number_of_page = ceil($total_rows / $result_per_page);
-
-  if (!isset($_GET["page"])) {
-    $page = 1;
-  }
-  else
-  {
-    $page = $_GET["page"];
-  }
-
-  $start_limit = ($page - 1) * $result_per_page; 
-
-  $wanted = getWanted($start_limit,$result_per_page);
-
-?> 
+<div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
-    <div class="row">
-      
-      <div class="wrapper" style="margin-top: 25px;">
-        <input type="text" class="input" placeholder="What are you looking for?">
-        <div class="searchbtn"><i class="fas">بحث</i></div>
-      </div>
+    <div class="card">
 
-
-<?php 
-foreach ($wanted as $w) {
-?>
-<form action="PSUser_ViewDetailsWanted.php" method="get">
-<button class="card1 column" style="width: 278px;">
-        <div>
-          <div>
-            <input type="hidden" name="id" value="<?=$w->getId()?>">
-            <?php 
-            echo '<img style="width: 150px; height: 150px; margin-top: 10px " src="data:img/jpeg;base64, '.base64_encode($w->getImg()).' " /> ';
-             ?>
-            <h3><?=$w->getName()?></h3>
-          </div>
+      <form action="PSUser_ViewWanted.php" method="post">
+        <div class="wrapper">
+          <input type="text" class="input" name="search" placeholder="What are you looking for?">
+          <div class="searchbtn"><i class="fas">بحث</i></div>
         </div>
-</button>
-</form>
-<?php 
-}
-?>
+      </form>
 
 
+      <div class="table-content">
+        <table id="user_table" class="table">
+          <tr>
+            <th onclick="sortTable(0,'user_table')">اسم المطلوب</th>
+            <th onclick="sortTable(1,'user_table')">الرقم الوطني</th>
+            <th onclick="sortTable(2,'user_table')">التاريخ</th>
+          </tr>
+          <?php 
+          require_once  '../php/lib_db.php';
+          $account = unserialize($_SESSION["ACCOUNT"]);
+
+          if(isset($_POST["search"]))
+          {
+            $i = $_POST["search"];
+            $sql = "select * from wanted
+            where ps_id = '". $account->getWho() ."'
+            and state = 1
+            and name like '%".$i."%'
+            or date like '%".$i."%'
+            or national_number like '%".$i."%'";
+            $wanted = Search($sql,'wanted');
+          }
+          else
+
+          $wanted = getWanted();
+
+
+          foreach ($wanted as $w) {
+          ?> 
+          <tr>
+            <td><?=$w->getName()?></td>
+            <td><?=$w->getNationalNumber()?></td>
+            <td><?=$w->getDate()?></td>
+            <td>
+            <form action="PSUser_ViewDetailsWanted.php" method="post">
+              <input type="hidden" name="id" value="<?=$w->getId()?>">
+              <input type="submit" value="عرض المحظر">
+            </form>
+          </td>
+          </tr>
+          <?php }  ?>
+        </table>
+      </div>
     </div>
-    <div style="text-align: center;">
-    <?php 
-for ($page=1; $page <= $number_of_page; $page++) { 
-  
-  echo '<a style="color: white; margin: 10px; margin-top: 20px; padding: 10px; background-color: black;" href="PSUser_ViewWanted.php?page=' . $page .'">'. $page . '</a>';
-}
- ?>
-
- </div>
   </div>
+</div>
 
-
-
-  <?php 
-  include("Footer.html");
-   ?>
+<?php 
+include("Footer.html");
+?>

@@ -15,25 +15,25 @@ include("PSUser_Header.html");
     			<div>صورة السيارة</div>
 			  	<img class="img" id="blah" src="http://placehold.it/180" alt="your image" />
 			  	<br>
-              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]">
+              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
     		</div>
       
 		    <div id="two">
 		      <div>اسم صاحب المحظر</div>
-		      <input class="input-field" type="text" name="name_you">
+		      <input class="input-field" type="text" name="name_you" required>
 
-		      <div>اسم الفتوح فيه المحظر</div>
-		      <input class="input-field" type="text" name="name_him">
+		      <!----<div>اسم الفتوح فيه المحظر</div>
+		      <input class="input-field" type="text" name="name_him" required> !---->
 
 		      <div>نوع المحظر</div>
 		      <select class="input-field" name="report_type"></select>  
 
 		      <div>رقم الهاتف</div>
-		      <input class="input-field" name="phonenumber">
+		      <input class="input-field" name="phonenumber" required>
 
 		    </div>
 
-		    <div style="text-align: center;">
+		    <div style="text-align: center;margin-top: 170px;">
 		    <input class="btn" type="submit" value="اضافة">
 			</div>
 		</form>

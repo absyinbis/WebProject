@@ -13,10 +13,8 @@ include("PSUser_Header.html");
     <div class="card">
     	<form action="../php/Add_CarStolen.php" method="post" enctype="multipart/form-data">
     		<div id="one">
-    			<div>صورة السيارة</div>
-			  	<img class="img" id="blah" src="http://placehold.it/180" alt="your image" />
-			  	<br>
-              	<input onchange="readURL(this)" type="file" accept="image/*" name="img">
+		      <div>الوصف</div>
+		      <textarea class="input-field" style="width: 640px;height: 300px;font-size: 30px;" name="des"></textarea>
     		</div>
       
 		    <div id="two">
@@ -27,17 +25,18 @@ include("PSUser_Header.html");
 		      <input class="input-field" type="text" name="platenumber">
 
 		      <div>نوع السيارة ولونها</div>
-		      <select class="input-field" style="width: 30%" name="car-years" id="car-years"></select>  
-			  <select class="input-field" style="width: 30%" name="car-makes" id="car-makes"></select> 
-			  <select class="input-field" style="width: 30%" name="car-models" id="car-models"></select>
+		      <select class="input-field" style="width: 29%" name="car-years" id="car-years"></select>  
+			  <select class="input-field" style="width: 29%" name="car-makes" id="car-makes"></select> 
+			  <select class="input-field" style="width: 29%" name="car-models" id="car-models"></select>
 		      <input type="color" name="color">
 
-		      <div>الوصف</div>
-		      <textarea class="input-field" name="des"></textarea>
+		      <div>رقم الهاتف</div>
+		      <input class="input-field" name="phonenumber">
+
 
 		    </div>
 
-		    <div style="text-align: center;">
+		    <div style="text-align: center;margin-top: 170px;">
 		    <input class="btn" type="submit" value="اضافة">
 			</div>
 		</form>

@@ -30,9 +30,9 @@ include("PS_Header.html");
           <tr>
             <td><?=$l->getId()?></td>
             <td><?=$l->getProcess()?></td>
-            <td><?=$l->getName()?></td>
+            <td><?=$l->getUser_Id()?></td>
             <td><?=$l->getAddDate()?></td>
-            <td><?=$l->getWho()?></td>
+            <td><?=$l->getPS_Id()?></td>
           </tr>
           <?php }  ?>
         </table>

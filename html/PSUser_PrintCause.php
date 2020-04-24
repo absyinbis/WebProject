@@ -1,5 +1,12 @@
 <?php 
+session_start();
 require_once '../php/MangerPoliceStation.php';
+require_once '../php/lib_db.php';
+$people = getPeopleByNationalNumber($_POST["nationalnumber"]);
+
+if($people->num_rows > 0)
+{
+
 
 $psm = cPoliceStationManger::getInstance();
 try{
@@ -16,7 +23,8 @@ catch(Exception $e){
 		exit;
 
 }
-
+$row = $people->fetch_assoc();
+$user = unserialize($_SESSION["ACCOUNT"]);
  ?>
 
 
@@ -46,35 +54,42 @@ catch(Exception $e){
 	<br>
 
 
-	<span>الاسم بالكامل : </span> <span>.....................................................</span>
+	<span>الاسم بالكامل : </span> <span>...............<?=$row["name"]?>...................</span>
 	<span>اللقب</span> <span>........................................................</span>
 
 	<br>
 	<br>
 
-	<span>اسم الوالدة بالكامل : </span> <span>........................................................</span>
+	<span>اسم الوالدة بالكامل : </span> <span>..................<?=$row["m_name"]?>.....................</span>
 	<span>تاريخ ومكان الميلاد : </span> <span>.....................................................</span>
 
 	<br>
 	<br>
 
-	<span>الرقم الوطني : </span> <span>.....................................................</span>
-	<span>جهة اضدارها : </span> <span>.....................................................</span>
+	<span>الرقم الوطني : </span> <span>..................<?=$row["id_number"]?>.....................</span>
+	<span>جهة اضدارها : </span> <span>....................<?=$user->getPSName()?>...........</span>
 
 	<br>
 	<br>
 
 	<h2 style="text-align: center;">بالبحث في القيودات اتضح الاتي :</h2>
 
+	<br>
+	<br>
 <?php 
+echo "<div style='text-align: center;'>";
 if ($result)
 	echo "<h1>يوجد لديه سوابق</h1>";
 else
 	echo "<h1>لا يوجد لديه سوايق</h1>";
+echo "</div>";
  ?>
 
+ 	<br>
+	<br>
 
-	<span>اسم الباحث : </span> <span>.....................................................</span>
+
+	<span>اسم الباحث : </span> <span>.................<?=$user->getName()?>.....................</span>
 	<span>التوقيع : </span> <span>.....................................................</span>
 
 	<br>
@@ -106,3 +121,8 @@ else
 	<script>
 		print();
 	</script>
+<?php 
+}
+else
+echo "الرقم الوطني غير صحيح";
+ ?>

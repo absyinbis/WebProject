@@ -16,7 +16,6 @@ $report->setNameYou($_POST["name_you"]);
 $report->setNameHim($_POST["name_him"]);
 $report->setReportType($_POST["report_type"]);
 $report->setPhoneNumber($_POST["phonenumber"]);
-$report->setImg("");
 $report->setDate(date("Y/m/d"));
 $report->setWho($account->getWho());
 $report->setUser($account->getId());
@@ -30,14 +29,21 @@ foreach ($_FILES["img"]["tmp_name"] as $value)
 	$rm->addimg($last_id,$img);
 }
 
-//header("Location:../html/PSUser_ViewWanted.php");
+$logg = new cLogg();
+$logg->setProcess("اضافة محظر");
+$logg->setUser_Id($account->getId());
+$logg->setAddDate(date("Y-m-d"));
+$logg->setPS_Id($account->getWho());
+addLogg($logg);
+
+header("Location:../html/PSUser_ViewReport.php");
 
 }
 
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		//header("Location:../html/PSUser_ViewWanted.php");
+		header("Location:../html/PSUser_ViewAddReport.php");
 
 
 }

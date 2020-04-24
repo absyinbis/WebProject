@@ -50,7 +50,8 @@ function getPoliceStation($username)
 	}
 	else
 	{
-		$sql = "select * from user where username='".$username."' and state = 1 and access = 2 or access = 3";
+		$sql = "SELECT user.*, police_station.name PSName FROM user INNER JOIN police_station ON user.ps_id=	police_station.id 
+				where user.username='".$username."' and user.state = 1 and user.access = 2 or user.access = 3";
 		$result = $conn->query($sql);
 		$ps = new cUser();
 			if ($result->num_rows > 0) {
@@ -63,6 +64,8 @@ function getPoliceStation($username)
 					$ps->setAccess($row["access"]);
 					$ps->setState($row["state"]);
 					$ps->setWho($row["ps_id"]);
+					$ps->setPSName($row["PSName"]);
+
 				}
 			}
 			else
@@ -141,6 +144,16 @@ function deletePoliceStation($id)
 	return $result;
 }
 
+function deleteReport($id)
+{
+	$conn = createConnection();
+
+	$sql = "UPDATE report SET state=0 WHERE id = '".$id."' ";
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
+}
+
 function getUsersByPoliceStation($id)
 {
 	$conn = createConnection();
@@ -191,6 +204,34 @@ function getUsers()
 	return $users;
 }
 
+function getUserByUserName($username)
+{
+	$conn = createConnection();
+	$sql = "SELECT * From user WHERE state = 1 AND username = '".$username."'";
+	$result = $conn->query($sql);
+
+	$user = new cUser();
+	if ($result->num_rows > 0) {
+		if($row = $result->fetch_assoc()) {
+			$user->setId($row["id"]);
+			$user->setName($row["name"]);
+			$user->setUserName($row["username"]);
+			$user->setPassword($row["password"]);
+			$user->setPhoneNumber($row["phonenumber"]);
+			$user->setAccess($row["access"]);
+			$user->setState($row["state"]);
+			$user->setWho($row["ps_id"]);
+		}
+	}
+	else
+	{
+	$conn->close();
+	return NULL;
+	}
+	$conn->close();
+	return $user;
+}
+
 function addUser($user)
 {
 	$conn = createConnection();
@@ -233,11 +274,11 @@ function deleteUser($id)
 	return $result;
 }
 
-function getWanted($start,$lenght)
+function getWanted()
 {
 	$conn = createConnection();
 
-	$sql = "select * from wanted limit $start,$lenght ";
+	$sql = "select * from wanted where state= 1";
 	$result = $conn->query($sql);
 	$wanteds = array();
 	if ($result->num_rows > 0) { 
@@ -246,7 +287,6 @@ function getWanted($start,$lenght)
 		$wanted = new cWanted();
 			$wanted->setId($row["id"]);
 			$wanted->setName($row["name"]);
-			$wanted->setImg($row["image"]);
 			$wanted->setNationalNumber($row["national_number"]);
 			$wanted->setReportId($row["report_id"]);
 			$wanted->setDate($row["date"]);
@@ -257,15 +297,6 @@ function getWanted($start,$lenght)
 	}
 	$conn->close();
 	return $wanteds;
-}
-
-function getLenghtWanted()
-{
-	$conn = createConnection();
-	$sql = "select * from wanted";
-	$result = mysqli_query($conn,$sql);
-	
-	return $result;
 }
 
 function addWanted($wanted)
@@ -288,9 +319,11 @@ function addWanted($wanted)
 function getDetailsWanted($id)
 {
 	$conn = createConnection();
-	$sql = "SELECT `wanted`.*, `police_station`.`name` who
-			FROM `wanted` 
-			INNER JOIN `police_station` ON `wanted`.`ps_id` = `police_station`.`id` WHERE wanted.id = $id;";
+	$sql = "SELECT `wanted`.*, `police_station`.`name` who, `user`.`name` user
+            FROM `wanted` 
+	        INNER JOIN `police_station` ON `wanted`.`ps_id` = `police_station`.`id` 
+			INNER JOIN `user` ON `user`.`ps_id` = `police_station`.`id` 
+			WHERE wanted.id = $id;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) { 
 		// output data of each row
@@ -303,7 +336,7 @@ function getDetailsWanted($id)
 			$wanted->setReportId($row["report_id"]);
 			$wanted->setDate($row["date"]);
 			$wanted->setWho($row["who"]);
-			$wanted->setUser($row["user_id"]);
+			$wanted->setUser($row["user"]);
 		}
 	}
 	else
@@ -313,6 +346,36 @@ function getDetailsWanted($id)
 	}
 	$conn->close();
 	return $wanted;
+}
+
+function getDetailsReport($id)
+{
+	$conn = createConnection();
+	$sql = "SELECT `report`.*, `user`.`name` who
+			FROM `report` 
+			INNER JOIN `user` ON `report`.`user_id` = `user`.`id` where report.id = $id";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$report = new cReport();
+			$report->setId($row["id"]);
+			$report->setNameYou($row["name_you"]);
+			$report->setNameHim($row["name_him"]);
+			$report->setReportType($row["report_type"]);
+			$report->setDate($row["date"]);
+			$report->setPhoneNumber($row["phonenumber"]);
+			$report->setUser($row["who"]);
+			$report->setState($row["state"]);
+		}
+	}
+	else
+	{
+		$conn->close();
+		return NULL;
+	}
+	$conn->close();
+	return $report;
 }
 
 function addCar($car)
@@ -337,11 +400,11 @@ function addCar($car)
 	return $result;
 }
 
-function getCarStolen($start,$lenght)
+function getCarStolen()
 {
 	$conn = createConnection();
 
-	$sql = "select * from car_stolen limit $start,$lenght ";
+	$sql = "select * from car_stolen where state=1";
 	$result = $conn->query($sql);
 	$cars = array();
 	if ($result->num_rows > 0) { 
@@ -354,7 +417,6 @@ function getCarStolen($start,$lenght)
 			$car->setVehicleType($row["vehicle_type"]);
 			$car->setModel($row["model"]);
 			$car->setYearCar($row["year_car"]);
-			$car->setImg($row["img"]);
 		$cars[] = $car;
 		}
 	}
@@ -362,14 +424,6 @@ function getCarStolen($start,$lenght)
 	return $cars;
 }
 
-function getLenghtCar()
-{
-	$conn = createConnection();
-	$sql = "select * from car_stolen";
-	$result = mysqli_query($conn,$sql);
-	
-	return $result;
-}
 
 function getDetailsCar($id)
 {
@@ -391,7 +445,6 @@ function getDetailsCar($id)
 			$car->setModel($row["model"]);
 			$car->setYearCar($row["year_car"]);
 			$car->setColor($row["color"]);
-			$car->setImg($row["img"]);
 			$car->setDescription($row["description"]);
 			$car->setPhoneNumber($row["phonenumber"]);
 			$car->setDate($row["date_add"]);
@@ -443,7 +496,7 @@ function getReports($id)
 {
 	$conn = createConnection();
 
-	$sql = "select * from report where ps_id = '". $id ."'";
+	$sql = "select * from report where ps_id = '". $id ."' and state = 1";
 	$result = $conn->query($sql);
 	$reports = array();
 	if ($result->num_rows > 0) { 
@@ -592,5 +645,186 @@ function getCauseByNationalNumber($nationalnumber)
 
 }
 
+function Search($sql,$forwho,$start=NULL,$lenght=NULL)
+{
+	$conn = createConnection();
+	$result = $conn->query($sql);
+	$searchs = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		switch ($forwho) {
+			case 'ps':
+				while($row = $result->fetch_assoc()) {
+					$ps = new cPoliceStation();
+					$ps->setId($row["id"]);
+					$ps->setName($row["name"]);
+					$ps->setUserName($row["username"]);
+					$ps->setPassword($row["password"]);
+					$ps->setPhoneNumber($row["phonenumber"]);
+					$ps->setAccess($row["access"]);
+					$searchs[] = $ps;
+				}
+				break;
+
+			case 'user':
+				while($row = $result->fetch_assoc()) 
+				{
+					$user = new cUser();
+					$user->setId($row["id"]);
+					$user->setName($row["name"]);
+					$user->setUserName($row["username"]);
+					$user->setPassword($row["password"]);
+					$user->setPhoneNumber($row["phonenumber"]);
+					$user->setAccess($row["access"]);
+					$user->setWho($row["who"]);
+					$searchs[] = $user;
+				}
+				break;
+
+			case 'wanted':
+				while($row = $result->fetch_assoc()) 
+				{
+					$wanted = new cWanted();
+					$wanted->setId($row["id"]);
+					$wanted->setName($row["name"]);
+					$wanted->setImg($row["image"]);
+					$wanted->setNationalNumber($row["national_number"]);
+					$wanted->setReportId($row["report_id"]);
+					$wanted->setDate($row["date"]);
+					$wanted->setWho($row["ps_id"]);
+					$wanted->setState($row["state"]);
+					$searchs[] = $wanted;
+				}
+				break;
+
+			case 'carstolen':
+				while($row = $result->fetch_assoc()) 
+				{
+					$car = new cCarStolen();
+					$car->setId($row["id"]);
+					$car->setStructureNumber($row["structure_number"]);
+					$car->setPlateNumber($row["plate_number"]);
+					$car->setVehicleType($row["vehicle_type"]);
+					$car->setModel($row["model"]);
+					$car->setYearCar($row["year_car"]);
+					$searchs[] = $car;
+				}
+				break;
+
+			case 'report':
+				while($row = $result->fetch_assoc()) 
+				{
+					$report = new cReport();
+					$report->setId($row["id"]);
+					$report->setNameYou($row["name_you"]);
+					$report->setReportType($row["report_type"]);
+					$report->setDate($row["date"]);
+					$searchs[] = $report;
+				}
+				break;	
+		}
+	}
+	$conn->close();
+	return $searchs;
+}
+
+function checkCarStolen($number)
+{
+	$conn = createConnection();
+
+	$sql = "select * from car_stolen 
+	        where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$car = new cCarStolen();
+			$car->setId($row["id"]);
+			$car->setStructureNumber($row["structure_number"]);
+			$car->setPlateNumber($row["plate_number"]);
+			$car->setVehicleType($row["vehicle_type"]);
+			$car->setModel($row["model"]);
+			$car->setYearCar($row["year_car"]);
+			$car->setImg($row["img"]);
+			$car->setDescription($row["description"]);
+			$car->setPhoneNumber($row["phonenumber"]);
+		}	
+	$conn->close();
+	return $car;
+	}
+	else
+	{
+	$conn->close();
+	return "empty";
+	}
+
+
+}
+
+function checkWanted($id_number)
+{
+	$conn = createConnection();
+	$sql = "SELECT *
+			FROM wanted 
+			WHERE national_number = $id_number";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		if($row = $result->fetch_assoc()) {
+		$wanted = new cWanted();
+			$wanted->setName($row["name"]);
+			$wanted->setImg($row["image"]);
+			$wanted->setNationalNumber($row["national_number"]);
+		}
+	}
+	else
+	{
+		$conn->close();
+		return "empty";
+	}
+	$conn->close();
+	return $wanted;
+}
+
+function getIdNumber($number)
+{
+	$conn = createConnection();
+	$sql = "SELECT *
+			FROM cars 
+			where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+	$result = $conn->query($sql);
+
+		if($row = $result->fetch_assoc()) {
+			$conn->close();
+			return $row["id_number"];
+		}
+}
+
+function checkCar($number)
+{
+	$conn = createConnection();
+	$sql = "SELECT *
+			FROM cars 
+			where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		$conn->close();
+		return true;
+	}
+	else
+	{
+		$conn->close();
+		return false;
+	}
+}
+
+function getPeopleByNationalNumber($id)
+{
+	$conn = createConnection();
+	$sql = "SELECT * FROM people where id_number=$id";
+	$result = $conn->query($sql);
+	return $result;
+}
 
 ?>
