@@ -1,9 +1,8 @@
 <?php 
-session_start();
 
-include("PSUser_Header.html");
-?>
+include("PSNyaba_Header.html");
 
+ ?>
 
 <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
@@ -11,7 +10,7 @@ include("PSUser_Header.html");
        	<div style="text-align: center; color: red;">
 
         <?php 
-        if ($_SESSION["ERROR"] != "")
+        if (isset($_SESSION["ERROR"]))
         {
           echo $_SESSION["ERROR"];
           $_SESSION["ERROR"]= ""; 
@@ -20,17 +19,17 @@ include("PSUser_Header.html");
           
         </div>
 
-    	<form action="../php/Add_Wanted.php" method="post" enctype="multipart/form-data">
+    	<form action="../php/Add_Cause.php" method="post">
 
     		<div id="two">
-		      <div>اسم المطلوب</div>
-		      <input class="input-field" type="text" name="name">
-
-		      <div>رقم الوطني لمطلوب</div>
-		      <input class="input-field" type="text" name="nationalnumber">
+		      <div>رقم القضية</div>
+		      <input class="input-field" type="text" name="cause_id">
 
 		      <div>رقم المحظر</div>
-		      <input class="input-field" type="text" name="reportid">
+		      <input class="input-field" type="text" name="report_id">
+
+		      <div>الرقم الوطني</div>
+		      <input class="input-field" type="text" name="national_number">
 		    </div>
 		    
 
@@ -42,7 +41,8 @@ include("PSUser_Header.html");
     </div>
 </div>
 
+ <?php 
 
-<?php 
 include("Footer.html");
-?>
+
+ ?>

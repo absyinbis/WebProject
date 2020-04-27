@@ -18,7 +18,7 @@ session_start();
 	  <div class="container">
 
     	<label for="uname"><b>Passowrd</b></label>
-    	<input type="text" placeholder="Enter Password" name="passowrd" required>
+    	<input type="text" placeholder="Enter Password" name="password" required>
 
     	<button type="submit">Login</button>
 

@@ -19,19 +19,19 @@ include("PSUser_Header.html");
       
 		    <div id="two">
 		      <div>رقم الهيكل</div>
-		      <input class="input-field" type="text" name="structurenumber">
+		      <input class="input-field" type="text" name="structurenumber" required>
 
 		      <div>رقم اللوحة</div>
-		      <input class="input-field" type="text" name="platenumber">
+		      <input class="input-field" type="text" name="platenumber" required>
 
 		      <div>نوع السيارة ولونها</div>
-		      <select class="input-field" style="width: 29%" name="car-years" id="car-years"></select>  
-			  <select class="input-field" style="width: 29%" name="car-makes" id="car-makes"></select> 
-			  <select class="input-field" style="width: 29%" name="car-models" id="car-models"></select>
-		      <input type="color" name="color">
+		      <select class="input-field" style="width: 29%" name="car-years" id="car-years" required></select>  
+			  <select class="input-field" style="width: 29%" name="car-makes" id="car-makes" required></select> 
+			  <select class="input-field" style="width: 29%" name="car-models" id="car-models" required></select>
+		      <input type="color" name="color" required>
 
 		      <div>رقم الهاتف</div>
-		      <input class="input-field" name="phonenumber">
+		      <input class="input-field" name="phonenumber" required>
 
 
 		    </div>

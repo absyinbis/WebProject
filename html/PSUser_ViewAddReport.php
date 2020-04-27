@@ -1,4 +1,7 @@
 <?php 
+session_start();
+
+
 include("PSUser_Header.html");
 ?>
 
@@ -10,6 +13,18 @@ include("PSUser_Header.html");
 
 <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
+
+    	<div style="text-align: center; color: red;">
+        <?php 
+        if ($_SESSION["ERROR"] != "")
+        {
+          echo $_SESSION["ERROR"];
+          $_SESSION["ERROR"]= ""; 
+        }
+        ?>
+          
+        </div>
+
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
     		<div id="one">
     			<div>صورة السيارة</div>

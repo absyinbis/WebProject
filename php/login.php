@@ -22,19 +22,17 @@ try
         		break;
 
         	case 2:
-        		echo "neyaba";
+        		header("Location:../html/PSNyaba_ViewAddCause.php");
                         break;
 
                 case 3:
-                        header("Location:../html/PSUser_ViewWanted.php");
+                        header("Location:../html/PSUser_ViewReport.php");
         }
 
 		
 	}
 catch(Exception $e)
 	{
-		//$x = '5555';
-		//$x = $e->getMessage();
 		$_SESSION["ERROR"] = $e->getMessage();
 		header("Location:../html/LoginView.php");
 	}

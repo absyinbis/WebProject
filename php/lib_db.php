@@ -50,8 +50,8 @@ function getPoliceStation($username)
 	}
 	else
 	{
-		$sql = "SELECT user.*, police_station.name PSName FROM user INNER JOIN police_station ON user.ps_id=	police_station.id 
-				where user.username='".$username."' and user.state = 1 and user.access = 2 or user.access = 3";
+		$sql = "SELECT user.*, police_station.name PSName FROM user INNER JOIN police_station ON user.ps_id= police_station.id 
+				where user.username='".$username."' and user.state = 1 and (user.access = 2 or 3)";
 		$result = $conn->query($sql);
 		$ps = new cUser();
 			if ($result->num_rows > 0) {
@@ -824,6 +824,22 @@ function getPeopleByNationalNumber($id)
 	$conn = createConnection();
 	$sql = "SELECT * FROM people where id_number=$id";
 	$result = $conn->query($sql);
+	return $result;
+}
+
+function addCause($cause)
+{
+	$conn = createConnection();
+	$sql = "INSERT INTO cause (cause_id,report_id,national_number,date,user_id,ps_id,state) VALUES ('" 
+				. $cause->getCauseId() . "','"
+				. $cause->getReportId() . "','" 
+				. $cause->getNationalNumber(). "' , '"
+				. $cause->getDate()."' , '"
+				. $cause->getUser(). "' ,'"
+				. $cause->getWho() ."' , '"
+				. $cause->getState() . "')";
+
+	$result = executeQuery($conn,$sql);
 	return $result;
 }
 

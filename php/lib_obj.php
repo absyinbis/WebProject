@@ -300,14 +300,22 @@ class cReport
 class cCause
 {
 	private $id = -1;
+	private $cause_id = -1;
 	private $report_id = -1;
 	private $national_number = -1;
+	private $ps_id = -1;
+	private $user_id = -1;
 	private $date = -1;
 	private $state = -1;
 
 	public function setId($id)
 	{
 		$this->id = $id;
+	}
+
+	public function setCauseId($cause_id)
+	{
+		$this->cause_id = $cause_id;
 	}
 
 	public function setReportId($report_id)
@@ -318,6 +326,16 @@ class cCause
 	public function setNationalNumber($national_number)
 	{
 		$this->national_number = $national_number;
+	}
+
+	public function setWho($ps_id)
+	{
+		$this->ps_id = $ps_id;
+	}
+
+	public function setUser($user_id)
+	{
+		$this->user_id = $user_id;
 	}
 
 	public function setDate($date)
@@ -332,11 +350,17 @@ class cCause
 
 	public function getId(){ return $this->id; }
 
+	public function getCauseId(){ return $this->cause_id; }
+
 	public function getReportId(){ return $this->report_id; }
 
 	public function getNationalNumber(){ return $this->national_number; }
 
 	public function getDate(){ return $this->date; }
+
+	public function getWho(){ return $this->ps_id; }
+
+	public function getUser(){ return $this->user_id; }
 
 	public function getState(){ return $this->state; }
 }

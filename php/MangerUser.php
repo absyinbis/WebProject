@@ -50,6 +50,12 @@ class cUserManger
 			throw new Exception("not deleted");
 	}
 
+	public function addcause($cause)
+	{
+		if(!addCause($cause))
+			throw new Exception("user no add");
+	}
+
 	
 }
 
