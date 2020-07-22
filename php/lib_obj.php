@@ -529,4 +529,33 @@ class cLogg
 
 }
 
+class cPeople{
+
+	private $name = "";
+	private $m_name = "";
+	private $id_number = -1;
+
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
+	public function setNationalNumber($id_number)
+	{
+		$this->id_number = $id_number;
+	}
+
+	public function setMotherName($m_name)
+	{
+		$this->m_name = $m_name;
+	}
+
+	public function getName(){ return $this->name; }
+
+	public function getMotherName(){ return $this->m_name; }
+
+	public function getNationalNumber(){ return $this->id_number; }
+
+}
+
  ?>

@@ -3,83 +3,83 @@
 require_once '../php/lib_db.php';
 
 
+//$checkcars = checkCars($_POST["searchtext"]);
+//if($checkcars != null)
+//{
+      $carstolen = checkCarStolen($_POST["searchtext"]);
+      $car = getCar($_POST["searchtext"]);
+      $id_number = getIdNumber($_POST["searchtext"]);
+      $wanted = checkWanted($id_number);
+      $person = getPeopleByNationalNumber($id_number);
 
-      $car = checkCar($_POST["carstolennumber"]);
-if($car == true)
-{
-      $carstolen = checkCarStolen($_POST["carstolennumber"]);
       if($carstolen != "empty")
       {
-            $id_number = getIdNumber($_POST["carstolennumber"]);
-            $wanted = checkWanted($id_number);
             if ($wanted != "empty") {
-                  $arryjson = array('structure_number' => $carstolen->getStructureNumber(),
-                                          'plate_number' =>$carstolen->getPlateNumber(),
-                                    'vehicle_type' =>$carstolen->getVehicleType()." "
-                                                     .$carstolen->getModel()." "
-                                                     .$carstolen->getYearCar(),
-                                    'description' =>$carstolen->getDescription(),
-                                    'phonenumber' =>$carstolen->getPhoneNumber(),
-                                    'state car' => 'السيارة مسروقة',
-                                    'name' =>$wanted->getName(),
-                                    'national_number' =>$wanted->getNationalNumber(),
-                                    'state wanted' =>"السائق مطلوب");
+                  $arryjson = array(
+                        'structureNumber'=> $car->getStructureNumber(),
+                        'plateNumber'=> $car->getPlateNumber(),
+                        'vehicleType'=> $car->getVehicleType(),
+                        'vehicleModel'=> $car->getModel(),
+                        'vehicleYear'=> $car->getYearCar(),
+                        'carState'=> '',
+                        'name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص مطلوب',
+                  );
                   echo json_encode($arryjson);
             }
             else
             {
-                  $arryjson = array('structure_number' => $carstolen->getStructureNumber(),
-                                    'plate_number' =>$carstolen->getPlateNumber(),
-                                    'vehicle_type' =>$carstolen->getVehicleType()." "
-                                                     .$carstolen->getModel()." "
-                                                     .$carstolen->getYearCar(),
-                                    'description' =>$carstolen->getDescription(),
-                                    'phonenumber' =>$carstolen->getPhoneNumber(),
-                                    'state car' => "السيارة مسروقة",
-                                    'name' =>"",
-                                    'imagewanted' =>"",
-                                    'national_number' =>"",
-                                    'state wanted' =>"السائق غير مطلوب");
+                  $arryjson = array(
+                        'structureNumber'=> $car->getStructureNumber(),
+                        'plateNumber'=> $car->getPlateNumber(),
+                        'vehicleType'=> $car->getVehicleType(),
+                        'vehicleModel'=> $car->getModel(),
+                        'vehicleYear'=> $car->getYearCar(),
+                        'carState'=> 'السيارة مسروقة',
+                        'name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص غير مطلوب',
+                  );
                   echo json_encode($arryjson);
             }
       }
       else
       {
-            $id_number = getIdNumber($_POST["carstolennumber"]);
-            $wanted = checkWanted($id_number);
             if ($wanted != "empty") {
-                  $arryjson = array('structure_number' => "",
-                                    'plate_number' =>"",
-                                    'vehicle_type' =>"",
-                                    'description' =>"",
-                                    'phonenumber' =>"",
-                                    'state car' => "السيارة ليست مسروقة",
-                                    'name' =>$wanted->getName(),
-                                    'national_number' =>$wanted->getNationalNumber(),
-                                    'state wanted' =>"السائق مطلوب");
+                  $arryjson = array(
+                        'structureNumber'=> $car->getStructureNumber(),
+                        'plateNumber'=> $car->getPlateNumber(),
+                        'vehicleType'=> $car->getVehicleType(),
+                        'vehicleModel'=> $car->getModel(),
+                        'vehicleYear'=> $car->getYearCar(),
+                        'carState'=> 'السيارة ليست مسروقة',
+                        'name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص مطلوب',
+                  );
                   echo json_encode($arryjson);
             }
             else
             {
-                  $arryjson = array('structure_number' => "",
-                                    'plate_number' =>"",
-                                    'vehicle_type' =>"",
-                                    'description' =>"",
-                                    'phonenumber' =>"",
-                                    'state car' => "السيارة ليست مسروقة",
-                                    'name' =>$wanted->getName(),
-                                    'national_number' =>$wanted->getNationalNumber(),
-                                    'state wanted' =>"السائق غير مطلوب");
+                  $arryjson = array(
+                        'structureNumber'=> $car->getStructureNumber(),
+                        'plateNumber'=> $car->getPlateNumber(),
+                        'vehicleType'=> $car->getVehicleType(),
+                        'vehicleModel'=> $car->getModel(),
+                        'vehicleYear'=> $car->getYearCar(),
+                        'carState'=> 'السيارة ليست مسروقة',
+                        'name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص غير مطلوب',
+                  );
                   echo json_encode($arryjson);
             }
       }
-}
-else
-{
-      echo "car to found";
-}
-
-
-
-
+//}
+      
  ?>

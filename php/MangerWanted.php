@@ -28,6 +28,13 @@ class cWantedManger
 			throw new Exception("wanted no add");
 	}
 
+	public function deletewanted($id)
+	{
+		if(!deleteWanted($id))
+			throw new Exception("not deleted");
+
+	}
+
 	
 }
 

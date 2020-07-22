@@ -32,7 +32,7 @@ $car = getDetailsCar($_POST["id"]);
 			<span style="font-size: 20px"><?=$car->getYearCar()?></span>
 			<br>
 			<span style="font-size: 20px">اللون : </span>
-			<span style="font-size: 20px"><?=$car->getColor()?></span>
+			<span style="font-size: 20px"><div style="display: inline-block; background-color: <?=$car->getColor()?>;width: 50px; height: 20px"></div></span>
 			<br>
 			<span style="font-size: 20px">رقم الهاتف : </span>
 			<span style="font-size: 20px"><?=$car->getPhoneNumber()?></span>
@@ -43,8 +43,15 @@ $car = getDetailsCar($_POST["id"]);
 			<span style="font-size: 20px">مركز الشرطة : </span>
 			<span style="font-size: 20px"><?=$car->getWho()?></span>
 			<br>
-			<span style="font-size: 20px"></span>
+			<span style="font-size: 20px">الذي قام باضافة السيارة</span>
 			<span style="font-size: 20px"><?=$car->getUser()?></span>
+		</div>
+
+		<div style="text-align: center;margin-top: 170px;">
+		    <form action="../php/Delete_CarStolen.php" method="post">
+		    	<input type="hidden" name="id" value="<?=$car->getId()?>">
+		    	<input class="btn" type="submit" value="ازالة السيارة">
+		    </form>
 		</div>
 
 	</div>

@@ -52,7 +52,7 @@ $wanted = getDetailsWanted($_POST["id"]);
 			</div>
 
 			<div style="text-align: center;margin-top: 170px;">
-		    <form action="#" method="post">
+		    <form action="../php/Delete_Wanted.php" method="post">
 		    	<input type="hidden" name="id" value="<?=$wanted->getId()?>">
 		    	<input class="btn" type="submit" value="تم ايجاد المطلوب">
 		    </form>

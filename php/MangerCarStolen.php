@@ -28,5 +28,12 @@ class cCarStolenManger
 			throw new Exception("wanted no add");
 	}
 
+	public function deletecarstolen($id)
+	{
+		if(!deleteCarStolen($id))
+			throw new Exception("not deleted");
+
+	}
+
 	
 }

@@ -10,7 +10,7 @@ include("PSUser_Header.html");
     <div class="card">
 
     	<div style="text-align: center;">
-    		<form action="#" method="post">
+    		<form action="../php/changeusername.php" method="post">
 	    		<div>اسم المستخدم</div>
 	    		<input class="input-field" style="width: 50%" placeholder="الرجاء ادخال اسم المستخدم الجديد" type="text" name="username" required>
 	    		<br>
