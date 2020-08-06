@@ -16,7 +16,7 @@ $report->setNameYou($_POST["name_you"]);
 $report->setNameHim($_POST["name_him"]);
 $report->setReportType($_POST["report_type"]);
 $report->setPhoneNumber($_POST["phonenumber"]);
-$report->setDate(date("Y/m/d"));
+$report->setDate(date('Y/m/d H:i:s'));
 $report->setWho($account->getWho());
 $report->setUser($account->getId());
 $report->setState(1);

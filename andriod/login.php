@@ -9,10 +9,10 @@ try
 {
        $result = $um->login($_POST["username"],$_POST["password"]);
 
-       $arryjson = array('id' => $result->getId(),'name' =>$result->getName(),
+       	$arryjson = array('id' => $result->getId(),'name' =>$result->getName(),
                           'username' =>$result->getUserName(),'password' =>$result->getPassword(),
                           'phonenumber' =>$result->getPhoneNumber(),'access' =>$result->getAccess(),
-                          'state' =>$result->getState(),'ps_id' =>$result->getWho());
+                          'rq' =>'11111');
 
        echo json_encode($arryjson);
 }

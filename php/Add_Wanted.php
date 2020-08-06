@@ -14,7 +14,7 @@ $wanted = new cWanted();
 $wanted->setName($_POST["name"]);
 $wanted->setNationalNumber($_POST["nationalnumber"]);
 $wanted->setReportId($_POST["reportid"]);
-$wanted->setDate(date("Y/m/d"));
+$wanted->setDate(date('Y/m/d H:i:s'));
 $wanted->setWho($account->getWho());
 $wanted->setUser($account->getId());
 $wanted->setState(1);

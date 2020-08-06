@@ -437,6 +437,7 @@ function getCarStolen()
 			$car->setVehicleType($row["vehicle_type"]);
 			$car->setModel($row["model"]);
 			$car->setYearCar($row["year_car"]);
+			$car->setDate($row["date_add"]);
 		$cars[] = $car;
 		}
 	}
@@ -621,6 +622,22 @@ function changePassword($id,$access,$password)
 	return $result;
 }
 
+function changePhoneNumber($id,$access,$phonenumber)
+{
+	$conn = createConnection();
+	if ($access == 0 || $access == 1) 
+	{
+		$sql = "UPDATE police_station SET phonenumber='".$phonenumber."' WHERE id = '".$id."' ";
+	}
+	else
+	{
+		$sql = "UPDATE user SET phonenumber='".$phonenumber."' WHERE id = '".$id."' ";
+	}
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
+}
+
 function changeUserName($id,$access,$username)
 {
 	$conn = createConnection();
@@ -769,7 +786,7 @@ function checkCarStolen($number)
 	$conn = createConnection();
 
 	$sql = "select * from car_stolen 
-	        where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+	        where structure_number like ".$number." or plate_number like ".$number."";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) { 
@@ -810,7 +827,7 @@ function getIdNumber($number)
 	$conn = createConnection();
 	$sql = "SELECT *
 			FROM cars 
-			where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+			where structure_number like ".$number." or plate_number like ".$number."";
 	$result = $conn->query($sql);
 
 		if($row = $result->fetch_assoc()) {
@@ -853,7 +870,7 @@ function addCause($cause)
 function getCar($number)
 {
 	$conn = createConnection();
-	$sql = "SELECT `cars`.* FROM `cars` where structure_number like '%".$number."%' or plate_number like '%".$number."%'";
+	$sql = "SELECT `cars`.* FROM `cars` where structure_number like ".$number." or plate_number like ".$number."";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) { 

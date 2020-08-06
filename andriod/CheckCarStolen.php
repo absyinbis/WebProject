@@ -25,7 +25,7 @@ require_once '../php/lib_db.php';
                         'name'=> $person->getName(),
                         'motherName'=> $person->getMotherName(),
                         'nationalNumber'=> $person->getNationalNumber(),
-                        'wantedState'=> 'الشخص مطلوب',
+                        'wantedState'=> 'الشخص مطلوب'
                   );
                   echo json_encode($arryjson);
             }
@@ -41,7 +41,7 @@ require_once '../php/lib_db.php';
                         'name'=> $person->getName(),
                         'motherName'=> $person->getMotherName(),
                         'nationalNumber'=> $person->getNationalNumber(),
-                        'wantedState'=> 'الشخص غير مطلوب',
+                        'wantedState'=> 'الشخص غير مطلوب'
                   );
                   echo json_encode($arryjson);
             }
@@ -59,7 +59,7 @@ require_once '../php/lib_db.php';
                         'name'=> $person->getName(),
                         'motherName'=> $person->getMotherName(),
                         'nationalNumber'=> $person->getNationalNumber(),
-                        'wantedState'=> 'الشخص مطلوب',
+                        'wantedState'=> 'الشخص مطلوب'
                   );
                   echo json_encode($arryjson);
             }
@@ -75,7 +75,7 @@ require_once '../php/lib_db.php';
                         'name'=> $person->getName(),
                         'motherName'=> $person->getMotherName(),
                         'nationalNumber'=> $person->getNationalNumber(),
-                        'wantedState'=> 'الشخص غير مطلوب',
+                        'wantedState'=> 'الشخص غير مطلوب'
                   );
                   echo json_encode($arryjson);
             }

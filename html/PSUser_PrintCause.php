@@ -4,7 +4,7 @@ require_once '../php/MangerPoliceStation.php';
 require_once '../php/lib_db.php';
 $people = getPeopleByNationalNumber($_POST["nationalnumber"]);
 
-if($people->num_rows > 0)
+if($people->getNationalNumber() != -1)
 {
 
 
@@ -23,7 +23,7 @@ catch(Exception $e){
 		exit;
 
 }
-$row = $people->fetch_assoc();
+
 $user = unserialize($_SESSION["ACCOUNT"]);
  ?>
 
@@ -54,19 +54,19 @@ $user = unserialize($_SESSION["ACCOUNT"]);
 	<br>
 
 
-	<span>الاسم بالكامل : </span> <span>...............<?=$row["name"]?>...................</span>
+	<span>الاسم بالكامل : </span> <span>...............<?=$people->getName()?>...................</span>
 	<span>اللقب</span> <span>........................................................</span>
 
 	<br>
 	<br>
 
-	<span>اسم الوالدة بالكامل : </span> <span>..................<?=$row["m_name"]?>.....................</span>
+	<span>اسم الوالدة بالكامل : </span> <span>..................<?=$people->getMotherName()?>.....................</span>
 	<span>تاريخ ومكان الميلاد : </span> <span>.....................................................</span>
 
 	<br>
 	<br>
 
-	<span>الرقم الوطني : </span> <span>..................<?=$row["id_number"]?>.....................</span>
+	<span>الرقم الوطني : </span> <span>..................<?=$people->getNationalNumber()?>.....................</span>
 	<span>جهة اضدارها : </span> <span>....................<?=$user->getPSName()?>...........</span>
 
 	<br>

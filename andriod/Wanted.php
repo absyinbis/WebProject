@@ -5,17 +5,24 @@ require_once '../php/lib_db.php';
 $wanted = checkWanted($_POST["searchtext"]);
 $person = getPeopleByNationalNumber($_POST["searchtext"]);
 
-if ($wanted != "empty") {
-
-    $arryjson = array('name' =>$wanted->getName(),
-                      'national_number' =>$wanted->getNationalNumber(),
-                      'wanted_state' =>"السائق مطلوب",
-                      'date' =>$wanted->getDate(),
-                      'who' =>$wanted->getWho());
-    echo json_encode($arryjson);
+if($person->getNationalNumber() != -1)
+{
+	if ($wanted != "empty") {
+    	$arryjson = array('name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص مطلوب');
+    	echo json_encode($arryjson);
+	}
+	else
+	{
+		$arryjson = array('name'=> $person->getName(),
+                        'motherName'=> $person->getMotherName(),
+                        'nationalNumber'=> $person->getNationalNumber(),
+                        'wantedState'=> 'الشخص غير مطلوب');
+    	echo json_encode($arryjson);
+	}
 }
-else
-echo "empty";
-
+echo "not found";
 
  ?>

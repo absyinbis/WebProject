@@ -20,7 +20,7 @@ $car->setYearCar($_POST["car-years"]);
 $car->setColor($_POST["color"]);
 $car->setDescription($_POST["des"]);
 $car->setPhoneNumber($_POST["phonenumber"]);
-$car->setDate(date("Y/m/d"));
+$car->setDate(date('Y/m/d H:i:s'));
 $car->setWho($account->getWho());
 $car->setUser($account->getId());
 $car->setState(1);
