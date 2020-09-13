@@ -14,17 +14,6 @@ include("PSUser_Header.html");
 <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
 
-    	<div style="text-align: center; color: red;">
-        <?php 
-        if ($_SESSION["ERROR"] != "")
-        {
-          echo $_SESSION["ERROR"];
-          $_SESSION["ERROR"]= ""; 
-        }
-        ?>
-          
-        </div>
-
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
     		<div id="one">
     			<div>صورة السيارة</div>
@@ -37,11 +26,11 @@ include("PSUser_Header.html");
 		      <div>اسم صاحب المحظر</div>
 		      <input class="input-field" type="text" name="name_you" required>
 
-		      <!----<div>اسم الفتوح فيه المحظر</div>
-		      <input class="input-field" type="text" name="name_him" required> !---->
+		      <div>اسم الفتوح فيه المحظر</div>
+		      <input class="input-field" type="text" name="name_him">
 
 		      <div>نوع المحظر</div>
-		      <select class="input-field" name="report_type"></select>  
+		      <input class="input-field" type="text" name="report_type" required>
 
 		      <div>رقم الهاتف</div>
 		      <input class="input-field" name="phonenumber" required>
