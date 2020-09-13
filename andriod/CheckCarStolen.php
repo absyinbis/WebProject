@@ -3,15 +3,14 @@
 require_once '../php/lib_db.php';
 
 
-//$checkcars = checkCars($_POST["searchtext"]);
-//if($checkcars != null)
-//{
-      $carstolen = checkCarStolen($_POST["searchtext"]);
-      $car = getCar($_POST["searchtext"]);
-      $id_number = getIdNumber($_POST["searchtext"]);
-      $wanted = checkWanted($id_number);
-      $person = getPeopleByNationalNumber($id_number);
+$car = getCar($_POST["searchtext"]);
+$carstolen = checkCarStolen($_POST["searchtext"]);
 
+if(!is_null($car))
+{
+    $id_number = getIdNumber($_POST["searchtext"]);
+    $wanted = checkWanted($id_number);
+    $person = getPeopleByNationalNumber($id_number);
       if($carstolen != "empty")
       {
             if ($wanted != "empty") {
@@ -80,6 +79,43 @@ require_once '../php/lib_db.php';
                   echo json_encode($arryjson);
             }
       }
-//}
+
+
+}else{
+
+      if($carstolen != "empty")
+      {
+          $arryjson = array(
+                        'structureNumber'=> $carstolen->getStructureNumber(),
+                        'plateNumber'=> $carstolen->getPlateNumber(),
+                        'vehicleType'=> $carstolen->getVehicleType(),
+                        'vehicleModel'=> $carstolen->getModel(),
+                        'vehicleYear'=> $carstolen->getYearCar(),
+                        'carState'=> 'السيارة لمسروقة',
+                        'name'=> '',
+                        'motherName'=> '',
+                        'nationalNumber'=> '',
+                        'wantedState'=> ''
+                  );
+                  echo json_encode($arryjson);
+      }
+      else
+      {
+            $arryjson = array(
+                        'structureNumber'=> '',
+                        'plateNumber'=> '',
+                        'vehicleType'=> '',
+                        'vehicleModel'=> '',
+                        'vehicleYear'=> '',
+                        'carState'=> 'السيارة ليست مسروقة',
+                        'name'=> '',
+                        'motherName'=> '',
+                        'nationalNumber'=> '',
+                        'wantedState'=> ''
+                  );
+                  echo json_encode($arryjson);
+      }
+}
+
       
  ?>

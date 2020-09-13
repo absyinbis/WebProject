@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include("PS_Header.html");
  ?>
 
@@ -24,7 +25,8 @@ include("PS_Header.html");
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
-          $lg = getAllLogg();
+          $ps = unserialize($_SESSION["ACCOUNT"]);
+          $lg = getAllLogg($ps->getId());
           foreach ($lg as $l) {
           ?> 
           <tr>

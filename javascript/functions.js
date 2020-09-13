@@ -152,3 +152,9 @@ function CarChange(selectObj) {
  cSelect.add(newOption); 
   }
 }
+
+function setrequired(){
+
+  document.getElementById("date1").required = true;
+  document.getElementById("date2").required = true;
+}

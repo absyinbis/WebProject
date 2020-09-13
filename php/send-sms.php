@@ -16,10 +16,12 @@ try{
 	$access = $account->getAccess();
 
 
-	//$verification = new \Nexmo\Verify\Verification($phonenumber , 'Acme Inc');
-	//$client->verify()->start($verification);
+	$verification = $client->verify()->start([ 
+            'number' => '218'.$phonenumber,
+            'brand'  => 'Vonage',
+            'code_length'  => '4']);
 
-	//$_SESSION["Request_Id"] = $verification->getRequestId();
+	$_SESSION["Request_Id"] = $verification->getRequestId();
 	$_SESSION["id"] = $id;
 	$_SESSION["access"] = $access;
 

@@ -41,9 +41,7 @@ include("Admin_Header.html");
   <div class="rightcolumn">
     <div class="card">
       <form name="police_station" method="post">
-        <div style="color: red;"><?php if(isset($_SESSION["ERROR"])){ echo $_SESSION["ERROR"];
-        $_SESSION["ERROR"]='';}?>
-        </div>
+
         <input id="id_ps" type="hidden" name="id">
         <div>الاسم</div>
         <input id="name_ps" class="input-field" type="text" name="name">

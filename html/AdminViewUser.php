@@ -75,6 +75,18 @@ include("Admin_Header.html");
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
 
+        <div>يتبع من</div>
+        <select class="input-field" name="ps_id">
+        <?php 
+          $ps = getPoliceStations();
+          foreach ($ps as $pss){
+        ?> 
+          <option value="<?=$pss->getId()?>"><?=$pss->getName()?></option>
+        <?php 
+        }
+         ?>
+        </select>
+
         <div>صلاحية الوصول</div>
         <select class="input-field" name="access">
         <option value="2">وكيل النيابة</option>

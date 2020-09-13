@@ -5,7 +5,7 @@ require_once '../php/lib_db.php';
 $wanted = checkWanted($_POST["searchtext"]);
 $person = getPeopleByNationalNumber($_POST["searchtext"]);
 
-if($person->getNationalNumber() != -1)
+if($person != "empty")
 {
 	if ($wanted != "empty") {
     	$arryjson = array('name'=> $person->getName(),

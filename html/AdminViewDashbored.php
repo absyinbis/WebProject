@@ -1,39 +1,64 @@
 <?php
 include("Admin_Header.html");
+require_once  '../php/lib_db.php';
+
+$Statistics = getStatistics();
 ?>
+
+
 
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
-      <table style="width: 100%; height: 100%;">
+
+      <div style="text-align: center;">
+
+        <form action="#" method="post">
+          <select name="ps_id">
+            <option value="0">الكل</option>
+            <?php 
+              require_once  '../php/lib_db.php';
+              $ps = getPoliceStations();
+              foreach ($ps as $pss){
+            ?> 
+            <option value="<?=$pss->getId()?>"><?=$pss->getName()?></option>
+            <?php
+            } 
+             ?>
+          </select>
+
+          <input id="date1" type="date" name="startdate" onchange="setrequired()">
+
+          <input id="date2" type="date" name="enddate" onchange="setrequired()"> 
+
+          <input type="submit" value="Send data">
+
+        </form>
+      </div>
+
+      <table style="width: 100%; height: 90%;">
       	<tr>
-      		<td>
-      			<div class="card" style="background-color: red; height: 100px; width: 300px">
-      				<div style="color: white">عدد المستخدمين</div>
-      				<div style="color: white; float: left">0</div>
-      			</div>
+      		<td class="celi" style="background-image: url(../image/user.png);">
+            <div class="footer"> <?=$Statistics["user"]?> </div>
       		</td>
-      		<td>
-      			<div class="card" style="background-color: black; height: 100px; width: 300px">
-      				<div style="color: white">عدد المراكز الشرطة</div>
-					<div style="color: white; float: left">0</div>
-      			</div>
+      		<td class="celi" style="background-image: url(../image/jail.png);">
+            <div class="footer"> <?=$Statistics["police"]?> </div>
       		</td>
-      		<td>
-      			<div class="card" style="background-color: gray; height: 100px; width: 300px">
-      				<div style="color: white">عدد القضاية</div>
-      				<div style="color: white; float: left">0</div>
-      			</div>
-      		</td>
-      		<td>
-      			<div class="card" style="background-color: blue; height: 100px; width: 300px">
-      				<div style="color: white">فثسفسفس</div>
-      				<div style="color: white; float: left">0</div>
-      			</div>
+      		<td class="celi" style="background-image: url(../image/wanted.png);">
+            <div class="footer"> <?=$Statistics["wanted"]?> </div>
       		</td>
       	</tr>
-      	<tr><td></td></tr>
-      	<tr><td></td></tr>
+      	<tr>
+          <td class="celi" style="background-image: url(../image/car.png);">
+            <div class="footer"> <?=$Statistics["carstolen"]?> </div>
+          </td>
+          <td class="celi" style="background-image: url(../image/report.png);">
+            <div class="footer"> <?=$Statistics["report"]?> </div>
+          </td>
+          <td class="celi" style="background-image: url(../image/law.png);">
+            <div class="footer"> <?=$Statistics["cause"]?> </div>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
