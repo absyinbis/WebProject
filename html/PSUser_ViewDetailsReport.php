@@ -5,8 +5,8 @@ include("PSUser_Header.html");
 <?php 
 require_once  '../php/lib_db.php';
 session_start();
-if (!isset($_POST["id"]))
-$_POST["id"] = $_SESSION["report_id"];
+///(!isset($_POST["id"]))
+//$_POST["id"] = $_SESSION["report_id"];
 
 $report = getDetailsReport($_POST["id"]);
  ?>
@@ -109,6 +109,5 @@ myShow = w3.slideshow(".nature",0);
 </script>
 
  <?php 
- $_POST = array();
 include("Footer.html");
   ?>

@@ -4,7 +4,7 @@ require_once '../php/MangerPoliceStation.php';
 require_once '../php/lib_db.php';
 $people = getPeopleByNationalNumber($_POST["nationalnumber"]);
 
-if($people->getNationalNumber() != -1)
+if($people != "empty")
 {
 
 
