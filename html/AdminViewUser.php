@@ -88,7 +88,7 @@ include("Admin_Header.html");
         </select>
 
         <div>صلاحية الوصول</div>
-        <select class="input-field" name="access">
+        <select id="state_select" class="input-field" name="access">
         <option value="2">وكيل النيابة</option>
         <option value="3">موظف</option>
         <option value="4">مستخدم جوال</option>

@@ -19,6 +19,7 @@ include("Admin_Header.html");
             <th onclick="sortTable(2,'police_station_table')">اسم المستخدم</th>
             <th onclick="sortTable(3,'police_station_table')">كلمى المرور</th>
             <th onclick="sortTable(4,'police_station_table')">رقم الهاتف</th>
+            <th onclick="sortTable(4,'police_station_table')">الصلاحية</th>
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
@@ -31,6 +32,17 @@ include("Admin_Header.html");
             <td><?=$pss->getUserName()?></td>
             <td><?=$pss->getPassword()?></td>
             <td><?=$pss->getPhoneNumber()?></td>
+            <?php
+            switch ($pss->getAccess()) {
+              case 0:
+                echo "<td>مسؤول</td>";
+                break;
+              
+              case 1:
+                echo "<td>مركز شرطة</td>";
+                break;
+            }
+            ?>
           </tr>
           <?php }  ?>
         </table>
@@ -56,7 +68,7 @@ include("Admin_Header.html");
         <input id="phonenumber_ps" class="input-field" type="text" name="phonenumber">
 
         <div>صلاحية الوصول</div>
-        <select class="input-field" name="access">
+        <select id="state_select" class="input-field" name="access">
         <option value="0">مسؤول</option>
         <option value="1">مركز شرطة</option>
         </select>

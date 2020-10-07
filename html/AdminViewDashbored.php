@@ -71,6 +71,30 @@ else
         <?php } ?>
         </tr>
       </table>
+      <div style="text-align: center;">
+
+        <form action="PrintDashBored.php" method="post" target="_blank">
+          <input type="hidden" name="report" value="<?=$Statistics["report"]?>">
+          <input type="hidden" name="carstolen" value="<?=$Statistics["carstolen"]?>">
+          <input type="hidden" name="wanted" value="<?=$Statistics["wanted"]?>">
+          <input type="hidden" name="cause" value="<?=$Statistics["cause"]?>">
+          <input type="hidden" name="user" value="<?=$Statistics["user"]?>">
+          <input type="hidden" name="access" value="0">
+          <?php if ($_SERVER['REQUEST_METHOD'] === 'GET') { ?>
+                    <input type="hidden" name="id" value="<?=$Statistics["police"]?>">
+          <?php }elseif($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST["ps_id"] == 0) { ?>
+                    <input type="hidden" name="id" value="<?=$Statistics["police"]?>">
+                    <input type="hidden" name="ps_id" value="<?=$_POST['ps_id']?>">
+                    <input type="hidden" name="startdate" value="<?=$_POST["startdate"]?>">
+                    <input type="hidden" name="enddate" value="<?=$_POST['enddate']?>">
+          <?php } else { ?>
+                    <input type="hidden" name="startdate" value="<?=$_POST["startdate"]?>">
+                    <input type="hidden" name="enddate" value="<?=$_POST['enddate']?>">
+                  <?php } ?>
+          <input class="btn" type="submit" value="طباعة الاحصائية">
+        </form>
+
+      </div>
     </div>
   </div>
 </div>

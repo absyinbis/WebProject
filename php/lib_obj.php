@@ -300,7 +300,7 @@ class cReport
 class cCause
 {
 	private $id = -1;
-	private $cause_id = -1;
+	private $report_type = -1;
 	private $report_id = -1;
 	private $national_number = -1;
 	private $ps_id = -1;
@@ -313,9 +313,9 @@ class cCause
 		$this->id = $id;
 	}
 
-	public function setCauseId($cause_id)
+	public function setReportType($report_type)
 	{
-		$this->cause_id = $cause_id;
+		$this->report_type = $report_type;
 	}
 
 	public function setReportId($report_id)
@@ -350,7 +350,7 @@ class cCause
 
 	public function getId(){ return $this->id; }
 
-	public function getCauseId(){ return $this->cause_id; }
+	public function getReportType(){ return $this->report_type; }
 
 	public function getReportId(){ return $this->report_id; }
 

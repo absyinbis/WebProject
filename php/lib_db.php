@@ -14,7 +14,7 @@ function createConnection()
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
-	} 
+	}
 	return $conn;
 }
 
@@ -961,6 +961,33 @@ function getCauseByPoliceStation($id){
 	}
 	$conn->close();
 	return $causes;
+}
+
+function getCauseDetails($id){
+	$conn = createConnection();
+
+	$sql = "SELECT `cause`.*, `police_station`.`name` ps, `user`.`name` user, `report`.`id` report,`report`.`report_type`report_type
+			FROM `cause`
+			INNER JOIN `police_station` ON `cause`.`ps_id` = `police_station`.`id` 
+			INNER JOIN `user` ON `cause`.`user_id` = `user`.`id` 
+			INNER JOIN `report` ON `cause`.`report_id` = `report`.`id`
+    		WHERE `cause`.`id` = '". $id ."' ";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) { 
+		while($row = $result->fetch_assoc()) {
+		$cause = new cCause();
+			$cause->setId($row["id"]);
+			$cause->setReportId($row["report"]);
+			$cause->setReportType($row["report_type"]);
+			$cause->setNationalNumber($row["national_number"]);
+			$cause->setUser($row["user"]);
+			$cause->setWho($row["ps"]);
+			$cause->setDate($row["date"]);
+		}
+	}
+	$conn->close();
+	return $cause;
 }
 
 ?>
