@@ -7,9 +7,8 @@ include("PSUser_Header.html");
 
 
 
-
-
-<div class="leftcolumn" style="width: 100%; float: right;">
+<div class="row">
+	<div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
     	<form action="../php/Add_CarStolen.php" method="post" enctype="multipart/form-data">
     		<div id="one">
@@ -42,6 +41,8 @@ include("PSUser_Header.html");
 		</form>
     </div>
 </div>
+</div>
+
 
 <script>
 

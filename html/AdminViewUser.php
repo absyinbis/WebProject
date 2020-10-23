@@ -76,7 +76,7 @@ include("Admin_Header.html");
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
 
         <div>يتبع من</div>
-        <select class="input-field" name="ps_id">
+        <select id="ps_select" class="input-field" name="ps_id">
         <?php 
           $ps = getPoliceStations();
           foreach ($ps as $pss){
@@ -88,7 +88,7 @@ include("Admin_Header.html");
         </select>
 
         <div>صلاحية الوصول</div>
-        <select id="state_select" class="input-field" name="access">
+        <select id="access_select" class="input-field" name="access">
         <option value="2">وكيل النيابة</option>
         <option value="3">موظف</option>
         <option value="4">مستخدم جوال</option>
@@ -103,7 +103,7 @@ include("Admin_Header.html");
 </div>
 
 
-<script src="../javascript/tableuserscript.js"></script>
+<script src="../javascript/tableuserscript_admin.js"></script>
 
 <?php 
 include("Footer.html");

@@ -70,7 +70,7 @@ include("PS_Header.html");
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
         <div>صلاحية الوصول</div>
-        <select class="input-field" name="access">
+        <select id="state_select" class="input-field" name="access">
         <option value="2">وكيل النيابة</option>
         <option value="3">موظف</option>
         <option value="4">مستخدم جوال</option>
@@ -85,7 +85,7 @@ include("PS_Header.html");
 </div>
 
 
-<script src="../javascript/tableuserscript.js"></script>
+<script src="../javascript/tableuserscript_ps.js"></script>
 
 
 <?php 

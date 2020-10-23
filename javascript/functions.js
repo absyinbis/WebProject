@@ -120,39 +120,6 @@
             }
         }
 
-
-function CarChange(selectObj) { 
- var countryLists = new Array(4) 
- countryLists["empty"] = ["Select a Car"]; 
- countryLists["kia"] = ["Optima", "Rio", "Carens", "Spectra"]; 
- countryLists["hyundai"] = ["Azera", "i10", "i20", "i30" , "Sonata" , "Accent" , "Elantra"]; 
- countryLists["mercedes"] = ["E550", "E63", "E55 AMG"]; 
- 
-
- // get the index of the selected option 
- var idx = selectObj.selectedIndex; 
- // get the value of the selected option 
- var which = selectObj.options[idx].value; 
- // use the selected option value to retrieve the list of items from the countryLists array 
- cList = countryLists[which]; 
- // get the country select element via its known id 
- var cSelect = document.getElementById("type"); 
- // remove the current options from the country select 
- var len=cSelect.options.length; 
- while (cSelect.options.length > 0) { 
- cSelect.remove(0); 
- } 
- var newOption; 
- // create new options 
- for (var i=0; i<cList.length; i++) { 
- newOption = document.createElement("option"); 
- newOption.value = cList[i];  // assumes option string and value are the same 
- newOption.text=cList[i]; 
- // add the new option 
- cSelect.add(newOption); 
-  }
-}
-
 function setrequired(){
 
   document.getElementById("date1").required = true;

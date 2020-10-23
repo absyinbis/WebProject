@@ -10,8 +10,8 @@ include("PSUser_Header.html");
 
 
 
-
-<div class="leftcolumn" style="width: 100%; float: right;">
+<div class="row">
+	<div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
 
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
@@ -42,6 +42,7 @@ include("PSUser_Header.html");
 			</div>
 		</form>
     </div>
+</div>
 </div>
 
 

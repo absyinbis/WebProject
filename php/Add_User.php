@@ -31,8 +31,10 @@ if ($account->getAccess() == 0)
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/PS_ViewUser.php");
-
+		if ($account->getAccess() == 0)
+			header("Location:../html/AdminViewUser.php");
+		else
+			header("Location:../html/PS_ViewUser.php");
 
 }
 

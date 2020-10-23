@@ -12,20 +12,31 @@
 </head>
 <body>
 
-<div class="header">
-  <h1>My Website</h1>
-  <p>Resize the browser window to see the effect.</p>
-</div>
+<div class="navbar">
 
-<ul>
-    <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">ادارة المستخدمين &nabla;</a>
-    <div class="dropdown-content">
-      <a href="AdminViewPoliceStation.php">مراكز الشرطة</a>
-      <a href="AdminViewUser.php">المستخدمين</a>
-    </div>
-  </li>
-  <li><a href="AdminViewLog.php">السجلات</a></li>
-  <li><a href="AdminViewDashbored.php">التقارير والاحصائيات</a></li>
-  <li style="float:left;"><a href="../php/logout.php">تسجيل الخروج</a></li>
-</ul>
+  <div class="container">
+
+    <a href="Main.php">
+      <img src='../image/logo.png' />
+    </a> 
+
+    <ul>
+
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">ادارة المستخدمين &nabla;</a>
+        <div class="dropdown-content">
+        <a href="AdminViewPoliceStation.php">مراكز الشرطة</a>
+        <a href="AdminViewUser.php">المستخدمين</a>
+        </div>
+      </li>
+
+      <li><a href="AdminViewLog.php">السجلات</a></li>
+
+      <li><a href="ViewDashbored.php">التقارير والاحصائيات</a></li>
+
+      <li style="float:left;"><a href="../php/logout.php">تسجيل الخروج</a></li>
+      
+    </ul>
+
+  </div>
+</div>

@@ -921,22 +921,16 @@ function getStatistics($data){
 
 	$startDate = $data["startdate"] ?? null;
 	$endDate = $data["enddate"] ?? null;
-	$access = $data["access"] ?? null;
 	$ps_id = $data["ps_id"] ?? null;
 
 	$conn = createConnection();
 
-	if ($access == 1) {
-		$sql = "SELECT COUNT(id) user,(SELECT COUNT(id) from `wanted` WHERE wanted.ps_id = $ps_id) wanted,(SELECT COUNT(id) from `report` WHERE report.ps_id = $ps_id) report,(SELECT COUNT(id) from `car_stolen` WHERE car_stolen.ps_id = $ps_id) carstolen,(SELECT COUNT(id) from `cause` WHERE cause.ps_id = $ps_id) cause from `user` WHERE user.ps_id = $ps_id";
-	}
-	else{
-		if($ps_id != 0)
+	if($ps_id != 0)
 		$sql = "SELECT COUNT(id) police, (SELECT COUNT(id) from `user` WHERE user.ps_id = $ps_id) user,(SELECT COUNT(id) from `wanted` WHERE wanted.ps_id = $ps_id) wanted,(SELECT COUNT(id) from `report` WHERE report.ps_id = $ps_id) report,(SELECT COUNT(id) from `car_stolen` WHERE car_stolen.ps_id = $ps_id) carstolen,(SELECT COUNT(id) from `cause` WHERE cause.ps_id = $ps_id) cause
 		FROM `police_station` WHERE police_station.id = $ps_id";
-		else
+	else
 		$sql = "SELECT COUNT(id) police, (SELECT COUNT(id) from `user`) user,(SELECT COUNT(id) from `wanted`) wanted,(SELECT COUNT(id) from `report`) report,(SELECT COUNT(id) from `car_stolen`) carstolen,(SELECT COUNT(id) from `cause`) cause
 		FROM `police_station`";
-	}
 
 	$result = $conn->query($sql);
 	return $result->fetch_assoc();

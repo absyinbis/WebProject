@@ -4,8 +4,8 @@ session_start();
 include("PSUser_Header.html");
 ?>
 
-
-<div class="leftcolumn" style="width: 100%; float: right;">
+<div class="row">
+	<div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
 
        	<div style="text-align: center; color: red;">
@@ -40,6 +40,7 @@ include("PSUser_Header.html");
 		    </div>
 		</form>
     </div>
+</div>
 </div>
 
 
