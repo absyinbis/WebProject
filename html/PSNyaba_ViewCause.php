@@ -25,7 +25,7 @@ $causes = getCauseByPoliceStation($account->getWho());
             <th onclick="sortTable(0,'user_table')">رقم القضية</th>
             <th onclick="sortTable(1,'user_table')">رقم المحظر</th>
             <th onclick="sortTable(2,'user_table')">الرقم الوطني</th>
-            <th onclick="sortTable(3,'user_table')">اسم المستخدم</th>
+            <th onclick="sortTable(3,'user_table')">نوع القضية</th>
           </tr>
           <?php
           foreach ($causes as $cause) {
@@ -34,7 +34,7 @@ $causes = getCauseByPoliceStation($account->getWho());
           	<td><?=$cause->getId()?></td>
           	<td><?=$cause->getReportId()?></td>
           	<td><?=$cause->getNationalNumber()?></td>
-          	<td><?=$cause->getUser()?></td>
+          	<td><?=$cause->getCauseType()?></td>
           	<td>
             	<form action="PSNyaba_ViewDetailsCause.php" method="post">
               		<input type="hidden" name="id" value="<?=$cause->getId()?>">

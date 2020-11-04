@@ -7,60 +7,55 @@ require_once  '../php/lib_db.php';
 $wanted = getDetailsWanted($_POST["id"]);
  ?>
 
-<div class="leftcolumn" style="width: 100%; float: right;">
-    <div class="card">
-	 	<div id="one">
-			<div>صورة المطلوب</div>
-			<?php
-				echo '<img style="width: 250px; height: 250px; margin-top: 10px " src="data:img/jpeg;base64, '.base64_encode($wanted->getImg()).' " /> ';
-			 ?>
-	    </div>
+<div class="row" id="2">
+	<div class="leftcolumn" style="width: 100%; float: right;">
+    	<div class="card">
 	      
-		<div id="two">
-			<span style="font-size: 20px">اسم المطلوب : </span>
-			<span style="font-size: 20px"><?=$wanted->getName()?></span>
+			<div id="two">
+				<span style="font-size: 20px">اسم المطلوب : </span>
+				<span style="font-size: 20px"><?=$wanted->getName()?></span>
 
-			<br>
-			<br>
+				<br>
+				<br>
 
-			<span style="font-size: 20px">رقم الوطني : </span>
-			<span style="font-size: 20px"><?=$wanted->getNationalNumber()?></span>
+				<span style="font-size: 20px">رقم الوطني : </span>
+				<span style="font-size: 20px"><?=$wanted->getNationalNumber()?></span>
 
-			<br>
-			<br>
+				<br>
+				<br>
 
-			<span style="font-size: 20px">مطلوب لدي : </span>
-			<span style="font-size: 20px"><?=$wanted->getWho()?></span>
+				<span style="font-size: 20px">مطلوب لدي : </span>
+				<span style="font-size: 20px"><?=$wanted->getWho()?></span>
 
-			<br>
-			<br>
+				<br>
+				<br>
 
-			<span style="font-size: 20px">رقم امحظر : </span>
-			<span style="font-size: 20px"><?=$wanted->getReportId()?></span>
+				<span style="font-size: 20px">رقم امحظر : </span>
+				<span style="font-size: 20px"><?=$wanted->getReportId()?></span>
 
-			<br>
-			<br>
+				<br>
+				<br>
 
-			<span style="font-size: 20px">بتاريخ : </span>
-			<span style="font-size: 20px"><?=$wanted->getDate()?></span>
+				<span style="font-size: 20px">بتاريخ : </span>
+				<span style="font-size: 20px"><?=$wanted->getDate()?></span>
 
-			<br>
-			<br>
+				<br>
+				<br>
 
-			<span style="font-size: 20px">اسم من قام بأضافة المطلوب : </span>
-			<span style="font-size: 20px"><?=$wanted->getUser()?></span>
-			</div>
+				<span style="font-size: 20px">اسم من قام بأضافة المطلوب : </span>
+				<span style="font-size: 20px"><?=$wanted->getUser()?></span>
+				</div>
 
-			<div style="text-align: center;margin-top: 170px;">
-		    <form action="../php/Delete_Wanted.php" method="post">
-		    	<input type="hidden" name="id" value="<?=$wanted->getId()?>">
-		    	<input class="btn" type="submit" value="تم ايجاد المطلوب">
-		    </form>
-			</div>
+				<div style="text-align: center;margin-top: 170px;">
+			    <form action="../php/Delete_Wanted.php" method="post">
+			    	<input type="hidden" name="id" value="<?=$wanted->getId()?>">
+			    	<input class="btn" type="submit" value="تم ايجاد المطلوب">
+		    	</form>
+				</div>
 
+		</div>
 	</div>
 </div>
-
 
  <?php 
 include("Footer.html");

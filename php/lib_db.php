@@ -82,7 +82,7 @@ function getPoliceStations()
 {
 	$conn = createConnection();
 
-	$sql = "select * from police_station where State = 1";
+	$sql = "select * from police_station where state = 1 and access = 1";
 	$result = $conn->query($sql);
 	$pss = array();
 	if ($result->num_rows > 0) { 
@@ -350,7 +350,6 @@ function getDetailsWanted($id)
 		$wanted = new cWanted();
 			$wanted->setId($row["id"]);
 			$wanted->setName($row["name"]);
-			$wanted->setImg($row["image"]);
 			$wanted->setNationalNumber($row["national_number"]);
 			$wanted->setReportId($row["report_id"]);
 			$wanted->setDate($row["date"]);
@@ -646,23 +645,6 @@ function changePhoneNumber($id,$access,$phonenumber)
 	return $result;
 }
 
-function changeUserName($id,$access,$username)
-{
-	$conn = createConnection();
-	if ($access == 0 || $access == 1) 
-	{
-		$sql = "UPDATE police_station SET username='".$username."' WHERE id = '".$id."' ";
-	}
-	else
-	{
-		$sql = "UPDATE user SET username='".$username."' WHERE id = '".$id."' ";
-	}
-	$result = executeQuery($conn, $sql);
-	$conn->close();
-	return $result;
-}
-
-
 
 function getWantedByNationalNumber($nationalnumber)
 {
@@ -877,8 +859,8 @@ function getPeopleByNationalNumber($id)
 function addCause($cause)
 {
 	$conn = createConnection();
-	$sql = "INSERT INTO cause (cause_id,report_id,national_number,date,user_id,ps_id,state) VALUES ('" 
-				. $cause->getCauseId() . "','"
+	$sql = "INSERT INTO cause (cause_type,report_id,national_number,date,user_id,ps_id,state) VALUES ('" 
+				. $cause->getCauseType() . "','"
 				. $cause->getReportId() . "','" 
 				. $cause->getNationalNumber(). "' , '"
 				. $cause->getDate()."' , '"
@@ -949,7 +931,7 @@ function getCauseByPoliceStation($id){
 			$cause->setId($row["id"]);
 			$cause->setReportId($row["report_id"]);
 			$cause->setNationalNumber($row["national_number"]);
-			$cause->setUser($row["user_id"]);
+			$cause->setCauseType($row["cause_type"]);
 		$causes[] = $cause;
 		}
 	}
@@ -973,7 +955,7 @@ function getCauseDetails($id){
 		$cause = new cCause();
 			$cause->setId($row["id"]);
 			$cause->setReportId($row["report"]);
-			$cause->setReportType($row["report_type"]);
+			$cause->setCauseType($row["cause_type"]);
 			$cause->setNationalNumber($row["national_number"]);
 			$cause->setUser($row["user"]);
 			$cause->setWho($row["ps"]);

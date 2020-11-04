@@ -7,7 +7,7 @@ try{
 $account = unserialize($_SESSION["ACCOUNT"]);
 
 
-changeUserName($account->getId(),$account->getAccess(),$_POST["username"]);
+changePhoneNumber($account->getId(),$account->getAccess(),$_POST["username"]);
 
 $logg = new cLogg();
 $logg->setProcess("تغير اسم المستخدم");

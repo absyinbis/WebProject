@@ -23,20 +23,21 @@ $report->setState(1);
 
 $last_id = $rm->addreport($report);
 
-/*foreach ($_FILES["img"]["tmp_name"] as $value) 
+foreach ($_FILES["img"]["tmp_name"] as $value) 
 {
 	$img = addslashes(file_get_contents($value));
 	$rm->addimg($last_id,$img);
 }
 
+/*
 $logg = new cLogg();
 $logg->setProcess("اضافة محظر");
 $logg->setUser_Id($account->getId());
 $logg->setAddDate(date("Y-m-d"));
 $logg->setPS_Id($account->getWho());
-addLogg($logg);
+addLogg($logg);*/
 
-header("Location:../html/PSUser_ViewReport.php");*/
+header("Location:../html/PSUser_ViewReport.php");
 
 }
 

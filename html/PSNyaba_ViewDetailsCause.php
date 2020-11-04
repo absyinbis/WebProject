@@ -6,11 +6,10 @@ include("PSNyaba_Header.html");
 require_once  '../php/lib_db.php';
 $cause = getCauseDetails($_POST["id"]);
  ?>
+<div class="row" id="2">
+	<div class="leftcolumn" style="width: 100%; float: right;">
+    	<div class="card">
 
-<div class="leftcolumn" style="width: 100%; float: right;">
-    <div class="card">
-
-		<div id="two">
 			<span style="font-size: 20px">رقم اقضية : </span>
 			<span style="font-size: 20px"><?=$cause->getId()?></span>
 
@@ -30,7 +29,7 @@ $cause = getCauseDetails($_POST["id"]);
 			<br>
 
 			<span style="font-size: 20px">نوع المحظر : </span>
-			<span style="font-size: 20px"><?=$cause->getReportType()?></span>
+			<span style="font-size: 20px"><?=$cause->getCauseType()?></span>
 
 			<br>
 			<br>
@@ -49,8 +48,8 @@ $cause = getCauseDetails($_POST["id"]);
 
 			<span style="font-size: 20px">اسم من قام باضافة القضية : </span>
 			<span style="font-size: 20px"><?=$cause->getUser()?></span>
-			</div>
 
+		</div>
 	</div>
 </div>
 

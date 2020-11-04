@@ -11,7 +11,7 @@ $account = unserialize($_SESSION["ACCOUNT"]);
 
 $cause = new cCause();
 
-$cause->setCauseId($_POST["cause_id"]);
+$cause->setCauseType($_POST["cause_type"]);
 $cause->setReportId($_POST["report_id"]);
 $cause->setNationalNumber($_POST["national_number"]);
 $cause->setWho($account->getWho());

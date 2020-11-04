@@ -13,7 +13,7 @@ include("PSUser_Header.html");
     	<form action="../php/Add_CarStolen.php" method="post" enctype="multipart/form-data">
     		<div id="one">
 		      <div>الوصف</div>
-		      <textarea class="input-field" style="width: 640px;height: 300px;font-size: 30px;" name="des"></textarea>
+		      <textarea class="input-field" style="width: 640px;height: 300px;font-size: 30px;" name="des" required></textarea>
     		</div>
       
 		    <div id="two">

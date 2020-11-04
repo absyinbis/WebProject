@@ -56,19 +56,20 @@ include("Admin_Header.html");
 
         <input id="id_ps" type="hidden" name="id">
         <div>الاسم</div>
-        <input id="name_ps" class="input-field" type="text" name="name">
+        <input id="name_ps" class="input-field" type="text" name="name" placeholder="الرجاء ادخال اسم مركز الشرطة" required>
 
         <div>اسم المستخدم</div>
-        <input id="username_ps" class="input-field" type="text" name="username">
+        <input id="username_ps" class="input-field" type="text" name="username" placeholder="الرجاء ادخال اسم المستخدم لمرز الشرطة" required>
 
         <div>كلمة المرور</div>
-        <input id="password_ps" class="input-field" type="text" name="password">
+        <input id="password_ps" class="input-field" type="text" name="password" placeholder="ارجاء ادخال كلمة المرور مركز الشرطة" required>
 
         <div>رقم الهاتف</div>
-        <input id="phonenumber_ps" class="input-field" type="text" name="phonenumber">
+        <input id="phonenumber_ps" class="input-field" type="text" name="phonenumber" placeholder="الرجاء ادخال رقم الهاتف لمركز الشرطة" required>
 
         <div>صلاحية الوصول</div>
-        <select id="state_select" class="input-field" name="access">
+        <select id="state_select" class="input-field" name="access" required>
+        <option value="" disabled selected hidden>الرجاء اختيار الصالحية</option>
         <option value="0">مسؤول</option>
         <option value="1">مركز شرطة</option>
         </select>

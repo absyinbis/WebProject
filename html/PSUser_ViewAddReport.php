@@ -16,8 +16,9 @@ include("PSUser_Header.html");
 
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
     		<div id="one">
-    			<div>صورة السيارة</div>
-			  	<img class="img" id="blah" src="http://placehold.it/180" alt="your image" />
+              	<div>المحظر</div>
+		    	<textarea class="input-field" style="width: 640px;height: 220px;font-size: 30px;" name="report" required></textarea>
+		    	<div>ملفات المحظر</div>
 			  	<br>
               	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
     		</div>

@@ -11,7 +11,7 @@ session_start();
 $report = getDetailsReport($_POST["id"]);
  ?>
     <script src="../javascript/zoompic.js"></script>
-
+<div class="row" id="2">
 <div class="leftcolumn" style="width: 100%; float: right;">
 	    	<div id="lb-back">
       			<div id="lb-img"></div>
@@ -102,7 +102,7 @@ $report = getDetailsReport($_POST["id"]);
 
 	</div>
 </div>
-
+</div>
 
 <script>
 myShow = w3.slideshow(".nature",0);
