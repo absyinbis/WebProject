@@ -6,7 +6,15 @@ include("PSUser_Header.html");
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
-
+      <div style="text-align: center; color: red;">
+        <?php 
+        if (isset($_SESSION["ERROR"]))
+        {
+          echo $_SESSION["ERROR"];
+          $_SESSION["ERROR"]= ""; 
+        }
+        ?>
+      </div>
       <form action="PSUser_ViewCarStolen.php" method="post">
         <div class="wrapper">
           <input type="text" class="input" name="search" placeholder="What are you looking for?">

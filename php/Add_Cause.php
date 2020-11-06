@@ -20,7 +20,7 @@ $cause->setDate(date("Y/m/d"));
 $cause->setState("1");
 
 $um->addcause($cause);
-$_SESSION["ERROR"] = "تمت العملية بنجاح";
+
 header("Location:../html/PSNyaba_ViewAddCause.php");
 
 }

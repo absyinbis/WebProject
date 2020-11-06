@@ -25,7 +25,7 @@ class cWantedManger
 	public function addwanted($wanted)
 	{
 		if(!addWanted($wanted))
-			throw new Exception("wanted no add");
+			throw new Exception("يوجد خطا في الرقم الوطني او المحظر");
 	}
 
 	public function deletewanted($id)

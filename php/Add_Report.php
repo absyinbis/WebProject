@@ -15,6 +15,7 @@ $report = new cReport();
 $report->setNameYou($_POST["name_you"]);
 $report->setNameHim($_POST["name_him"]);
 $report->setReportType($_POST["report_type"]);
+$report->setReportText($_POST["report_text"]);
 $report->setPhoneNumber($_POST["phonenumber"]);
 $report->setDate(date('Y/m/d H:i:s'));
 $report->setWho($account->getWho());

@@ -26,10 +26,10 @@ class cPoliceStationManger
 	{
 		$account = getPoliceStation($username);
 		if($account == NULL)
-			throw new Exception("Account Not Found");
+			throw new Exception("الحساب غير موجود");
 		if($account->getPassword() == $password)
 			return $account;
-			throw new Exception("Wrong Username/Password");
+			throw new Exception("خطا في كلمة المرور او الحساب");
 	}
 
 	public function forgetpassword($username)
@@ -44,13 +44,13 @@ class cPoliceStationManger
 	public function addpolicestation($ps)
 	{
 		if(!addPoliceStation($ps))
-			throw new Exception("user no add");
+			throw new Exception("اسم المستخدم موجود");
 	}
 
 	public function editpolicestation($ps)
 	{
 		if(!editPoliceStation($ps))
-			throw new Exception("not edit");
+			throw new Exception("اسم المستخدم موجود");
 	}
 
 	public function deletepolicestation($id)

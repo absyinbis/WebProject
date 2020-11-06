@@ -381,6 +381,7 @@ function getDetailsReport($id)
 			$report->setNameYou($row["name_you"]);
 			$report->setNameHim($row["name_him"]);
 			$report->setReportType($row["report_type"]);
+			$report->setReportText($row["report_text"]);
 			$report->setDate($row["date"]);
 			$report->setPhoneNumber($row["phonenumber"]);
 			$report->setUser($row["who"]);
@@ -480,7 +481,7 @@ function addReport($report)
 {
 	$conn = createConnection();
 	$sql = "INSERT INTO report 
-	(name_you,name_him,report_type,phonenumber,date,ps_id,user_id,state) VALUES ('" 
+	(name_you,name_him,report_type,phonenumber,date,ps_id,user_id,state,report_text) VALUES ('" 
 				. $report->getNameYou() . "','"
 				. $report->getNameHim() . "','" 
 				. $report->getReportType(). "' , '"
@@ -488,7 +489,8 @@ function addReport($report)
 				. $report->getDate() . "' , '"
 				. $report->getWho() . "' , '"
 				. $report->getUser() . "' , '"
-				. $report->getState() . "')";
+				. $report->getState() . "', '"
+				. $report->getReportText() . "')";
 
 	executeQuery($conn,$sql);
 	$last_id = mysqli_insert_id($conn);

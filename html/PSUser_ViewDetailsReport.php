@@ -5,8 +5,6 @@ include("PSUser_Header.html");
 <?php 
 require_once  '../php/lib_db.php';
 session_start();
-///(!isset($_POST["id"]))
-//$_POST["id"] = $_SESSION["report_id"];
 
 $report = getDetailsReport($_POST["id"]);
  ?>
@@ -19,6 +17,9 @@ $report = getDetailsReport($_POST["id"]);
     <div class="card">
 
 	 	<div id="one">
+	 	<div>المحظر</div>
+				<textarea readonly="true" class="input-field" style="width: 640px;height: 300px;font-size: 30px;"><?=$report->getReportText()?>
+				</textarea>
 			<div>صور المحظر</div>
       <div class="w3-content w3-display-container" style="width:200px;height: 200px; ">
 			<?php
@@ -31,12 +32,11 @@ $report = getDetailsReport($_POST["id"]);
       <button class="w3-button w3-black w3-display-left" onclick="myShow.previous()">&#10095;</button>
       <button class="w3-button w3-black w3-display-right" onclick="myShow.next()">&#10094;</button>
         </div>
-        	<br>
 
         	<form action="../php/Add_MoreFiles.php" method="post" enctype="multipart/form-data">
         	<input type="hidden" name="id" value="<?=$_POST["id"]?>">
         	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
-            <input class="btn" type="submit" value="اضافة ملفات">
+            <input type="submit" value="اضافة ملفات">
         	</form>
 
 	    </div>

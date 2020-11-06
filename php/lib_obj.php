@@ -217,6 +217,7 @@ class cReport
 {
 	private $id = -1;
 	private $report_type = "";
+	private $report_text = "";
 	private $name_you = "";
 	private $name_him = "";
 	private $phonenumber = -1;
@@ -276,6 +277,11 @@ class cReport
 		$this->state = $state;
 	}
 
+	public function setReportText($report_text)
+	{
+		$this->report_text = $report_text;
+	}
+
 	public function getId(){ return $this->id; }
 
 	public function getNameYou(){ return $this->name_you; }
@@ -295,6 +301,8 @@ class cReport
 	public function getUser(){ return $this->user; }
 
 	public function getState(){ return $this->state; }
+
+	public function getReportText(){ return $this->report_text; }
 }
 
 class cCause

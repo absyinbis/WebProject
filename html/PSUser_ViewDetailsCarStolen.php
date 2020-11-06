@@ -6,7 +6,7 @@ include("PSUser_Header.html");
 require_once  '../php/lib_db.php';
 $car = getDetailsCar($_POST["id"]);
  ?>
-
+<div class="row">
 	<div class="leftcolumn" style="width: 100%; float: right;">
     	<div class="card">
 	 		<div id="one">

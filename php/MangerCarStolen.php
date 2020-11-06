@@ -25,7 +25,7 @@ class cCarStolenManger
 	public function addcarstolen($car)
 	{
 		if(!addCar($car))
-			throw new Exception("wanted no add");
+			throw new Exception("حدث خطا في عملية الاضافة");
 	}
 
 	public function deletecarstolen($id)

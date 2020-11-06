@@ -26,22 +26,22 @@ class cUserManger
 	{
 		$user = getUserByUserName($username);
 		if($user == NULL)
-			throw new Exception("Account Not Found");
+			throw new Exception("الحساب غير موجود");
 		if($user->getPassword() == $password)
 			return $user;
-			throw new Exception("Wrong Username/Password");
+			throw new Exception("خطا في كلمة المرور او الحساب");
 	}
 
 	public function adduser($user)
 	{
 		if(!addUser($user))
-			throw new Exception("user no add");
+			throw new Exception("اسم المستخدم موجود سابقا");
 	}
 
 	public function edituser($user)
 	{
 		if(!editUser($user))
-			throw new Exception("not edit");
+			throw new Exception("اسم المستخدم موجود سابقا");
 	}
 
 	public function deleteuser($id)
@@ -53,7 +53,7 @@ class cUserManger
 	public function addcause($cause)
 	{
 		if(!addCause($cause))
-			throw new Exception("user no add");
+			throw new Exception("يوجد خطا في رقم المحظر او رقم الوطني");
 	}
 
 	

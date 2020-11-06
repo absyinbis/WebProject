@@ -7,7 +7,15 @@ include("Admin_Header.html");
 <div class="row" id="2">
   <div class="leftcolumn">
     <div class="card">
-      
+      <div style="text-align: center; color: red;">
+        <?php 
+        if (isset($_SESSION["ERROR"]))
+        {
+          echo $_SESSION["ERROR"];
+          $_SESSION["ERROR"]= ""; 
+        }
+        ?>
+      </div>
       <div class="wrapper">
         <input type="text" class="input" placeholder="What are you looking for?">
         <div class="searchbtn"><i class="fas">بحث</i></div>
