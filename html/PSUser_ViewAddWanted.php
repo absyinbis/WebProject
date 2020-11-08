@@ -23,10 +23,10 @@ include("PSUser_Header.html");
 		      <input class="input-field" type="text" name="name" required>
 
 		      <div>رقم الوطني لمطلوب</div>
-		      <input class="input-field" type="text" name="nationalnumber" required>
+		      <input class="input-field" type="text" onkeypress="return onlyNumberKey(event)" name="nationalnumber" required>
 
 		      <div>رقم المحظر</div>
-		      <input class="input-field" type="text" name="reportid" required>
+		      <input class="input-field" type="text" onkeypress="return onlyNumberKey(event)" name="reportid" required>
 		    </div>
 		    
 

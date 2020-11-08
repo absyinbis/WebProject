@@ -1,6 +1,10 @@
 <?php 
 session_start();
 include("PS_Header.html");
+require_once  '../php/lib_db.php';
+$account = unserialize($_SESSION["ACCOUNT"]);
+
+$usr = getUsersByPoliceStation($account->getId());
  ?>
 
 
@@ -33,9 +37,7 @@ include("PS_Header.html");
             <th onclick="sortTable(5,'user_table')">صلاحية الوصول</th>
           </tr>
           <?php 
-          require_once  '../php/lib_db.php';
-          $account = unserialize($_SESSION["ACCOUNT"]);
-          $usr = getUsersByPoliceStation($account->getId());
+
           foreach ($usr as $u) {
           ?> 
           <tr>
@@ -77,9 +79,10 @@ include("PS_Header.html");
         <div>كلمة المرور</div>
         <input id="password_u" class="input-field" type="text" name="password" required>
         <div>رقم الهاتف</div>
-        <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
+        <input id="phonenumber_u" onkeypress="return onlyNumberKey(event)" class="input-field" type="text" name="phonenumber" required>
         <div>صلاحية الوصول</div>
         <select id="state_select" class="input-field" name="access">
+        <option value="" disabled selected hidden>الرجاء اختيار الصالحية</option>
         <option value="2">وكيل النيابة</option>
         <option value="3">موظف</option>
         <option value="4">مستخدم جوال</option>

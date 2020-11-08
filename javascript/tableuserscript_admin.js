@@ -19,13 +19,13 @@
 
             switch (this.cells[6].innerText) {
                     case 'وكيل النيابة':
-                        selected2.selectedIndex = 0;
-                        break;
-                    case 'موظف':
                         selected2.selectedIndex = 1;
                         break;
-                    case 'مستخدم جوال':
+                    case 'موظف':
                         selected2.selectedIndex = 2;
+                        break;
+                    case 'مستخدم جوال':
+                        selected2.selectedIndex = 3;
                         break;                      
                     }
         	};

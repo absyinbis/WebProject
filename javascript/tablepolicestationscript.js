@@ -13,10 +13,10 @@
             var selected = document.getElementById("state_select");
             switch (this.cells[5].innerHTML) {
                     case 'مسؤول':
-                        selected.selectedIndex = 0;
+                        selected.selectedIndex = 1;
                         break;
                     case 'مركز شرطة':
-                        selected.selectedIndex = 1;
+                        selected.selectedIndex = 2;
                         break;                    
                     }
         	};

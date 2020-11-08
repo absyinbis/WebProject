@@ -13,13 +13,13 @@
             var selected = document.getElementById("state_select");
             switch (this.cells[5].innerText) {
                     case 'وكيل النيابة':
-                        selected.selectedIndex = 0;
-                        break;
-                    case 'موظف':
                         selected.selectedIndex = 1;
                         break;
-                    case 'مستخدم جوال':
+                    case 'موظف':
                         selected.selectedIndex = 2;
+                        break;
+                    case 'مستخدم جوال':
+                        selected.selectedIndex = 3;
                         break;                      
                     }
         	};

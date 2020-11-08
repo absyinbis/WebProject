@@ -690,7 +690,7 @@ function getCauseByNationalNumber($nationalnumber)
 
 }
 
-function Search($sql,$forwho,$start=NULL,$lenght=NULL)
+function Search($sql,$forwho)
 {
 	$conn = createConnection();
 	$result = $conn->query($sql);
@@ -767,6 +767,17 @@ function Search($sql,$forwho,$start=NULL,$lenght=NULL)
 					$searchs[] = $report;
 				}
 				break;	
+			case 'cause':
+				while($row = $result->fetch_assoc())
+				{
+					$cause = new cCause();
+					$cause->setId($row["id"]);
+					$cause->setReportId($row["report_id"]);
+					$cause->setNationalNumber($row["national_number"]);
+					$cause->setCauseType($row["cause_type"]);
+					$searchs[] = $cause;
+				}
+				break;
 		}
 	}
 	$conn->close();

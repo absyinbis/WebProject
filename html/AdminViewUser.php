@@ -1,6 +1,21 @@
 <?php 
 session_start();
 include("Admin_Header.html");
+require_once  '../php/lib_db.php';
+
+if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` 
+              INNER JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` 
+              where `user`.`state` = 1
+              and `user`.`name` like '%".$i."%'
+              or `user`.`username` like '%".$i."%'
+              or `police_station`.`name` like '%".$i."%'"; 
+      $usr = Search($sql,'user');
+    }
+    else
+      $usr = getUsers();
  ?>
 
 
@@ -16,10 +31,12 @@ include("Admin_Header.html");
         }
         ?>
       </div>
-      <div class="wrapper">
-        <input type="text" class="input" placeholder="What are you looking for?">
-        <div class="searchbtn"><i class="fas">بحث</i></div>
-      </div>
+      <form action="AdminViewUser.php" method="post">
+        <div class="wrapper">
+          <input type="text" name="search" class="input" placeholder="What are you looking for?">
+          <div class="searchbtn"><i class="fas">بحث</i></div>
+        </div>
+      </form>
 
       <div class="table-content">
         <table id="user_table" class="table">
@@ -33,8 +50,6 @@ include("Admin_Header.html");
             <th onclick="sortTable(6,'user_table')">صلاحية الوصول</th>
           </tr>
           <?php 
-          require_once  '../php/lib_db.php';
-          $usr = getUsers();
           foreach ($usr as $u) {
           ?> 
           <tr>
@@ -81,10 +96,11 @@ include("Admin_Header.html");
         <input id="password_u" class="input-field" type="text" name="password" required>
 
         <div>رقم الهاتف</div>
-        <input id="phonenumber_u" class="input-field" type="text" name="phonenumber" required>
+        <input id="phonenumber_u" onkeypress="return onlyNumberKey(event)" class="input-field" type="text" name="phonenumber" required>
 
         <div>يتبع من</div>
         <select id="ps_select" class="input-field" name="ps_id">
+          <option value="" disabled selected hidden>الرجاء اختيار مركز الشرطة</option>
         <?php 
           $ps = getPoliceStations();
           foreach ($ps as $pss){
@@ -97,6 +113,7 @@ include("Admin_Header.html");
 
         <div>صلاحية الوصول</div>
         <select id="access_select" class="input-field" name="access">
+        <option value="" disabled selected hidden>الرجاء اختيار الصالحية</option>
         <option value="2">وكيل النيابة</option>
         <option value="3">موظف</option>
         <option value="4">مستخدم جوال</option>

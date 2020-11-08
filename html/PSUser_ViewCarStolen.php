@@ -1,20 +1,30 @@
 <?php 
 session_start();
 include("PSUser_Header.html");
+require_once  '../php/lib_db.php';
+$account = unserialize($_SESSION["ACCOUNT"]);
+
+  if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "select * from car_stolen
+              where ps_id = '". $account->getWho() ."'
+              and state = 1
+              and structure_number like '%".$i."%'
+              or plate_number like '%".$i."%'
+              or vehicle_type  like '%".$i."%'
+              or model like '%".$i."%' ";
+      $carstolen = Search($sql,'carstolen');
+    }
+    else
+      $carstolen = getCarStolen();
+
 ?>
 
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
-      <div style="text-align: center; color: red;">
-        <?php 
-        if (isset($_SESSION["ERROR"]))
-        {
-          echo $_SESSION["ERROR"];
-          $_SESSION["ERROR"]= ""; 
-        }
-        ?>
-      </div>
+
       <form action="PSUser_ViewCarStolen.php" method="post">
         <div class="wrapper">
           <input type="text" class="input" name="search" placeholder="What are you looking for?">
@@ -32,27 +42,6 @@ include("PSUser_Header.html");
             <th onclick="sortTable(3,'user_table')">الموديل</th>
           </tr>
           <?php 
-          require_once  '../php/lib_db.php';
-          $account = unserialize($_SESSION["ACCOUNT"]);
-
-          
-          if(isset($_POST["search"]))
-          {
-            $i = $_POST["search"];
-            $sql = "select * from car_stolen
-            where ps_id = '". $account->getWho() ."'
-            and state = 1
-            and structure_number like '%".$i."%'
-            or plate_number like '%".$i."%'
-            or vehicle_type  like '%".$i."%'
-            or model like '%".$i."%' ";
-            $carstolen = Search($sql,'carstolen');
-          }
-          else
-
-          $carstolen = getCarStolen();
-
-
           foreach ($carstolen as $cs) {
           ?> 
           <tr>

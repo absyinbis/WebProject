@@ -1,6 +1,18 @@
 <?php 
 session_start();
 include("Admin_Header.html");
+require_once  '../php/lib_db.php';
+
+if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "select * from police_station where state = 1 and access = 1
+              and name like '%".$i."%'
+              or username like '%".$i."%'"; 
+      $ps = Search($sql,'ps');
+    }
+    else
+      $ps = getPoliceStations();
 ?>
 
 <div class="row" id="1">
@@ -15,10 +27,12 @@ include("Admin_Header.html");
         }
         ?>
       </div>
-      <div class="wrapper">
-        <input type="text" class="input" placeholder="What are you looking for?">
-        <div class="searchbtn"><i class="fas">بحث</i></div>
-      </div>
+      <form action="AdminViewPoliceStation.php" method="post">
+        <div class="wrapper">
+          <input type="text" class="input" name="search" placeholder="What are you looking for?">
+          <div class="searchbtn"><i class="fas">بحث</i></div>
+        </div>
+      </form>
 
       <div class="table-content">
         <table id="police_station_table" class="table">
@@ -31,8 +45,7 @@ include("Admin_Header.html");
             <th onclick="sortTable(4,'police_station_table')">الصلاحية</th>
           </tr>
           <?php 
-          require_once  '../php/lib_db.php';
-          $ps = getPoliceStations();
+
           foreach ($ps as $pss) {
           ?> 
           <tr>
@@ -74,7 +87,7 @@ include("Admin_Header.html");
         <input id="password_ps" class="input-field" type="text" name="password" placeholder="ارجاء ادخال كلمة المرور مركز الشرطة" required>
 
         <div>رقم الهاتف</div>
-        <input id="phonenumber_ps" class="input-field" type="text" name="phonenumber" placeholder="الرجاء ادخال رقم الهاتف لمركز الشرطة" required>
+        <input id="phonenumber_ps" onkeypress="return onlyNumberKey(event)" class="input-field" type="text" name="phonenumber" placeholder="الرجاء ادخال رقم الهاتف لمركز الشرطة" required>
 
         <div>صلاحية الوصول</div>
         <select id="state_select" class="input-field" name="access" required>

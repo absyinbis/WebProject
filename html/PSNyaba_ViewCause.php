@@ -4,14 +4,25 @@ include("PSNyaba_Header.html");
 
 require_once  '../php/lib_db.php';
 $account = unserialize($_SESSION["ACCOUNT"]);
-$causes = getCauseByPoliceStation($account->getWho());
+
+if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "select * from cause where ps_id = '".$account->getWho()."' and state = 1
+              and report_id like '%".$i."%'
+              or national_number like '%".$i."%'
+              or cause_type like '%".$i."%'"; 
+      $causes = Search($sql,'cause');
+    }
+    else
+      $causes = getCauseByPoliceStation($account->getWho());
 ?>
 
 <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
 
-      <form action="PSUser_ViewReport.php" method="post">
+      <form action="PSNyaba_ViewCause.php" method="post">
         <div class="wrapper">
           <input type="text" class="input" name="search" placeholder="What are you looking for?">
           <div class="searchbtn"><i class="fas">بحث</i></div>

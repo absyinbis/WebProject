@@ -42,7 +42,7 @@ include("PSUser_Header.html");
 		      <input class="input-field" type="text" name="report_type" required>
 
 		      <div>رقم الهاتف</div>
-		      <input class="input-field" name="phonenumber" required>
+		      <input class="input-field" onkeypress="return onlyNumberKey(event)" name="phonenumber" required>
 
 		    </div>
 

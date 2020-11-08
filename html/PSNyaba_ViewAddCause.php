@@ -23,10 +23,10 @@ include("PSNyaba_Header.html");
 		      	<input class="input-field" type="text" name="cause_type">
 
 		      	<div>رقم المحظر</div>
-		      	<input class="input-field" type="text" name="report_id">
+		      	<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="report_id">
 
 		      	<div>الرقم الوطني</div>
-		      	<input class="input-field" type="text" name="national_number">
+		      	<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="national_number">
 		    	</div>
 		    
 

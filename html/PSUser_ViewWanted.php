@@ -1,6 +1,21 @@
 <?php 
 session_start();
 include("PSUser_Header.html");
+require_once  '../php/lib_db.php';
+$account = unserialize($_SESSION["ACCOUNT"]);
+          if($_SERVER['REQUEST_METHOD'] === "POST")
+          {
+            $i = $_POST["search"];
+            $sql = "select * from wanted
+            where ps_id = '". $account->getWho() ."'
+            and state = 1
+            and name like '%".$i."%'
+            or date like '%".$i."%'
+            or national_number like '%".$i."%'";
+            $wanted = Search($sql,'wanted');
+          }
+          else
+          $wanted = getWanted();
 ?>
 
 <div class="row">
@@ -23,25 +38,6 @@ include("PSUser_Header.html");
             <th onclick="sortTable(2,'user_table')">التاريخ</th>
           </tr>
           <?php 
-          require_once  '../php/lib_db.php';
-          $account = unserialize($_SESSION["ACCOUNT"]);
-
-          if(isset($_POST["search"]))
-          {
-            $i = $_POST["search"];
-            $sql = "select * from wanted
-            where ps_id = '". $account->getWho() ."'
-            and state = 1
-            and name like '%".$i."%'
-            or date like '%".$i."%'
-            or national_number like '%".$i."%'";
-            $wanted = Search($sql,'wanted');
-          }
-          else
-
-          $wanted = getWanted();
-
-
           foreach ($wanted as $w) {
           ?> 
           <tr>
