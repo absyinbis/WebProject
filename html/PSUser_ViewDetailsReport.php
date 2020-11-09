@@ -98,6 +98,10 @@ $report = getDetailsReport($_POST["id"]);
 		    	<input type="hidden" name="id" value="<?=$report->getId()?>">
 		    	<input class="btn" type="submit" value="اغلاق المحظر">
 		    </form>
+		    <form action="PSUser_PrintReport.php" method="post" target="_blank">
+		    	<input type="hidden" name="id" value="<?=$report->getId()?>">
+		    	<input class="btn" type="submit" value="طباعة محظر">
+		    </form>
 			</div>
 
 	</div>

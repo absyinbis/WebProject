@@ -4,7 +4,18 @@ include("PS_Header.html");
 require_once  '../php/lib_db.php';
 $account = unserialize($_SESSION["ACCOUNT"]);
 
-$usr = getUsersByPoliceStation($account->getId());
+if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` 
+              INNER JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` 
+              where `user`.`state` = 1
+              and `user`.`name` like '%".$i."%'
+              or `user`.`username` like '%".$i."%'";
+      $usr = Search($sql,'user');
+    }
+    else
+      $usr = getUsersByPoliceStation($account->getId());
  ?>
 
 
@@ -21,10 +32,12 @@ $usr = getUsersByPoliceStation($account->getId());
         ?>
       </div>
       
+      <form action="PS_ViewUser.php" method="post">
       <div class="wrapper">
-        <input type="text" class="input" placeholder="What are you looking for?">
+        <input type="text" class="input" name="search" placeholder="What are you looking for?">
         <div class="searchbtn"><i class="fas">بحث</i></div>
       </div>
+      </form>
 
       <div class="table-content">
         <table id="user_table" class="table">
