@@ -52,12 +52,6 @@ session_start();
                     </div>
                 </div>
 
-                <div class="form-group">
-                  <div class="custom-checkbox custom-control">
-                    
-                  </div>
-                </div>
-
                 <div class="form-group m-0">
                   <button type="submit" class="btn btn-primary btn-block"  >
                     تتسجيل  دخول 

@@ -1,15 +1,15 @@
 <?php 
 session_start();
 
-require_once 'MangerPoliceStation.php';
+require_once 'MangerUser.php';
 
 
 
-$psm = cPoliceStationManger::getInstance();
+$um = cUserManger::getInstance();
 try
 	{   
 
-        $_SESSION["ACCOUNT"] = serialize($psm->login($_POST["username"],$_POST["password"]));
+        $_SESSION["ACCOUNT"] = serialize($um->login($_POST["username"],$_POST["password"]));
         header("Location:../html/Main.php");
 
 		

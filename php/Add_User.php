@@ -16,10 +16,15 @@ $user->setUserName($_POST["username"]);
 $user->setPassword($_POST["password"]);
 $user->setPhoneNumber($_POST["phonenumber"]);
 $user->setAccess($_POST["access"]);
+
 if($account->getAccess() == "1")
-$user->setWho($account->getId());
+	$user->setWho($account->getWho());
 else
-$user->setWho($_POST["ps_id"]);
+	if ($_POST["access"] == 0)
+		$user->setWho(NULL);
+	else
+		$user->setWho($_POST["ps_id"]);
+
 $user->setState("1");
 
 $um->adduser($user);

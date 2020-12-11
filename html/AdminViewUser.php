@@ -61,6 +61,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
             <td><?=$u->getWho()?></td>
             <?php
             switch ($u->getAccess()) {
+              case 0:
+                echo "<td>مسؤل النظام</td>";
+                break;
+
+              case 1:
+                echo "<td>مسؤل مركز شرطة</td>";
+                break;
               case 2:
                 echo "<td>وكيل النيابة</td>";
                 break;
@@ -98,25 +105,27 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" onkeypress="return onlyNumberKey(event)" class="input-field" type="text" name="phonenumber" required>
 
+        <div>صلاحية الوصول</div>
+        <select id="access_select" class="input-field" name="access" onchange="pickANDhide()" required>
+        <option value="" disabled selected hidden>الرجاء اختيار الصالحية</option>
+        <option value="0">مسؤل النظام</option>
+        <option value="1">مسؤل مركز شرطة</option>
+        <option value="2">وكيل النيابة</option>
+        <option value="3">موظف</option>
+        <option value="4">مستخدم جوال</option>
+        </select>
+
         <div>يتبع من</div>
-        <select id="ps_select" class="input-field" name="ps_id">
-          <option value="" disabled selected hidden>الرجاء اختيار مركز الشرطة</option>
+        <select id="ps_select" class="input-field" name="ps_id" required>
+        <option value="" disabled selected hidden>الرجاء اختيار مركز الشرطة</option>
         <?php 
           $ps = getPoliceStations();
           foreach ($ps as $pss){
         ?> 
-          <option value="<?=$pss->getId()?>"><?=$pss->getName()?></option>
+        <option value="<?=$pss->getId()?>"><?=$pss->getName()?></option>
         <?php 
         }
          ?>
-        </select>
-
-        <div>صلاحية الوصول</div>
-        <select id="access_select" class="input-field" name="access">
-        <option value="" disabled selected hidden>الرجاء اختيار الصالحية</option>
-        <option value="2">وكيل النيابة</option>
-        <option value="3">موظف</option>
-        <option value="4">مستخدم جوال</option>
         </select>
 
         <input class="btn" type="submit" value="اضافة" onclick="user('Add')">

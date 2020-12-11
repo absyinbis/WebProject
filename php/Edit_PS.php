@@ -10,11 +10,6 @@ $ps = new cPoliceStation();
 
 $ps->setId($_POST["id"]);
 $ps->setName($_POST["name"]);
-$ps->setUserName($_POST["username"]);
-$ps->setPassword($_POST["password"]);
-$ps->setPhoneNumber($_POST["phonenumber"]);
-$ps->setAccess($_POST["access"]);
-$ps->setState("1");
 
 $psm->editpolicestation($ps);
 //$um->logg("Edit","PS",date("yy-m-d"),$account->getId());

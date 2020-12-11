@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       $usr = Search($sql,'user');
     }
     else
-      $usr = getUsersByPoliceStation($account->getId());
+      $usr = getUsersByPoliceStation($account->getWho());
  ?>
 
 
@@ -61,6 +61,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
             <td><?=$u->getPhoneNumber()?></td>
             <?php
             switch ($u->getAccess()) {
+              case 1:
+                echo "<td>مسؤل مركز شرطة</td>";
+                break;
+                
               case 2:
                 echo "<td>وكيل النيابة</td>";
                 break;

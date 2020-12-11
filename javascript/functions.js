@@ -6,11 +6,18 @@
       if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
         return false; 
       return true; 
-  } 
+  }
 
-
+  function check(){
+    var txtfiled = document.getElementsByClassName("input-field");
+    for (var i = 0; i < txtfiled.length; i++)
+      if (txtfiled[i].value == "")
+        return false;
+      return true;    
+  }
 
 	function policestation(n){
+    if(check()){
       switch(n)
       {
         case "Add" :
@@ -34,9 +41,11 @@
         }  
         break;
       }
+    }
   }
 
   function user(n){
+    if(check()){
       switch(n)
       {
         case "Add" :
@@ -60,6 +69,7 @@
         }  
         break;
       }
+    }
   }
 
 	function sortTable(n,table)
@@ -134,4 +144,13 @@ function setrequired(){
 
   document.getElementById("date1").required = true;
   document.getElementById("date2").required = true;
+}
+
+function pickANDhide(){
+
+  if(document.getElementById("access_select").selectedIndex == 1)
+    document.getElementById('ps_select').disabled = true;
+  else
+    document.getElementById('ps_select').disabled = false;
+  
 }

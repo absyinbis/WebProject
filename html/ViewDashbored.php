@@ -13,14 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
   if ($account->getAccess() == "0")
     $Statistics = getStatistics(["ps_id"=> $_POST["ps_id"],"startdate"=> $_POST["startdate"],"enddate"=> $_POST["enddate"]]);
   else
-    $Statistics = getStatistics(["ps_id"=> $account->getId(),"startdate"=> $_POST["startdate"],"enddate"=> $_POST["enddate"]]);
+    $Statistics = getStatistics(["ps_id"=> $account->getWho(),"startdate"=> $_POST["startdate"],"enddate"=> $_POST["enddate"]]);
 }
 else
 {
   if($account->getAccess() == "0")
     $Statistics = getStatistics(["ps_id"=> "0"]);
   else
-    $Statistics = getStatistics(["ps_id"=> $account->getId()]);
+    $Statistics = getStatistics(["ps_id"=> $account->getWho()]);
 }
  ?>
 

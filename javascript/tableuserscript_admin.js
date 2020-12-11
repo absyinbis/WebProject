@@ -18,14 +18,20 @@
                     selected1.selectedIndex = i;
 
             switch (this.cells[6].innerText) {
-                    case 'وكيل النيابة':
+                    case 'مسؤل النظام':
                         selected2.selectedIndex = 1;
                         break;
-                    case 'موظف':
+                    case 'مسؤل مركز شرطة':
                         selected2.selectedIndex = 2;
                         break;
-                    case 'مستخدم جوال':
+                    case 'وكيل النيابة':
                         selected2.selectedIndex = 3;
+                        break;
+                    case 'موظف':
+                        selected2.selectedIndex = 4;
+                        break;
+                    case 'مستخدم جوال':
+                        selected2.selectedIndex = 5;
                         break;                      
                     }
         	};

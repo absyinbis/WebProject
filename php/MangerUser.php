@@ -32,6 +32,15 @@ class cUserManger
 			throw new Exception("خطا في كلمة المرور او الحساب");
 	}
 
+		public function forgetpassword($username)
+	{
+		$account = getPhoneNumberByUserName($username);
+		if($account == NULL)
+			throw new Exception("Account Not Found");
+		else
+			return $account;
+	}
+
 	public function adduser($user)
 	{
 		if(!addUser($user))

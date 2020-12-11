@@ -1,13 +1,17 @@
 <?php 
-include("PSUser_Header.html");
- ?>
-
-<?php 
-require_once  '../php/lib_db.php';
 session_start();
+include("PSUser_Header.html");
+require_once  '../php/lib_db.php';
 
-$report = getDetailsReport($_POST["id"]);
+if ($_SERVER['REQUEST_METHOD'] === "POST")
+	$report_id = $_POST["id"];
+else
+	$report_id = $_SESSION["report_id"];
+
+
+$report = getDetailsReport($report_id);
  ?>
+
     <script src="../javascript/zoompic.js"></script>
 <div class="row" id="2">
 <div class="leftcolumn" style="width: 100%; float: right;">
@@ -23,7 +27,7 @@ $report = getDetailsReport($_POST["id"]);
 			<div>صور المحظر</div>
       <div class="w3-content w3-display-container" style="width:200px;height: 200px; ">
 			<?php
-			$result = getImg($_POST["id"]);
+			$result = getImg($report_id);
 	    while ($row = mysqli_fetch_array($result)) {
          echo '<img style="display: none;width:200px;height:200px " class="nature" src="data:img/jpeg;base64, '.base64_encode($row['img']).' ">';
       }
@@ -34,7 +38,7 @@ $report = getDetailsReport($_POST["id"]);
         </div>
 
         	<form action="../php/Add_MoreFiles.php" method="post" enctype="multipart/form-data">
-        	<input type="hidden" name="id" value="<?=$_POST["id"]?>">
+        	<input type="hidden" name="id" value="<?=$report_id?>">
         	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
             <input type="submit" value="اضافة ملفات">
         	</form>

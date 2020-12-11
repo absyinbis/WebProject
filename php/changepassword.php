@@ -5,18 +5,26 @@ require_once 'lib_db.php';
 
 try{
 
-changePassword($_SESSION["id"],$_SESSION["access"],$_POST["password"]);
+if(isset($_SESSION["id"]))
+	$id = $_SESSION["id"];
+else
+	$id = unserialize($_SESSION["ACCOUNT"])->getId();
 
+changePassword($id,$_POST["password"]);
 
-header("Location:../html/LoginView.php");
+if(isset($_SESSION["Request_Id"])){
+	session_destroy();
+	header("Location:../html/LoginView.php");
+}
+else
+	header("Location:../html/PSUser_SettingView.php");
 
 }
 
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/ChangePassword.php");
-
+		header("Location:../html/PSUser_SettingView.php");
 
 }
 

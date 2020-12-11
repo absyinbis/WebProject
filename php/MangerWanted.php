@@ -24,6 +24,11 @@ class cWantedManger
 
 	public function addwanted($wanted)
 	{
+		$report = getDetailsReport($wanted->getReportId());
+
+		if($report->getState() == 0)
+			throw new Exception("المحظر مغلق");
+		else
 		if(!addWanted($wanted))
 			throw new Exception("يوجد خطا في الرقم الوطني او المحظر");
 	}

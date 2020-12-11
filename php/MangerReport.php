@@ -25,7 +25,6 @@ class cReportManger
 	public function addreport($report)
 	{
 		return addReport($report);
-
 	}
 
 	public function deletereport($id)
