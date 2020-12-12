@@ -256,14 +256,6 @@ li.dropdown {
   text-align: center;
 }
 
-.celi {
-  position: relative;
-  background-position: center; 
-  background-repeat: no-repeat;
-  border: 3px solid black;
-  padding: 10px;
-}
-
 .container{
     margin: 0 auto;
     font-size: 18px;

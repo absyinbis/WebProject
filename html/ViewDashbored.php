@@ -59,28 +59,59 @@ else
 
         </form>
       </div>
-
-      <table style="width: 100%; height: 90%;">
+      
+      <table style="width: 100%; height: 90%;text-align: center">
       	<tr>
-      		<td class="celi" style="background-image: url(../image/user.png);">
-            <div class="footer"> <?=$Statistics["user"]?> </div>
+      		<td>
+            <div class="card">
+              <img src="../image/user.png" alt="Avatar">
+                <div class="container">
+                  <h4><b>مستخدمين</b></h4> 
+                  <p><?=$Statistics["user"]?></p> 
+                </div>
+            </div>
       		</td>
-          <td class="celi" style="background-image: url(../image/law.png);">
-            <div class="footer"> <?=$Statistics["cause"]?> </div>
+          <td>
+            <div class="card">
+              <img src="../image/law.png" alt="Avatar">
+                <div class="container">
+                  <h4><b>القضايا</b></h4> 
+                  <p><?=$Statistics["cause"]?></p> 
+                </div>
+            </div>
           </td>
-      		<td class="celi" style="background-image: url(../image/wanted.png);">
-            <div class="footer"> <?=$Statistics["wanted"]?> </div>
+      		<td>
+            <div class="card">
+              <img src="../image/report.png" alt="Avatar">
+                <div class="container">
+                  <h4><b>المحاظر</b></h4> 
+                  <p><?=$Statistics["report"]?></p> 
+                </div>
+            </div>
       		</td>
       	</tr>
       	<tr>
-          <td class="celi" style="background-image: url(../image/car.png);">
-            <div class="footer"> <?=$Statistics["carstolen"]?> </div>
+          <td>
+            <div class="card">
+              <img src="../image/car.png" alt="Avatar">
+                <div class="container">
+                  <h4><b>السيارات </b></h4> 
+                  <p><?=$Statistics["carstolen"]?></p> 
+                </div>
+            </div>
           </td>
-          <td class="celi" style="background-image: url(../image/report.png);">
-            <div class="footer"> <?=$Statistics["report"]?> </div>
+          <td>
+            <div class="card">
+              <img src="../image/wanted.png" alt="Avatar">
+                <div class="container">
+                  <h4><b>مطلوبين</b></h4> 
+                  <p><?=$Statistics["wanted"]?></p> 
+                </div>
+            </div>
           </td>
         </tr>
       </table>
+
       <div style="text-align: center;">
 
         <form action="PrintDashBored.php" method="post" target="_blank">
