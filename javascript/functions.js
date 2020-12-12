@@ -11,7 +11,7 @@
   function check(){
     var txtfiled = document.getElementsByClassName("input-field");
     for (var i = 0; i < txtfiled.length; i++)
-      if (txtfiled[i].value == "")
+      if (txtfiled[i].value == "" && !txtfiled[i].disabled)
         return false;
       return true;    
   }

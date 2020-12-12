@@ -1,6 +1,25 @@
 <?php 
+session_start();
 include("Admin_Header.html");
- ?>
+require_once  '../php/lib_db.php';
+
+if($_SERVER['REQUEST_METHOD'] === "POST")
+    {
+      $i = $_POST["search"];
+      $sql = "SELECT `logg`.`id`, `logg`.`process`, `logg`.`date`, `user`.`name` user_name, `police_station`.`name` ps_name
+			        FROM `logg` 
+			        INNER JOIN `user` ON `logg`.`user_id` = `user`.`id`
+              INNER JOIN `police_station` ON `logg`.`ps_id` = `police_station`.`id`
+              WHERE `logg`.`process` like '%".$i."%'
+              OR `logg`.`id` like '%".$i."%'
+              OR `logg`.`date` like '%".$i."%'
+              OR `user`.`name` like '%".$i."%'
+              OR `police_station`.`name` like '%".$i."%' ";
+      $lg = Search($sql,'logg');
+    }
+    else
+      $lg = getAllLogg();
+?>
 
 
 
@@ -8,10 +27,12 @@ include("Admin_Header.html");
   <div class="leftcolumn" style="width: 100%; float: right;">
     <div class="card">
 
-      <div class="wrapper">
-        <input type="text" class="input" placeholder="What are you looking for?">
-        <div class="searchbtn"><i class="fas">بحث</i></div>
-      </div>
+      <form action="AdminViewLog.php" method="post">
+        <div class="wrapper">
+          <input type="text" class="input" name="search" placeholder="What are you looking for?">
+          <div class="searchbtn" onClick="javascript:document.forms[0].submit()"><i class="fas" >بحث</i></div>
+        </div>
+      </form>
 
       <div class="table-content">
         <table id="user_table" class="table">
@@ -24,7 +45,7 @@ include("Admin_Header.html");
           </tr>
           <?php 
           require_once  '../php/lib_db.php';
-          $lg = getAllLogg();
+
           foreach ($lg as $l) {
           ?> 
           <tr>

@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       <form action="AdminViewUser.php" method="post">
         <div class="wrapper">
           <input type="text" name="search" class="input" placeholder="What are you looking for?">
-          <div class="searchbtn"><i class="fas">بحث</i></div>
+          <div class="searchbtn" onClick="javascript:document.forms[0].submit()"><i class="fas">بحث</i></div>
         </div>
       </form>
 
@@ -91,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
   <div class="rightcolumn">
     <div class="card">
       <form name="users" method="post">
-        <input id="id_u" type="hidden" name="id">
+        <input id="id_u" type="hidden" name="id" required>
 
         <div>الاسم</div>
         <input id="name_u" class="input-field" type="text" name="name" required>

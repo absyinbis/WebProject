@@ -6,9 +6,9 @@ require_once  '../php/lib_db.php';
 if($_SERVER['REQUEST_METHOD'] === "POST")
     {
       $i = $_POST["search"];
-      $sql = "select * from police_station where state = 1 and access = 1
+      $sql = "select * from police_station where state = 1
               and name like '%".$i."%'
-              or username like '%".$i."%'"; 
+              or id like '%".$i."%'"; 
       $ps = Search($sql,'ps');
     }
     else
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       <form action="AdminViewPoliceStation.php" method="post">
         <div class="wrapper">
           <input type="text" class="input" name="search" placeholder="What are you looking for?">
-          <div class="searchbtn"><i class="fas">بحث</i></div>
+          <div class="searchbtn" onClick="javascript:document.forms[0].submit()"><i class="fas">بحث</i></div>
         </div>
       </form>
 

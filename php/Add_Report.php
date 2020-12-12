@@ -30,13 +30,13 @@ foreach ($_FILES["img"]["tmp_name"] as $value)
 	$rm->addimg($last_id,$img);
 }
 
-/*
+
 $logg = new cLogg();
 $logg->setProcess("اضافة محظر");
 $logg->setUser_Id($account->getId());
 $logg->setAddDate(date("Y-m-d"));
 $logg->setPS_Id($account->getWho());
-addLogg($logg);*/
+addLogg($logg);
 
 header("Location:../html/PSUser_ViewReport.php");
 

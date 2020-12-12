@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       <form action="PSUser_ViewReport.php" method="post">
         <div class="wrapper">
           <input type="text" class="input" name="search" placeholder="What are you looking for?">
-          <div class="searchbtn"><i class="fas">بحث</i></div>
+          <div class="searchbtn" onClick="javascript:document.forms[0].submit()"><i class="fas">بحث</i></div>
         </div>
       </form>
 

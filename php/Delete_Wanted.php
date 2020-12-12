@@ -11,6 +11,7 @@ $wm->deletewanted($_POST["id"]);
 
 
 $account = unserialize($_SESSION["ACCOUNT"]);
+
 $logg = new cLogg();
 $logg->setProcess("ازالة مطلوب");
 $logg->setUser_Id($account->getId());

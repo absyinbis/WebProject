@@ -13,7 +13,7 @@ $account->setPhoneNumber($_POST["phonenumber"]);
 $_SESSION["ACCOUNT"] = serialize($account);
 
 $logg = new cLogg();
-$logg->setProcess("تغير اسم المستخدم");
+$logg->setProcess("تغير رقم المستخدم");
 $logg->setUser_Id($account->getId());
 $logg->setAddDate(date("Y-m-d"));
 $logg->setPS_Id($account->getWho());

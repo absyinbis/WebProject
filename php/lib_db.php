@@ -100,6 +100,15 @@ function deletePoliceStation($id)
 function addUser($user)
 {
 	$conn = createConnection();
+	if(is_null($user->getWho()))
+	$sql = "INSERT INTO user (name,username,password,phonenumber,access,state) VALUES ('" 
+				. $user->getName() . "','"
+				. $user->getUserName() . "','" 
+				. $user->getPassword(). "' , '"
+				. $user->getPhoneNumber()."' , '"
+				. $user->getAccess(). "' ,'"
+				. $user->getState() ."' )";
+				else
 	$sql = "INSERT INTO user (name,username,password,phonenumber,access,state,ps_id) VALUES ('" 
 				. $user->getName() . "','"
 				. $user->getUserName() . "','" 
@@ -813,6 +822,18 @@ function Search($sql,$forwho)
 					$cause->setNationalNumber($row["national_number"]);
 					$cause->setCauseType($row["cause_type"]);
 					$searchs[] = $cause;
+				}
+				break;
+			case 'logg':
+				while($row = $result->fetch_assoc())
+				{
+					$logg = new cLogg();
+					$logg->setId($row["id"]);
+					$logg->setProcess($row["process"]);
+					$logg->setUser_Id($row["user_name"]);
+					$logg->setAddDate($row["date"]);
+					$logg->setPS_Id($row["ps_name"]);
+					$searchs[] = $logg;
 				}
 				break;
 		}

@@ -12,6 +12,7 @@ $cs->deletecarstolen($_POST["id"]);
 
 
 $account = unserialize($_SESSION["ACCOUNT"]);
+
 $logg = new cLogg();
 $logg->setProcess("ازالة سيارة مسروقة");
 $logg->setUser_Id($account->getId());

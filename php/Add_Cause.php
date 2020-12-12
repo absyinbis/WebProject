@@ -21,6 +21,13 @@ $cause->setState("1");
 
 $um->addcause($cause);
 
+$logg = new cLogg();
+$logg->setProcess("اضافة سيارة مسروقة");
+$logg->setUser_Id($account->getId());
+$logg->setAddDate(date("Y-m-d"));
+$logg->setPS_Id($account->getWho());
+addLogg($logg);
+
 header("Location:../html/PSNyaba_ViewAddCause.php");
 
 }

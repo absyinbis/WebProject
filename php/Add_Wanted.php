@@ -21,6 +21,7 @@ $wanted->setState(1);
 
 $wm->addwanted($wanted);
 
+
 $logg = new cLogg();
 $logg->setProcess("اضافة مطلوب");
 $logg->setUser_Id($account->getId());

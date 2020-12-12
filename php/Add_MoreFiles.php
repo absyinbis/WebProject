@@ -12,6 +12,7 @@ foreach ($_FILES["img"]["tmp_name"] as $value)
 }
 
 $account = unserialize($_SESSION["ACCOUNT"]);
+
 $logg = new cLogg();
 $logg->setProcess("اضافة ملفات الي المحظر");
 $logg->setUser_Id($account->getId());
