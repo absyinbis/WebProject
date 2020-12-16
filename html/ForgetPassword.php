@@ -32,7 +32,7 @@ session_start();
       </div>
           <div class="card fat">
             <div class="card-body">
-              <h4 class="card-title" style="text-align: center;">تسجيل دخول </h4>
+              <h4 class="card-title" style="text-align: center;">نسيان كلمة المرور</h4>
               <form action="../php/send-sms.php" method="POST" class="my-login-validation" novalidate="">
                 <div class="form-group">
                   <label for="uname" style="text-align: right;">اسم  المستخدم</label>

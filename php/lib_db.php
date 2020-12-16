@@ -59,6 +59,24 @@ function getPoliceStations()
 	return $pss;
 }
 
+function getPoliceStationsNameById($id)
+{
+	$conn = createConnection();
+
+	$sql = "select * from police_station where state = 1 and id = '".$id."'";
+	$result = $conn->query($sql);
+	$ps = new cPoliceStation();
+
+	if ($result->num_rows > 0) { 
+		if($row = $result->fetch_assoc()) {
+			$ps->setId($row["id"]);
+			$ps->setName($row["name"]);
+		}
+	}
+	$conn->close();
+	return $ps;
+}
+
 function addPoliceStation($ps)
 {
 	$conn = createConnection();

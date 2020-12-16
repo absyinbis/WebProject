@@ -11,7 +11,7 @@ $wanted = getDetailsWanted($_POST["id"]);
 	<div class="leftcolumn" style="width: 100%; float: right;">
     	<div class="card">
 	      
-			<div id="two">
+			<div style="width: 50%;">
 				<span style="font-size: 20px">اسم المطلوب : </span>
 				<span style="font-size: 20px"><?=$wanted->getName()?></span>
 
@@ -46,7 +46,7 @@ $wanted = getDetailsWanted($_POST["id"]);
 				<span style="font-size: 20px"><?=$wanted->getUser()?></span>
 				</div>
 
-				<div style="text-align: center;margin-top: 170px;">
+				<div style="text-align: center;">
 			    <form action="../php/Delete_Wanted.php" method="post">
 			    	<input type="hidden" name="id" value="<?=$wanted->getId()?>">
 			    	<input class="btn" type="submit" value="تم ايجاد المطلوب">

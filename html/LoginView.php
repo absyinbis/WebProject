@@ -70,17 +70,7 @@ session_start();
       </div>
     </div>
   </section>
-<script>
 
-    function fireSweetAlert() {
-        Swal.fire({
-            icon: 'info',
-            title: 'Info',
-            text: 'حساب  غير  موجود '
-        })
-    }
-
-</script>
   <script src="../javascript/jquery.min.js"></script>
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../javascript/my-login.js"></script>

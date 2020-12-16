@@ -2,6 +2,9 @@
 session_start();
 
 require_once 'lib_db.php';
+require_once 'MangerUser.php';
+
+$um = cUserManger::getInstance();
 $account = unserialize($_SESSION["ACCOUNT"]);
 
 try{
@@ -11,7 +14,7 @@ if(isset($_SESSION["id"]))
 else
 	$id = $account->getId();
 
-changePassword($id,$_POST["password"]);
+$um->changepassword($id,$_POST["password"],$_POST["password1"]);
 
 $logg = new cLogg();
 $logg->setProcess("تغير كلمة المرور");

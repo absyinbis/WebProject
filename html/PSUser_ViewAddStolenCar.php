@@ -9,47 +9,43 @@ include("PSUser_Header.html");
 
 <div class="row">
 	<div class="leftcolumn" style="width: 100%; float: right;">
-    <div class="card">
-    	<div style="text-align: center; color: red;">
-        <?php 
-        if (isset($_SESSION["ERROR"]))
-        {
-          echo $_SESSION["ERROR"];
-          $_SESSION["ERROR"]= ""; 
-        }
-        ?>
-      </div>
-    	<form action="../php/Add_CarStolen.php" method="post" enctype="multipart/form-data">
-    		<div id="one">
-		      <div>الوصف</div>
-		      <textarea class="input-field" style="width: 640px;height: 300px;font-size: 30px;" name="des" required></textarea>
-    		</div>
-      
-		    <div id="two">
-		      <div>رقم الهيكل</div>
-		      <input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="structurenumber" required>
+		<div class="card">
+    		<div style="text-align: center; color: red;">
+        		<?php 
+        		if (isset($_SESSION["ERROR"]))
+        		{
+          			echo $_SESSION["ERROR"];
+          			$_SESSION["ERROR"]= ""; 
+        		}
+        		?>
+      		</div>
+    		<form action="../php/Add_CarStolen.php" method="post" enctype="multipart/form-data">
+    			<div id="one">
+		      		<div>الوصف</div>
+		      		<textarea class="input-field" style="width: 640px;height: 300px;font-size: 30px;" name="des" required></textarea>
+		      	</div>
 
-		      <div>رقم اللوحة</div>
-		      <input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="platenumber" required>
+		      	<div id="two">
+		   			<div>رقم الهيكل</div>
+		      		<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="structurenumber" required>
+		      		<div>رقم اللوحة</div>
+		      		<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="platenumber" required>
 
-		      <div>نوع السيارة ولونها</div>
-		      <select class="input-field" style="width: 29%" name="car-years" id="car-years" required></select>  
-			  <select class="input-field" style="width: 29%" name="car-makes" id="car-makes" required></select> 
-			  <select class="input-field" style="width: 29%" name="car-models" id="car-models" required></select>
-		      <input type="color" name="color" required>
+		      		<div>نوع السيارة ولونها</div>
+		      		<select class="input-field" style="width: 29%" name="car-years" id="car-years" required></select>  
+			  		<select class="input-field" style="width: 29%" name="car-makes" id="car-makes" required></select> 
+			  		<select class="input-field" style="width: 29%" name="car-models" id="car-models" required></select>
+		      		<input type="color" name="color" required>
+		      		<div>رقم الهاتف</div>
+		      		<input class="input-field" name="phonenumber" required>
+		      	</div>
 
-		      <div>رقم الهاتف</div>
-		      <input class="input-field" name="phonenumber" required>
-
-
-		    </div>
-
-		    <div style="text-align: center;margin-top: 170px;">
-		    <input class="btn" type="submit" value="اضافة">
-			</div>
-		</form>
-    </div>
-</div>
+		      	<div style="text-align: center;">
+		    		<input class="btn" type="submit" value="اضافة">
+				</div>
+			</form>
+    	</div>
+	</div>
 </div>
 
 

@@ -55,11 +55,12 @@ else
 
           <input id="date2" type="date" name="enddate" onchange="setrequired()"> 
 
-          <input type="submit" value="Send data">
+          <input class="btn" type="submit" value="فرز">
 
         </form>
       </div>
-      
+      <br>
+      <br>
       <table style="width: 100%; height: 90%;text-align: center">
       	<tr>
       		<td>
@@ -120,13 +121,26 @@ else
           <input type="hidden" name="wanted" value="<?=$Statistics["wanted"]?>">
           <input type="hidden" name="cause" value="<?=$Statistics["cause"]?>">
           <input type="hidden" name="user" value="<?=$Statistics["user"]?>">
-          <?php if($_SERVER['REQUEST_METHOD'] === 'POST') { ?>
-                  <?php if ($account->getAccess() == "0"){ ?>
+          <?php if($_SERVER['REQUEST_METHOD'] === 'POST') { 
+                  if ($account->getAccess() == "0") { ?>
                     <input type="hidden" name="ps_id" value="<?=$_POST['ps_id']?>">
-                  <?php } ?>
+                  <?php
+                }
+                  else{ ?>
+                    <input type="hidden" name="ps_id" value="<?=$account->getWho()?>">
+                <?php } ?>
                     <input type="hidden" name="startdate" value="<?=$_POST["startdate"]?>">
                     <input type="hidden" name="enddate" value="<?=$_POST['enddate']?>">
-          <?php } ?>
+                  <?php }  
+                  else
+                  if ($account->getAccess() == "0") { ?>
+                    <input type="hidden" name="ps_id" value="0">
+                  <?php
+                }
+                  else{ ?>
+                    <input type="hidden" name="ps_id" value="<?=$account->getWho()?>">
+                <?php } ?>
+
           <input class="btn" type="submit" value="طباعة الاحصائية">
         </form>
 

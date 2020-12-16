@@ -1,5 +1,6 @@
 <?php 
 require_once  '../php/lib_obj.php';
+require_once  '../php/lib_db.php';
 	session_start();
  ?>
 <!DOCTYPE html>
@@ -32,9 +33,11 @@ require_once  '../php/lib_obj.php';
 
 	<h2>هذه الاحصائية شاملة جميلج المراكز الشركة في جميع روبوع ليبيا </h2>
 
-	<?php } else {?>
+	<?php } else {
+		$psName = getPoliceStationsNameById($ps_id)->getName();
+		?>
 
-	<h2>هذه اصائية خاصة بمركز  شرطة  حي الاندلس</h2>
+	<h2>هذه اصائية خاصة بمركز  شرطة  <?=$psName?></h2>
 
 	<?php } ?>
 

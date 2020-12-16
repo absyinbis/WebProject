@@ -22,8 +22,16 @@ switch ($ps->getAccess()) {
 
  <div class="row">
   <div class="leftcolumn" style="width: 100%; float: right;">
+    <div style="text-align: center; color: red;">
+        <?php 
+        if (isset($_SESSION["ERROR"]))
+        {
+          echo $_SESSION["ERROR"];
+          $_SESSION["ERROR"]= ""; 
+        }
+        ?>
+      </div>
     <div class="card">
-
     	<div style="text-align: center;"> <?=$ps->getPhoneNumber()?> </div>
 
     	<div style="text-align: center;">
@@ -41,6 +49,9 @@ switch ($ps->getAccess()) {
 	       		<div>كلمة المرور</div>
 	    		<input class="input-field" style="width: 50%" placeholder="الرجاء ادخال  كلمة المرور الجديدة" type="text" name="password" required>
 	    		<br>
+                <div>كلمة المرور</div>
+                <input class="input-field" style="width: 50%" placeholder="الرجاء ادخال  كلمة المرور الجديدة" type="text" name="password1" required>
+                <br>
 	    		<input name="type" class="btn" type="submit" value="تغير كلمة  المرور">
 			</form>
     	</div>
