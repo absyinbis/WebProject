@@ -7,5 +7,6 @@
             //rIndex = this.rowIndex;
             document.getElementById("id_ps").value = this.cells[0].innerHTML;
             document.getElementById("name_ps").value = this.cells[1].innerHTML;
+        	};
             
         }

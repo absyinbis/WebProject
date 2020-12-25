@@ -1,5 +1,7 @@
 <?php 
 session_start();
+if(isset($_SESSION["ACCOUNT"]))
+  header("Location:Main.php");
  ?>
 
 <!DOCTYPE html>
@@ -11,6 +13,7 @@ session_start();
   <title>Login</title>
   <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/login.css">
+  <script type="text/javascript" src="../AES/AesCtr.js"></script>
 </head>
 
 <body class="my-login-page">
@@ -46,7 +49,8 @@ session_start();
                   <label for="password" style="text-align: right;">كلمة  المرور
                     
                   </label>
-                  <input id="password" type="password" class="form-control" name="password" required data-eye style="text-align: right;" placeholder ="ادخال  كلمة  السر ">
+                  <input id="password" type="password" class="form-control" data-eye style="text-align: right;" placeholder ="ادخال  كلمة  السر " required>
+                  <input id="en_password" type="hidden" name="password">
                     <div class="invalid-feedback" style="text-align: center;">
                       ادخل  كلمة  السر  
                     </div>
@@ -74,5 +78,14 @@ session_start();
   <script src="../javascript/jquery.min.js"></script>
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../javascript/my-login.js"></script>
+
+  <script type="text/javascript">
+  var password = document.getElementById("password");
+  var en = document.getElementById("en_password");
+  password.onkeyup = function(){
+    en.value = AesCtr.encrypt(password.value,'absy', 256);
+  };
+  </script>
+
 </body>
 </html>

@@ -1,6 +1,9 @@
 <?php 
 session_start();
-require_once '../php/MangerPoliceStation.php';
+if(!isset($_POST["nationalnumber"]))
+  header("Location:LoginView.php");
+  
+require_once '../php/MangerCause.php';
 require_once '../php/lib_db.php';
 $people = getPeopleByNationalNumber($_POST["nationalnumber"]);
 
@@ -8,10 +11,10 @@ if($people != "empty")
 {
 
 
-$psm = cPoliceStationManger::getInstance();
+$cm = cCauseManger::getInstance();
 try{
 
-$result = $psm->checkcause($_POST["nationalnumber"]);
+$result = $cm->checkcause($_POST["nationalnumber"]);
 //$um->logg("Add","PS",date("yy-m-d"),$account->getId());
 
 
@@ -25,6 +28,7 @@ catch(Exception $e){
 }
 
 $user = unserialize($_SESSION["ACCOUNT"]);
+$ps = getPoliceStationsNameById(unserialize($_SESSION["ACCOUNT"])->getWho());
  ?>
 
 
@@ -55,19 +59,17 @@ $user = unserialize($_SESSION["ACCOUNT"]);
 
 
 	<span>الاسم بالكامل : </span> <span>...............<?=$people->getName()?>...................</span>
-	<span>اللقب</span> <span>........................................................</span>
 
 	<br>
 	<br>
 
 	<span>اسم الوالدة بالكامل : </span> <span>..................<?=$people->getMotherName()?>.....................</span>
-	<span>تاريخ ومكان الميلاد : </span> <span>.....................................................</span>
-
+	
 	<br>
 	<br>
 
 	<span>الرقم الوطني : </span> <span>..................<?=$people->getNationalNumber()?>.....................</span>
-	<span>جهة اضدارها : </span> <span>....................<?=$user->getPSName()?>...........</span>
+	<span>جهة اضدارها : </span> <span>....................<?=$ps->getName()?>...........</span>
 
 	<br>
 	<br>

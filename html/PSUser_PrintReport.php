@@ -1,6 +1,9 @@
 <?php 
-require_once  '../php/lib_db.php';
 session_start();
+if(!isset($_POST["id"]))
+  header("Location:LoginView.php");
+
+require_once  '../php/lib_db.php';
 
 $report = getDetailsReport($_POST["id"]);
 $result = getImg($_POST["id"]);

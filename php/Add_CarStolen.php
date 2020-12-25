@@ -5,7 +5,7 @@ require_once 'lib_obj.php';
 require_once 'lib_db.php';
 require_once 'MangerCarStolen.php';
 
-$cs = cCarStolenManger::getInstance();
+$csm = cCarStolenManger::getInstance();
 try{
 
 $account = unserialize($_SESSION["ACCOUNT"]);
@@ -25,7 +25,7 @@ $car->setWho($account->getWho());
 $car->setUser($account->getId());
 $car->setState(1);
 
-$cs->addcarstolen($car);
+$csm->addcarstolen($car);
 
 
 $logg = new cLogg();

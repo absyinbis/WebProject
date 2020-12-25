@@ -14,7 +14,6 @@ try{
 	$account = $um->forgetpassword($_POST["username"]);
 	$id = $account->getId();
 	$phonenumber = $account->getPhoneNumber();
-	$access = $account->getAccess();
 
 
 	$verification = $client->verify()->start([ 

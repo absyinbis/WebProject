@@ -41,17 +41,6 @@ class cPoliceStationManger
 		else
 			deleteUsersByPoliceStation($id);
 	}
-
-	public function checkcause($nationalnumber)
-	{
-		$wanted = getWantedByNationalNumber($nationalnumber);
-		if($wanted != NULL)
-			throw new Exception("مطلوب لدي ".$wanted->getWho());
-		else
-			return getCauseByNationalNumber($nationalnumber);
-
-	}
-
 	
 }
 ?>

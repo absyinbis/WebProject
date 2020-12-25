@@ -1,8 +1,9 @@
 <?php 
+session_start();
+if(!isset($_POST["id"]))
+  header("Location:LoginView.php");
+  
 include("PSUser_Header.html");
- ?>
-
-<?php 
 require_once  '../php/lib_db.php';
 $car = getDetailsCar($_POST["id"]);
  ?>

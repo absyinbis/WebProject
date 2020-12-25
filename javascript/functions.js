@@ -1,4 +1,5 @@
 
+
   function onlyNumberKey(evt) { 
           
       // Only ASCII charactar in that range allowed 
@@ -49,25 +50,19 @@
       switch(n)
       {
         case "Add" :
-        if(confirm("هل تريد الاضافة ؟")) {
           document.users.action = "../php/Add_User.php";
           document.users.submit();
-        } 
-        break;
+          break;
 
         case "Edit" :
-        if(confirm("هل تريد التعديل ؟")) {
           document.users.action = "../php/Edit_User.php";
           document.users.submit();
-        } 
-        break;
+          break;
 
         case "Delete" :
-        if(confirm("هل تريد الحذف")) {
           document.users.action = "../php/Delete_User.php";
-          document.users.submit();
-        }  
-        break;
+          document.users.submit(); 
+          break;
       }
     }
   }

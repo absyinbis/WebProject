@@ -1,9 +1,11 @@
-<?php 
-include("PSNyaba_Header.html");
-?>
+<?php
+session_start();
+if(!isset($_POST["id"]))
+  header("Location:LoginView.php");
 
-<?php 
+include("PSNyaba_Header.html");
 require_once  '../php/lib_db.php';
+
 $cause = getCauseDetails($_POST["id"]);
  ?>
 <div class="row" id="2">

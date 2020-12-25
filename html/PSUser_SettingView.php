@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["ACCOUNT"]))
+  header("Location:LoginView.php");
+  
 require_once '../php/lib_obj.php';
 
 $ps = unserialize($_SESSION["ACCOUNT"]);

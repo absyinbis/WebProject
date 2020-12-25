@@ -36,6 +36,7 @@ class cUser
 	private $password = "";
 	private $phonenumber = -1;
 	private $access = -1;
+	private $date = -1;
 	private $state = -1;
 	private $who = -1;
 	private $PSName = "";
@@ -70,6 +71,11 @@ class cUser
 		$this->access = $access;
 	}
 
+	public function setDate($date)
+	{
+		$this->date = $date;
+	}
+
 	public function setState($state)
 	{
 		$this->state = $state;
@@ -97,6 +103,8 @@ class cUser
 	public function getPhoneNumber(){ return $this->phonenumber; }
 
 	public function getAccess(){ return $this->access; }
+
+	public function getDate(){ return $this->date; }
 
 	public function getState(){ return $this->state; }
 

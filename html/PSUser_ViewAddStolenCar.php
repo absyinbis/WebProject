@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["ACCOUNT"]))
+  header("Location:LoginView.php");
+
 include("PSUser_Header.html");
 ?>
 

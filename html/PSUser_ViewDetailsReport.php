@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_POST["id"]) || !isset($_SESSION["report_id"]))
+  header("Location:LoginView.php");
+
 include("PSUser_Header.html");
 require_once  '../php/lib_db.php';
 

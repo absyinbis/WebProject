@@ -16,6 +16,7 @@ $user->setUserName($_POST["username"]);
 $user->setPassword($_POST["password"]);
 $user->setPhoneNumber($_POST["phonenumber"]);
 $user->setAccess($_POST["access"]);
+$user->setDate(date("Y-m-d"));
 
 if($account->getAccess() == "1")
 	$user->setWho($account->getWho());

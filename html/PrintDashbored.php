@@ -1,7 +1,10 @@
 <?php 
+session_start();
+if(!isset($_POST["ps_id"]))
+  header("Location:LoginView.php");
+
 require_once  '../php/lib_obj.php';
 require_once  '../php/lib_db.php';
-	session_start();
  ?>
 <!DOCTYPE html>
 <html>

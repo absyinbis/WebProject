@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'lib_db.php';
+require_once '../AES/AesCtr.php';
 
 
 
@@ -27,21 +28,29 @@ class cUserManger
 		$user = getUserByUserName($username);
 		if($user == NULL)
 			throw new Exception("الحساب غير موجود");
-		if($user->getPassword() == $password)
+
+		$user_password = AesCtr::decrypt($user->getPassword(),'absy',256);
+		$post_password = AesCtr::decrypt($password,'absy',256);
+		$md5_user_password = MD5($user_password);
+
+		if($user_password == $post_password || $password == $md5_user_password && $user_password != '')
 			return $user;
 			throw new Exception("خطا في كلمة المرور او الحساب");
 	}
 
 	public function forgetpassword($username)
 	{
-		$account = getPhoneNumberByUserName($username);
+		$account = getUserByUserName($username);
 		if($account == NULL)
-			throw new Exception("Account Not Found");
+			throw new Exception("الحساب غير موجود");
 		else
 			return $account;
 	}
 
 	public function changepassword($id,$password,$password1){
+		
+		$password11 = AesCtr::decrypt($password,'absy',256);
+		$password22 = AesCtr::decrypt($password1,'absy',256);
 		if($password == $password1)
 			changePassword($id,$password);
 		else
@@ -65,13 +74,6 @@ class cUserManger
 		if(!deleteUser($id))
 			throw new Exception("not deleted");
 	}
-
-	public function addcause($cause)
-	{
-		if(!addCause($cause))
-			throw new Exception("يوجد خطا في رقم المحظر او رقم الوطني");
-	}
-
 	
 }
 

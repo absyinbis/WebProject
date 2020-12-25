@@ -44,6 +44,7 @@ function getPoliceStations()
 	$conn = createConnection();
 
 	$sql = "select * from police_station where state = 1";
+	
 	$result = $conn->query($sql);
 	$pss = array();
 	if ($result->num_rows > 0) { 
@@ -119,20 +120,22 @@ function addUser($user)
 {
 	$conn = createConnection();
 	if(is_null($user->getWho()))
-	$sql = "INSERT INTO user (name,username,password,phonenumber,access,state) VALUES ('" 
+	$sql = "INSERT INTO user (name,username,password,phonenumber,access,date,state) VALUES ('" 
 				. $user->getName() . "','"
 				. $user->getUserName() . "','" 
 				. $user->getPassword(). "' , '"
 				. $user->getPhoneNumber()."' , '"
 				. $user->getAccess(). "' ,'"
+				. $user->getDate() . "' , '"
 				. $user->getState() ."' )";
 				else
-	$sql = "INSERT INTO user (name,username,password,phonenumber,access,state,ps_id) VALUES ('" 
+	$sql = "INSERT INTO user (name,username,password,phonenumber,access,date,state,ps_id) VALUES ('" 
 				. $user->getName() . "','"
 				. $user->getUserName() . "','" 
 				. $user->getPassword(). "' , '"
 				. $user->getPhoneNumber()."' , '"
 				. $user->getAccess(). "' ,'"
+				. $user->getDate() ."' , '"
 				. $user->getState() ."' , '"
 				. $user->getWho() . "')";
 
@@ -204,7 +207,7 @@ function getUsers()
 {
 	$conn = createConnection();
 
-	$sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` INNER JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` where user.state = 1";
+	$sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` LEFT JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` where user.state = 1";
 
 	$result = $conn->query($sql);
 	$users = array();
@@ -229,7 +232,7 @@ function getUsers()
 function getUserByUserName($username)
 {
 	$conn = createConnection();
-	$sql = "SELECT * From user WHERE state = 1 AND username = '".$username."'";
+	$sql = "SELECT * From user WHERE state = 1 AND username = '".$username."' ";
 	$result = $conn->query($sql);
 
 	$user = new cUser();
@@ -252,6 +255,26 @@ function getUserByUserName($username)
 	}
 	$conn->close();
 	return $user;
+}
+
+function changePassword($id,$password)
+{
+	$conn = createConnection();
+	$sql = "UPDATE user SET password='".$password."' WHERE id = '".$id."' ";
+
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
+}
+
+function changePhoneNumber($id,$phonenumber)
+{
+	$conn = createConnection();
+	$sql = "UPDATE user SET phonenumber='".$phonenumber."' WHERE id = '".$id."' ";
+
+	$result = executeQuery($conn, $sql);
+	$conn->close();
+	return $result;
 }
 
 /* ------- End User Functions -------  */
@@ -633,7 +656,96 @@ function checkCarStolen($number)
 
 
 
+/* Cause Functions */
 
+function addCause($cause)
+{
+	$conn = createConnection();
+	$sql = "INSERT INTO cause (cause_type,report_id,national_number,date,user_id,ps_id,state) VALUES ('" 
+				. $cause->getCauseType() . "','"
+				. $cause->getReportId() . "','" 
+				. $cause->getNationalNumber(). "' , '"
+				. $cause->getDate()."' , '"
+				. $cause->getUser(). "' ,'"
+				. $cause->getWho() ."' , '"
+				. $cause->getState() . "')";
+
+	$result = executeQuery($conn,$sql);
+	return $result;
+}
+
+function getCauseByPoliceStation($id){
+	$conn = createConnection();
+
+	$sql = "select * from cause where ps_id = '". $id ."' and state = 1";
+	$result = $conn->query($sql);
+	$causes = array();
+	if ($result->num_rows > 0) { 
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		$cause = new cCause();
+			$cause->setId($row["id"]);
+			$cause->setReportId($row["report_id"]);
+			$cause->setNationalNumber($row["national_number"]);
+			$cause->setCauseType($row["cause_type"]);
+		$causes[] = $cause;
+		}
+	}
+	$conn->close();
+	return $causes;
+}
+
+function getCauseDetails($id){
+	$conn = createConnection();
+
+	$sql = "SELECT `cause`.*, `police_station`.`name` ps, `user`.`name` user, `report`.`id` report,`report`.`report_type`report_type
+			FROM `cause`
+			INNER JOIN `police_station` ON `cause`.`ps_id` = `police_station`.`id` 
+			INNER JOIN `user` ON `cause`.`user_id` = `user`.`id` 
+			INNER JOIN `report` ON `cause`.`report_id` = `report`.`id`
+    		WHERE `cause`.`id` = '". $id ."' ";
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) { 
+		while($row = $result->fetch_assoc()) {
+		$cause = new cCause();
+			$cause->setId($row["id"]);
+			$cause->setReportId($row["report"]);
+			$cause->setCauseType($row["cause_type"]);
+			$cause->setNationalNumber($row["national_number"]);
+			$cause->setUser($row["user"]);
+			$cause->setWho($row["ps"]);
+			$cause->setDate($row["date"]);
+		}
+	}
+	$conn->close();
+	return $cause;
+}
+
+function getCauseByNationalNumber($nationalnumber)
+{
+	$conn = createConnection();
+	$sql = "SELECT *
+			FROM cause 
+			WHERE national_number = $nationalnumber;";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) { 
+		$conn->close();
+		return true;
+	}
+	else
+	{
+		$conn->close();
+		return false;
+	}
+
+}
+
+/* ------- End Cause Functions -------  */
+
+
+
+/* Logg Functions */
 function addLogg($logg)
 {
 	$conn = createConnection();
@@ -680,79 +792,7 @@ function getAllLogg($ps_id = null)
 	return $loggs;
 }
 
-function getPhoneNumberByUserName($username)
-{
-	$conn = createConnection();
-	$sql = "select * from police_station where username='".$username."'";
-	$result = $conn->query($sql);
-	$ps = new cPoliceStation();
-	if ($result->num_rows > 0) {
-		if($row = $result->fetch_assoc()) {
-			$ps->setId($row["id"]);
-			$ps->setAccess($row["access"]);
-			$ps->setPhoneNumber($row["phonenumber"]);
-		}
-	}
-	else
-	{
-		$sql = "select * from user where username='".$username."'";
-		$result = $conn->query($sql);
-		$ps = new cUser();
-			if ($result->num_rows > 0) {
-				if($row = $result->fetch_assoc()) {
-					$ps->setId($row["id"]);
-					$ps->setAccess($row["access"]);
-					$ps->setPhoneNumber($row["phonenumber"]);
-				}
-			}
-			else
-			{
-			$conn->close();
-			return NULL;
-			}
-	}
-	$conn->close();
-	return $ps;	
-}
-
-function changePassword($id,$password)
-{
-	$conn = createConnection();
-	$sql = "UPDATE user SET password='".$password."' WHERE id = '".$id."' ";
-
-	$result = executeQuery($conn, $sql);
-	$conn->close();
-	return $result;
-}
-
-function changePhoneNumber($id,$phonenumber)
-{
-	$conn = createConnection();
-	$sql = "UPDATE user SET phonenumber='".$phonenumber."' WHERE id = '".$id."' ";
-
-	$result = executeQuery($conn, $sql);
-	$conn->close();
-	return $result;
-}
-
-function getCauseByNationalNumber($nationalnumber)
-{
-	$conn = createConnection();
-	$sql = "SELECT *
-			FROM cause 
-			WHERE national_number = $nationalnumber;";
-	$result = $conn->query($sql);
-	if ($result->num_rows > 0) { 
-		$conn->close();
-		return true;
-	}
-	else
-	{
-		$conn->close();
-		return false;
-	}
-
-}
+/* ------- End Logg Functions -------  */
 
 function Search($sql,$forwho)
 {
@@ -893,21 +933,6 @@ function getPeopleByNationalNumber($id)
 		return "empty";
 }
 
-function addCause($cause)
-{
-	$conn = createConnection();
-	$sql = "INSERT INTO cause (cause_type,report_id,national_number,date,user_id,ps_id,state) VALUES ('" 
-				. $cause->getCauseType() . "','"
-				. $cause->getReportId() . "','" 
-				. $cause->getNationalNumber(). "' , '"
-				. $cause->getDate()."' , '"
-				. $cause->getUser(). "' ,'"
-				. $cause->getWho() ."' , '"
-				. $cause->getState() . "')";
-
-	$result = executeQuery($conn,$sql);
-	return $result;
-}
 
 function getCar($number)
 {
@@ -938,69 +963,48 @@ function getCar($number)
 
 function getStatistics($data){
 
-	$startDate = $data["startdate"] ?? null;
-	$endDate = $data["enddate"] ?? null;
+	$s = '12-12-2019';
+	$date = strtotime($s);
+
+	if(isset($data["startdate"]))
+		if($data["startdate"] == '')
+			$startDate = date("Y-m-d", $date);
+		else
+			$startDate = $data["startdate"];
+	else
+		$startDate = date("Y-m-d", $date);
+
+	if(isset($data["enddate"]))
+		if($data["enddate"] == '')
+			$endDate = date("Y-m-d");
+		else
+			$endDate = $data["enddate"];
+	else
+		$endDate = date("Y-m-d");
+
 	$ps_id = $data["ps_id"] ?? null;
 
 	$conn = createConnection();
 
 	if($ps_id != 0)
-		$sql = "SELECT COUNT(id) police, (SELECT COUNT(id) from `user` WHERE user.ps_id = $ps_id) user,(SELECT COUNT(id) from `wanted` WHERE wanted.ps_id = $ps_id) wanted,(SELECT COUNT(id) from `report` WHERE report.ps_id = $ps_id) report,(SELECT COUNT(id) from `car_stolen` WHERE car_stolen.ps_id = $ps_id) carstolen,(SELECT COUNT(id) from `cause` WHERE cause.ps_id = $ps_id) cause
-		FROM `police_station` WHERE police_station.id = $ps_id";
-	else
-		$sql = "SELECT COUNT(id) police, (SELECT COUNT(id) from `user`) user,(SELECT COUNT(id) from `wanted`) wanted,(SELECT COUNT(id) from `report`) report,(SELECT COUNT(id) from `car_stolen`) carstolen,(SELECT COUNT(id) from `cause`) cause
-		FROM `police_station`";
+		$sql = "SELECT COUNT(id) police,
+				(SELECT COUNT(id) from user WHERE user.ps_id = '".$ps_id."' AND date BETWEEN '".$startDate."' AND '".$endDate."') user,
+				(SELECT COUNT(id) from wanted WHERE wanted.ps_id = '".$ps_id."' AND date BETWEEN '".$startDate."' AND '".$endDate."') wanted,
+				(SELECT COUNT(id) from report WHERE report.ps_id = '".$ps_id."' AND date BETWEEN '".$startDate."' AND '".$endDate."') report,
+				(SELECT COUNT(id) from car_stolen WHERE car_stolen.ps_id = '".$ps_id."' AND date_add BETWEEN '".$startDate."' AND '".$endDate."') carstolen,
+				(SELECT COUNT(id) from cause WHERE cause.ps_id = '".$ps_id."' AND date BETWEEN '".$startDate."' AND '".$endDate."') cause
+				FROM police_station WHERE police_station.id = '".$ps_id."'";
+		else
+		$sql = "SELECT COUNT(id) police,
+				(SELECT COUNT(id) from user where date BETWEEN '".$startDate."' AND '".$endDate."') user,
+				(SELECT COUNT(id) from wanted where date BETWEEN '".$startDate."' AND '".$endDate."') wanted,
+				(SELECT COUNT(id) from report where date BETWEEN '".$startDate."' AND '".$endDate."') report,
+				(SELECT COUNT(id) from car_stolen where date_add BETWEEN '".$startDate."' AND '".$endDate."') carstolen,
+				(SELECT COUNT(id) from cause where date BETWEEN '".$startDate."' AND '".$endDate."') cause
+				FROM police_station";
 
 	$result = $conn->query($sql);
 	return $result->fetch_assoc();
-}
-
-function getCauseByPoliceStation($id){
-	$conn = createConnection();
-
-	$sql = "select * from cause where ps_id = '". $id ."' and state = 1";
-	$result = $conn->query($sql);
-	$causes = array();
-	if ($result->num_rows > 0) { 
-		// output data of each row
-		while($row = $result->fetch_assoc()) {
-		$cause = new cCause();
-			$cause->setId($row["id"]);
-			$cause->setReportId($row["report_id"]);
-			$cause->setNationalNumber($row["national_number"]);
-			$cause->setCauseType($row["cause_type"]);
-		$causes[] = $cause;
-		}
-	}
-	$conn->close();
-	return $causes;
-}
-
-function getCauseDetails($id){
-	$conn = createConnection();
-
-	$sql = "SELECT `cause`.*, `police_station`.`name` ps, `user`.`name` user, `report`.`id` report,`report`.`report_type`report_type
-			FROM `cause`
-			INNER JOIN `police_station` ON `cause`.`ps_id` = `police_station`.`id` 
-			INNER JOIN `user` ON `cause`.`user_id` = `user`.`id` 
-			INNER JOIN `report` ON `cause`.`report_id` = `report`.`id`
-    		WHERE `cause`.`id` = '". $id ."' ";
-	$result = $conn->query($sql);
-	
-	if ($result->num_rows > 0) { 
-		while($row = $result->fetch_assoc()) {
-		$cause = new cCause();
-			$cause->setId($row["id"]);
-			$cause->setReportId($row["report"]);
-			$cause->setCauseType($row["cause_type"]);
-			$cause->setNationalNumber($row["national_number"]);
-			$cause->setUser($row["user"]);
-			$cause->setWho($row["ps"]);
-			$cause->setDate($row["date"]);
-		}
-	}
-	$conn->close();
-	return $cause;
 }
 
 ?>

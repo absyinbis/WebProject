@@ -1,5 +1,8 @@
 <?php 
 session_start();
+if(!isset($_SESSION["ACCOUNT"]))
+  header("Location:LoginView.php");
+  
 require_once  '../php/lib_db.php';
 $account = unserialize($_SESSION["ACCOUNT"]);
 

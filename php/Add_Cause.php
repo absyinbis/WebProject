@@ -2,9 +2,9 @@
 session_start();
 
 require_once 'lib_obj.php';
-require_once 'MangerUser.php';
+require_once 'MangerCause.php';
 
-$um = cUserManger::getInstance();
+$cm = cCauseManger::getInstance();
 try{
 
 $account = unserialize($_SESSION["ACCOUNT"]);
@@ -19,7 +19,7 @@ $cause->setUser($account->getId());
 $cause->setDate(date("Y/m/d"));
 $cause->setState("1");
 
-$um->addcause($cause);
+$cm->addcause($cause);
 
 $logg = new cLogg();
 $logg->setProcess("اضافة سيارة مسروقة");
@@ -28,7 +28,7 @@ $logg->setAddDate(date("Y-m-d"));
 $logg->setPS_Id($account->getWho());
 addLogg($logg);
 
-header("Location:../html/PSNyaba_ViewAddCause.php");
+header("Location:../html/PSNyaba_ViewCause.php");
 
 }
 

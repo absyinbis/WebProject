@@ -1,13 +1,11 @@
 <?php 
 session_start();
+if(!isset($_SESSION["ACCOUNT"]))
+  header("Location:LoginView.php");
 
 
 include("PSUser_Header.html");
 ?>
-
-    <script type="text/javascript" src="http://www.carqueryapi.com/js/carquery.0.3.4.js"></script>
-
-
 
 
 <div class="row">
@@ -46,7 +44,7 @@ include("PSUser_Header.html");
 
 		    </div>
 
-		    <div style="text-align: center;margin-top: 170px;">
+		    <div style="text-align: center;">
 		    <input class="btn" type="submit" value="اضافة">
 			</div>
 		</form>
