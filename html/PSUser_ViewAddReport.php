@@ -7,6 +7,7 @@ if(!isset($_SESSION["ACCOUNT"]))
 include("PSUser_Header.html");
 ?>
 
+<script type="text/javascript" src="../AES/AesCtr.js"></script>
 
 <div class="row">
 	<div class="leftcolumn" style="width: 100%; float: right;">
@@ -23,7 +24,8 @@ include("PSUser_Header.html");
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
     		<div id="one">
               	<div>المحظر</div>
-		    	<textarea class="input-field" style="width: 640px;height: 220px;font-size: 30px;" name="report_text" required></textarea>
+		    	<textarea id="report_text" class="input-field" style="width: 640px;height: 220px;font-size: 30px;" required></textarea>
+				<input type="hidden" name="report_text" id="en_u">
 		    	<div>ملفات المحظر</div>
 			  	<br>
               	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
@@ -51,6 +53,14 @@ include("PSUser_Header.html");
     </div>
 </div>
 </div>
+
+<script type="text/javascript">
+  var report_text = document.getElementById("report_text");
+  var en = document.getElementById("en_u");
+  report_text.onkeyup = function(){
+    en.value = AesCtr.encrypt(report_text.value,'absy', 256);
+  };
+</script>
 
 
 

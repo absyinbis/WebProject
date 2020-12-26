@@ -1,10 +1,8 @@
 <?php 
-session_start();
-if(!isset($_POST["id"]) || !isset($_SESSION["report_id"]))
-  header("Location:LoginView.php");
 
 include("PSUser_Header.html");
 require_once  '../php/lib_db.php';
+require_once '../AES/AesCtr.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST")
 	$report_id = $_POST["id"];
@@ -17,6 +15,7 @@ $report = getDetailsReport($report_id);
 
 <script src="../javascript/zoompic.js"></script>
 
+
     <div id="lb-back">
     	<div id="lb-img"></div>
     </div>
@@ -26,7 +25,8 @@ $report = getDetailsReport($report_id);
     	<div class="card">
     		<div id="one">
     			<div>المحظر</div>
-    			<textarea readonly="true" class="input-field" style="width: 640px;height: 300px;font-size: 30px;"><?=$report->getReportText()?>
+    			<textarea readonly="true" class="input-field" style="width: 640px;height: 300px;font-size: 30px;">
+				<?php echo AesCtr::decrypt($report->getReportText(),'absy',256); ?>
 				</textarea>
 				<div>صور المحظر</div>
 				<div class="w3-content w3-display-container" style="width:200px;height: 200px; ">

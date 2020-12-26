@@ -5,6 +5,7 @@ if(!isset($_SESSION["ACCOUNT"]))
   
 include("PS_Header.html");
 require_once  '../php/lib_db.php';
+require_once '../AES/AesCtr.php';
 $account = unserialize($_SESSION["ACCOUNT"]);
 
 if($_SERVER['REQUEST_METHOD'] === "POST")
@@ -21,6 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       $usr = getUsersByPoliceStation($account->getWho());
  ?>
 
+<script type="text/javascript" src="../AES/AesCtr.js"></script>
 
 <div class="row" id="2">
   <div class="leftcolumn">
@@ -60,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
             <td><?=$u->getId()?></td>
             <td><?=$u->getName()?></td>
             <td><?=$u->getUserName()?></td>
-            <td><?=$u->getPassword()?></td>
+            <?php echo '<td>' . AesCtr::decrypt($u->getPassword(),'absy',256) . '</td>' ?>
             <td><?=$u->getPhoneNumber()?></td>
             <?php
             switch ($u->getAccess()) {
@@ -98,6 +100,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         <input id="username_u" class="input-field" type="text" name="username" required>
         <div>كلمة المرور</div>
         <input id="password_u" class="input-field" type="text" name="password" required>
+        <input id="en_u" type="hidden" name="password">
+
         <div>رقم الهاتف</div>
         <input id="phonenumber_u" onkeypress="return onlyNumberKey(event)" class="input-field" type="text" name="phonenumber" required>
         <div>صلاحية الوصول</div>
@@ -118,6 +122,13 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
 
 
 <script src="../javascript/tableuserscript_ps.js"></script>
+<script type="text/javascript">
+  var password = document.getElementById("password_u");
+  var en = document.getElementById("en_u");
+  password.onkeyup = function(){
+    en.value = AesCtr.encrypt(password.value,'absy', 256);
+  };
+</script>
 
 
 <?php 
