@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 include("PSUser_Header.html");
 require_once  '../php/lib_db.php';
@@ -21,15 +22,14 @@ $report = getDetailsReport($report_id);
     </div>
 
 <div class="row" id="2">
-	<div class="leftcolumn" style="width: 100%; float: right;">
+	<div class="leftcolumn" style="width: 100%; float: right; height: 100%">
     	<div class="card">
     		<div id="one">
     			<div>المحظر</div>
-    			<textarea readonly="true" class="input-field" style="width: 640px;height: 300px;font-size: 30px;">
-				<?php echo AesCtr::decrypt($report->getReportText(),'absy',256); ?>
+    			<textarea readonly="true" class="input-field" style="width: 100%;height: 100%;font-size: 30px;"><?php echo AesCtr::decrypt($report->getReportText(),'absy',256); ?>
 				</textarea>
 				<div>صور المحظر</div>
-				<div class="w3-content w3-display-container" style="width:200px;height: 200px; ">
+				<div class="w3-content w3-display-container" style="width:200px;height: 200px; border-width: 1px;border-style: solid;">
 					<?php
 					$result = getImg($report_id);
 	    			while ($row = mysqli_fetch_array($result)) {
@@ -97,14 +97,18 @@ $report = getDetailsReport($report_id);
 
 		    <div style="text-align: center;margin-top: 170px;">
 		        <div class="card">
-    				<form action="../php/Delete_Report.php" method="post">
+    				<span style="display: inline-block;">
+    					<form action="../php/Delete_Report.php" method="post">
 		    			<input type="hidden" name="id" value="<?=$report->getId()?>">
 		    			<input class="btn" type="submit" value="اغلاق المحظر">
 		    		</form>
-		    		<form action="PSUser_PrintReport.php" method="post" target="_blank">
+    				</span>
+		    		<span style="display: inline-block;">
+		    			<form action="PSUser_PrintReport.php" method="post" target="_blank">
 		    			<input type="hidden" name="id" value="<?=$report->getId()?>">
 		    			<input class="btn" type="submit" value="طباعة محظر">
 		    		</form>
+		    		</span>
     			</div>
 			</div>
 		</div>

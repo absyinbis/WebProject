@@ -24,11 +24,11 @@ include("PSUser_Header.html");
     	<form action="../php/Add_Report.php" method="post" enctype="multipart/form-data">
     		<div id="one">
               	<div>المحظر</div>
-		    	<textarea id="report_text" class="input-field" style="width: 640px;height: 220px;font-size: 30px;" required></textarea>
+		    	<textarea id="report_text" class="input-field" style="width: 100%;height: 220px;font-size: 30px;" required></textarea>
 				<input type="hidden" name="report_text" id="en_u">
 		    	<div>ملفات المحظر</div>
 			  	<br>
-              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]" required>
+              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]">
     		</div>
       
 		    <div id="two">

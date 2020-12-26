@@ -24,10 +24,13 @@ $report->setState(1);
 
 $last_id = $rm->addreport($report);
 
-foreach ($_FILES["img"]["tmp_name"] as $value) 
+if ($_FILES["img"]['size'] == 0)
 {
-	$img = addslashes(file_get_contents($value));
-	$rm->addimg($last_id,$img);
+    foreach ($_FILES["img"]["tmp_name"] as $value) 
+	{
+		$img = addslashes(file_get_contents($value));
+		$rm->addimg($last_id,$img);
+	}
 }
 
 
