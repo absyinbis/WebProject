@@ -44,7 +44,7 @@ session_start();
 
                 <div class="form-group m-0">
                   <button type="submit" class="btn btn-primary btn-block"  >
-                    تتسجيل  دخول 
+                  ارسال
                   </button>
                 </div>
 

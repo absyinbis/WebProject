@@ -28,7 +28,7 @@ include("PSUser_Header.html");
 				<input type="hidden" name="report_text" id="en_u">
 		    	<div>ملفات المحظر</div>
 			  	<br>
-              	<input onchange="readURL(this)" type="file" multiple="multiple" accept="image/*" name="img[]">
+            <input type="file" multiple="multiple" accept="image/*" name="img[]">
     		</div>
       
 		    <div id="two">

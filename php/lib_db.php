@@ -183,7 +183,7 @@ function getUsersByPoliceStation($id)
 {
 	$conn = createConnection();
 
-	$sql = "select * from user where ps_id ='".$id."' and state = 1 and access != 1";
+	$sql = "select * from user where ps_id ='".$id."' and state = 1";
 	$result = $conn->query($sql);
 	$users = array();
 	if ($result->num_rows > 0) { 
@@ -370,7 +370,8 @@ function getDetailsWanted($id)
 function checkWanted($id_number)
 {
 	$conn = createConnection();
-	$sql = "SELECT * FROM `wanted` WHERE `wanted`.`national_number` = $id_number and wanted.state = 1";
+	$sql = "SELECT `wanted`.*, `people`.`m_name`FROM `wanted` 
+			INNER JOIN `people` ON `wanted`.`national_number` = `people`.`id_number`; WHERE `wanted`.`national_number` = $id_number and wanted.state = 1";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		if($row = $result->fetch_assoc()){
@@ -625,7 +626,7 @@ function checkCarStolen($number)
 {
 	$conn = createConnection();
 
-	$sql = "select * from car_stolen where structure_number like ".$number." or plate_number like ".$number."";
+	$sql = "select * from car_stolen where structure_number like '".$number."' or plate_number like '".$number."' ";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) { 
@@ -807,10 +808,6 @@ function Search($sql,$forwho)
 					$ps = new cPoliceStation();
 					$ps->setId($row["id"]);
 					$ps->setName($row["name"]);
-					$ps->setUserName($row["username"]);
-					$ps->setPassword($row["password"]);
-					$ps->setPhoneNumber($row["phonenumber"]);
-					$ps->setAccess($row["access"]);
 					$searchs[] = $ps;
 				}
 				break;
@@ -836,7 +833,6 @@ function Search($sql,$forwho)
 					$wanted = new cWanted();
 					$wanted->setId($row["id"]);
 					$wanted->setName($row["name"]);
-					$wanted->setImg($row["image"]);
 					$wanted->setNationalNumber($row["national_number"]);
 					$wanted->setReportId($row["report_id"]);
 					$wanted->setDate($row["date"]);
@@ -937,7 +933,7 @@ function getPeopleByNationalNumber($id)
 function getCar($number)
 {
 	$conn = createConnection();
-	$sql = "SELECT `cars`.* FROM `cars` where `cars`.structure_number like ".$number." or `cars`.plate_number like ".$number."";
+	$sql = "SELECT `cars`.* FROM `cars` where `cars`.structure_number like '".$number."' or `cars`.plate_number like '".$number."' ";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) { 

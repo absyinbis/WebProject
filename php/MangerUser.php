@@ -49,10 +49,8 @@ class cUserManger
 
 	public function changepassword($id,$password,$password1){
 		
-		$password11 = AesCtr::decrypt($password,'absy',256);
-		$password22 = AesCtr::decrypt($password1,'absy',256);
 		if($password == $password1)
-			changePassword($id,$password);
+			changePassword($id,AesCtr::encrypt($password,'absy',256));
 		else
 			throw new Exception("كلمة السر غير متطابقة");
 	}

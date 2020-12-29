@@ -11,12 +11,14 @@ require_once '../AES/AesCtr.php';
 if($_SERVER['REQUEST_METHOD'] === "POST")
     {
       $i = $_POST["search"];
-      $sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` 
-              INNER JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` 
-              where `user`.`state` = 1
-              and `user`.`name` like '%".$i."%'
-              or `user`.`username` like '%".$i."%'
-              or `police_station`.`name` like '%".$i."%'"; 
+      $sql = "SELECT `user`.*, `police_station`.`name` who
+              FROM `user` 
+              LEFT JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id`
+              where `user`.`state` = '1'
+              AND `user`.`name` like '%".$i."%'
+              OR `user`.`id` like '%".$i."%'
+              OR `user`.`username` like '%".$i."%'
+              OR `police_station`.`name` like '%".$i."%'"; 
       $usr = Search($sql,'user');
     }
     else

@@ -14,8 +14,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       $sql = "SELECT `user`.*, `police_station`.`name` who FROM `user` 
               INNER JOIN `police_station` ON `user`.`ps_id` = `police_station`.`id` 
               where `user`.`state` = 1
-              and `user`.`name` like '%".$i."%'
-              or `user`.`username` like '%".$i."%'";
+              AND `user`.`ps_id` = '".$account->getWho()."'
+              AND `user`.`name` like '%".$i."%'
+              OR `user`.`username` like '%".$i."%'
+              OR `user`.`id` like '%".$i."%'
+              OR `user`.`phonenumber` like '%".$i."%'";
       $usr = Search($sql,'user');
     }
     else

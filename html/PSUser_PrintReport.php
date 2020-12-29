@@ -4,6 +4,7 @@ if(!isset($_POST["id"]))
   header("Location:LoginView.php");
 
 require_once  '../php/lib_db.php';
+require_once '../AES/AesCtr.php';
 
 $report = getDetailsReport($_POST["id"]);
 $result = getImg($_POST["id"]);
@@ -62,8 +63,8 @@ $result = getImg($_POST["id"]);
 			<br>
 			<br>
 
-			<textarea readonly="true" class="input-field" style="width: 640px;height: 300px;font-size: 30px;"><?=$report->getReportText()?>
-				</textarea>
+			<h1 style="text-align: center;"> المحظر</h1>
+			<span style="font-size: 20px"><?php echo AesCtr::decrypt($report->getReportText(),'absy',256); ?></span>
 
 			<br>
 			<br>

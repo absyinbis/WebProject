@@ -35,7 +35,11 @@ else
 catch(Exception $e){
 
 		$_SESSION["ERROR"] = $e->getMessage();
-		header("Location:../html/PSUser_SettingView.php");
+		if(isset($_SESSION["Request_Id"])){
+			header("Location:../html/ChangePassword.php");
+		}
+		else
+			header("Location:../html/PSUser_SettingView.php");
 
 }
 

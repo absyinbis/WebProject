@@ -37,20 +37,22 @@ $account = unserialize($_SESSION["ACCOUNT"]);
         <table id="user_table" class="table">
           <tr>
             <th onclick="sortTable(0,'user_table')">اسم المطلوب</th>
-            <th onclick="sortTable(1,'user_table')">الرقم الوطني</th>
-            <th onclick="sortTable(2,'user_table')">التاريخ</th>
+            <th onclick="sortTable(1,'user_table')">رقم المحظر</th>
+            <th onclick="sortTable(2,'user_table')">الرقم الوطني</th>
+            <th onclick="sortTable(3,'user_table')">التاريخ</th>
           </tr>
           <?php 
           foreach ($wanted as $w) {
           ?> 
           <tr>
             <td><?=$w->getName()?></td>
+            <td><?=$w->getReportId()?></td>
             <td><?=$w->getNationalNumber()?></td>
             <td><?=$w->getDate()?></td>
             <td>
             <form action="PSUser_ViewDetailsWanted.php" method="post">
               <input type="hidden" name="id" value="<?=$w->getId()?>">
-              <input type="submit" value="عرض المحظر">
+              <input type="submit" value="عرض مطلوب">
             </form>
           </td>
           </tr>

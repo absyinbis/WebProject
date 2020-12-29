@@ -27,8 +27,8 @@ foreach ($wanteds as $wanted) {
 
 foreach ($carstolens as $carstolen) {
 	$news[] = array(
-		'text'=> 'سيارة مسروقة نوع '.$carstolen->getVehicleType().' '.$carstolen->getModel(),
-		'datetime'=> $carstolen->getDate()
+		'text'=> 'سيارة مسروقة نوع '.$carstolen->getVehicleType().' '.$carstolen->getModel().' رقم الهيكل '.$carstolen->getStructureNumber().' ورقم اللوحة '.$carstolen->getPlateNumber(),
+		'datetime'=> $carstolen->getDate(),
 	);
 }
 

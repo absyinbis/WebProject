@@ -21,18 +21,23 @@
             switch (this.cells[6].innerText) {
                     case 'مسؤل النظام':
                         selected2.selectedIndex = 1;
+                        selected1.disabled = true;
                         break;
                     case 'مسؤل مركز شرطة':
                         selected2.selectedIndex = 2;
+                        selected1.disabled = false;
                         break;
                     case 'وكيل النيابة':
                         selected2.selectedIndex = 3;
+                        selected1.disabled = false;
                         break;
                     case 'موظف':
                         selected2.selectedIndex = 4;
+                        selected1.disabled = false;
                         break;
                     case 'مستخدم جوال':
                         selected2.selectedIndex = 5;
+                        selected1.disabled = false;
                         break;                      
                     }
         	};

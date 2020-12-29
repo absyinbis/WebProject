@@ -37,7 +37,7 @@ session_start();
               <form action="../php/changepassword.php"method="POST" class="my-login-validation" novalidate="">
                 <div class="form-group">
                   <label for="uname" style="text-align: right;">كلمة المرور</label>
-                  <input id="password" type="password" class="form-control" name="password" value="" required autofocus style="text-align: right;" placeholder="الرجاء ادخال كلمة المرور" >
+                  <input id="password" type="password" class="form-control" name="password" required autofocus style="text-align: right;" placeholder="الرجاء ادخال كلمة المرور" >
                   <div class="invalid-feedback" style="text-align: center;">
                     ادخل كلمة المرور
                   </div>

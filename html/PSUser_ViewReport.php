@@ -15,9 +15,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
             and state = 1
             and id like '%".$i."%'
             or name_you like '%".$i."%'
-            or name_him like '%".$i."%'
             or report_type like '%".$i."%'
-            or phonenumber like '%".$i."%'
             or date  like '%".$i."%'";
     $reports = Search($sql,'report');
   }

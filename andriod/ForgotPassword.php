@@ -2,7 +2,7 @@
 require_once '../php/lib_db.php'; 
 require_once 'C:\Users\FreeDomLy\vendor\autoload.php';
 
-$basic  = new \Nexmo\Client\Credentials\Basic('eebda345', 'UMsfm07kdUwcS93s');
+$basic  = new \Nexmo\Client\Credentials\Basic('5ba8684a', 'cU8lK4THh98MJ9lI');
 $client = new \Nexmo\Client($basic);
 
 $result = getUserByUserName($_POST["username"]);

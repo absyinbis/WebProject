@@ -4,7 +4,7 @@ session_start();
 require_once 'MangerUser.php';
 require_once 'C:\Users\FreeDomLy\vendor\autoload.php';
 
-$basic  = new \Nexmo\Client\Credentials\Basic('adf3cbb8', 'yR9f8OdUWvGjv6Ux');
+$basic  = new \Nexmo\Client\Credentials\Basic('5ba8684a', 'cU8lK4THh98MJ9lI');
 $client = new \Nexmo\Client($basic);
 
 
@@ -12,6 +12,7 @@ try{
 
 	$um = cUserManger::getInstance();
 	$account = $um->forgetpassword($_POST["username"]);
+	$_SESSION["ACCOUNT"] = serialize($account);
 	$id = $account->getId();
 	$phonenumber = $account->getPhoneNumber();
 

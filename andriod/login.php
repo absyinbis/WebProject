@@ -12,7 +12,7 @@ try
        	$arryjson = array('id' => $result->getId(),'name' =>$result->getName(),
                           'username' =>$result->getUserName(),'password' =>$result->getPassword(),
                           'phonenumber' =>$result->getPhoneNumber(),'access' =>$result->getAccess(),
-                          'rq' =>'11111');
+                          'rq' =>'1');
 
        echo json_encode($arryjson);
 }

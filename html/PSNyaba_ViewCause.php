@@ -14,7 +14,8 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
       $sql = "select * from cause where ps_id = '".$account->getWho()."' and state = 1
               and report_id like '%".$i."%'
               or national_number like '%".$i."%'
-              or cause_type like '%".$i."%'"; 
+              or cause_type like '%".$i."%'
+              or id like '%".$i."%'"; 
       $causes = Search($sql,'cause');
     }
     else

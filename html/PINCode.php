@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +21,14 @@
           <div class="brand">
             <img src="../image/forgotpassword.png" alt="Paris" >
           </div>
-           <div style="text-align: center; color: red;">
-        
+          <div style="text-align: center; color: red;">
+        <?php 
+        if (isset($_SESSION["ERROR"]))
+        {
+          echo $_SESSION["ERROR"];
+          $_SESSION["ERROR"]= ""; 
+        }
+        ?>
       </div>
           <div class="card fat">
             <div class="card-body">
@@ -29,9 +37,9 @@
                 <div class="form-group"> 
 
                   <label for="username" style="text-align: right;">رقم التحقق</label>
-                  <input id="number" type="text" class="form-control" name="username" value="" required autofocus style="text-align: right;" placeholder="ادخل رمز التحقق" >
+                  <input id="number" type="text" class="form-control" name="code" value="" required autofocus style="text-align: right;" placeholder="ادخل رمز التحقق" >
                   <div class="invalid-feedback" style="text-align: center;">
-                    ادخل  اسم  المستخدم
+                    الرجاء ادخال رقم التحقق
                   </div>
                 </div>
 
@@ -39,7 +47,7 @@
 
                 <div class="form-group m-0">
                   <button type="submit" class="btn btn-primary btn-block"  >
-                    ارسال  
+                    تحقق  
                   </button>
                 </div>
                

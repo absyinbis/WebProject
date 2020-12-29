@@ -49,13 +49,13 @@ $report = getDetailsReport($report_id);
         		<span style="font-size: 20px">اسم صاحب المحظر : </span>
 				<span style="font-size: 20px"><?=$report->getNameYou()?></span>
 
-			<!--
+
 			<br>
 			<br>
 
 			<span style="font-size: 20px">اسم المفتوح فيه المحظر : </span>
 			<span style="font-size: 20px"><?=$report->getNameHim()?></span>
-			!-->
+
 
 				<br>
 				<br>
