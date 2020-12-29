@@ -32,8 +32,15 @@ $um->adduser($user);
 //$um->logg("Add","PS",date("yy-m-d"),$account->getId());
 if ($account->getAccess() == 0)
 	header("Location:../html/AdminViewUser.php");
-	else
+	else{
+	$logg = new cLogg();
+	$logg->setProcess("اضافة مستخدم");
+	$logg->setUser_Id($account->getId());
+	$logg->setAddDate(date("Y-m-d"));
+	$logg->setPS_Id($account->getWho());
+	addLogg($logg);
 	header("Location:../html/PS_ViewUser.php");
+	}
 
 }
 
