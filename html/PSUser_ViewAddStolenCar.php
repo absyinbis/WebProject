@@ -31,9 +31,9 @@ include("PSUser_Header.html");
 
 		      	<div id="two">
 		   			<div>رقم الهيكل</div>
-		      		<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="structurenumber" required>
+		      		<input class="input-field" type="text" name="structurenumber" required>
 		      		<div>رقم اللوحة</div>
-		      		<input class="input-field" onkeypress="return onlyNumberKey(event)" type="text" name="platenumber" required>
+		      		<input class="input-field" onkeypress="return onlyNumberKey1(event)" type="text" name="platenumber">
 
 		      		<div>نوع السيارة ولونها</div>
 		      		<select class="input-field" style="width: 29%" name="car-years" id="car-years" required></select>  

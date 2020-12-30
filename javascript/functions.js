@@ -1,5 +1,14 @@
 
 
+  function onlyNumberKey1(evt) { 
+          
+      // Only ASCII charactar in that range allowed 
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+      if (ASCIICode != 45 && ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+        return false; 
+      return true; 
+  }
+
   function onlyNumberKey(evt) { 
           
       // Only ASCII charactar in that range allowed 
@@ -22,24 +31,18 @@
       switch(n)
       {
         case "Add" :
-        if(confirm("هل تريد الاضافة ؟")) {
           document.police_station.action = "../php/Add_PS.php";
           document.police_station.submit();
-        }
         break;
 
         case "Edit" :
-        if(confirm("هل تريد التعديل ؟")) {
           document.police_station.action = "../php/Edit_PS.php";
           document.police_station.submit();
-        } 
         break;
 
         case "Delete" :
-        if(confirm("هل تريد الحذف")) {
           document.police_station.action = "../php/Delete_PS.php";
           document.police_station.submit();
-        }  
         break;
       }
     }
